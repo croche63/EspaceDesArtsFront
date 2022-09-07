@@ -1,3 +1,4 @@
+import { Adresse } from "./adresse";
 import { EvaluationArtiste } from "./evaluation-artiste";
 import { Oeuvre } from "./oeuvre";
 import { Reservation } from "./reservation";
@@ -9,4 +10,5 @@ export class Artiste extends Utilisateur{
     reservations!:Reservation
     evaluationArtistes!:EvaluationArtiste
     oeuvres!:Oeuvre
+    adresse!:Adresse
 }
