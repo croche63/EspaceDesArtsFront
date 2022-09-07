@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class EvenementService {
-  private baseUrl = "http://localhost:7070/Evenements";
+export class CommentaireSalleVirtuelleService {
+  private baseUrl = "http://localhost:7070/commentaireSalleVirt";
 
   constructor(private httpClient:HttpClient) { }
 
