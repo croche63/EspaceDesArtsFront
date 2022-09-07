@@ -1,6 +1,10 @@
 import { Component, OnInit } from "@angular/core";
+import { Artiste } from "src/app/models/artiste";
 import { Reservation } from "src/app/models/reservation";
+import { SalleExposition } from "src/app/models/salle-exposition";
+import { ArtisteService } from "src/app/services/artiste.service";
 import { ReservationService } from "src/app/services/reservation.service";
+import { SalleExpositionService } from "src/app/services/salle-exposition.service";
 
 @Component({
   selector: "app-tables",
@@ -8,13 +12,21 @@ import { ReservationService } from "src/app/services/reservation.service";
 })
 export class TablesComponent implements OnInit {
   reservations!: any[];
-  reservation : Reservation = new Reservation()
+  reservation : Reservation = new Reservation();
+
+  artistes!: any[];
+  artiste : Artiste = new Artiste();
+
+  salleExpositions!: any[];
+  salleExposition : SalleExposition = new SalleExposition();
 
 
-  constructor(private reservationService:ReservationService) {}
+
+  constructor(private reservationService:ReservationService, private artisteService:ArtisteService, private salleExpositionService:SalleExpositionService) {}
 
   ngOnInit(): void {
-    this.findAllReservations();
+    this.findAllArtistes();
+    this.findAllSallesExposition();
   }
 
   findAllReservations(){
@@ -30,8 +42,14 @@ export class TablesComponent implements OnInit {
     )
   }
 
-  delete(id:number){
-    this.reservationService.delete(id).subscribe(()=>{this.findAllReservations()});
+  findAllArtistes(){
+    this.artisteService.findAll().subscribe((data: any[]) => {this.artistes = data;});
   }
+
+  findAllSallesExposition(){
+    this.salleExpositionService.findAll().subscribe((data: any[]) => {this.salleExpositions = data;});
+  }
+
+  
 
 }
