@@ -1,6 +1,8 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 
+import { HttpClientModule, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
+
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
@@ -47,6 +49,19 @@ import { PagesDropdownComponent } from "./components/dropdowns/pages-dropdown/pa
 import { NotificationDropdownComponent } from "./components/dropdowns/notification-dropdown/notification-dropdown.component";
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { UserDropdownComponent } from "./components/dropdowns/user-dropdown/user-dropdown.component";
+import { FormsModule } from "@angular/forms";
+import { ArtisteService } from "./services/artiste.service";
+import { EvaluationArtisteService } from "./services/evaluation-artiste.service";
+
+@Injectable()
+export class XhrInterceptor implements HttpInterceptor{
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const xhr = req.clone({
+      headers: req.headers.set('X-Requested-With','XMLHttpRequest')
+    });
+    return next.handle(xhr);
+  }
+}
 
 @NgModule({
   declarations: [
@@ -85,8 +100,8 @@ import { UserDropdownComponent } from "./components/dropdowns/user-dropdown/user
     LandingComponent,
     ProfileComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
-  providers: [],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  providers: [ArtisteService, EvaluationArtisteService, {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi:true}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
