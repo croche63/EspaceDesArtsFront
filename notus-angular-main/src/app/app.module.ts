@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { Injectable, NgModule } from "@angular/core";
 
 import { HttpClientModule, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -52,6 +52,7 @@ import { UserDropdownComponent } from "./components/dropdowns/user-dropdown/user
 import { FormsModule } from "@angular/forms";
 import { ArtisteService } from "./services/artiste.service";
 import { EvaluationArtisteService } from "./services/evaluation-artiste.service";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor{
