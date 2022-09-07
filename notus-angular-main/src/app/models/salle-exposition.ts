@@ -8,17 +8,16 @@ import { Reservation } from "./reservation";
 import { SignalementSalleExposition } from "./signalement-salle-exposition";
 
 export class SalleExposition {
-    id!:number;
-    libelle!:string;
-    logo!:Byte;
-    dimensionSalle!:string;
-    adresse!:Adresse;
-    proprietaire!:Proprietaire;
-    signalementSalleExposition!:SignalementSalleExposition;
-    reservation!:Reservation;
-    evaluationArtiste!:EvaluationArtiste;
-    commentaireSalleExposition!:CommentaireSalleExposition;
-    oeuvre!:Oeuvre;
-
+    id!:number
+    libelle!:string
+    logo!:Byte
+    dimensionSalle!:string
+    adresse!:Adresse
+    proprietaire!:Proprietaire
+    signalementSalleExposition!:SignalementSalleExposition
+    reservation!:Reservation
+    evaluationArtiste!:EvaluationArtiste
+    commentaireSalleExposition!:CommentaireSalleExposition
+    oeuvre!:Oeuvre
 
 }

@@ -1,3 +1,5 @@
+import { Reservation } from "./reservation"
+
 export class Evenement {
     idEvenement!:number
     titre!:string
@@ -5,5 +7,6 @@ export class Evenement {
     dateDebut!:Date
     dateFin!:Date
     logo!:File
+    reservation!:Reservation
 
 }
