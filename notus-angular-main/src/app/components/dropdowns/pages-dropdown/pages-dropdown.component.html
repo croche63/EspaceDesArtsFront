@@ -20,25 +20,19 @@
     [routerLink]="['/admin/dashboard']"
     class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
   >
-    Dashboard
+    Administration
   </a>
   <a
     [routerLink]="['/admin/settings']"
     class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
   >
-    Settings
+    Gestion Propriétaire
   </a>
   <a
     [routerLink]="['/admin/tables']"
     class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
   >
-    Tables
-  </a>
-  <a
-    [routerLink]="['/admin/maps']"
-    class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-  >
-    Maps
+    Gestion Artiste
   </a>
   <div class="h-0 mx-4 my-2 border border-solid border-blueGray-100"></div>
   <span
@@ -68,12 +62,19 @@
     [routerLink]="['/landing']"
     class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
   >
-    Landing
+    Accueil
   </a>
+  <a
+  [routerLink]="['/admin/maps']"
+  class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+>
+  Salle d'exposition
+</a>
+
   <a
     [routerLink]="['/profile']"
     class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
   >
-    Profile
+    Salle Virtuelle
   </a>
 </div>
