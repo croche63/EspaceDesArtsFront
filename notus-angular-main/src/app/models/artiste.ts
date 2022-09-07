@@ -1,4 +1,4 @@
-export class Artiste extends Utilisateur{
+export class Artiste /*extends Utilisateur*/{
     nationalite!:string;
     dateNaissance!:Date;
 }
