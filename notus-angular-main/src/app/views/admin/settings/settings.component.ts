@@ -20,6 +20,7 @@ proprietaires!: any[];
 
 utilisateurs!: any[];
 roles!:any[];
+role!:Role;
 
   constructor(private proprietaireService:ProprietaireService, 
     private appService:AppService, private utilisateurService:UtilisateurService,
@@ -30,27 +31,30 @@ this.getProprietaire();
 this.findAllProprietaires()
 this.findAllUtilisateurs()
 this.findAllRoles()
-console.log(this.proprietaires);
-console.log(this.proprietaire.id);
-console.log(this.utilisateurs);
-console.log(this.nom)
-console.log(this.libelle)
+this.findRoleByLibelle()
 
   }
 
 getProprietaire(){ // this.username
-  this.proprietaireService.findByUsername("admin").subscribe((data: Proprietaire) => {this.proprietaire = data;console.log(this.nom)});
-  this.proprietaireService.findByUsername("admin").subscribe((data: any) => {this.nom = data.nom;});
+  this.proprietaireService.findByUsername("admin").subscribe((data: Proprietaire) => {this.proprietaire = data;console.log(this.proprietaire)});
+  this.proprietaireService.findByUsername("test").subscribe((data: Proprietaire) => {this.nom = data.nom;console.log(this.nom);
+  });
 }
 findAllProprietaires(){
-  this.proprietaireService.findAll().subscribe((data: Proprietaire[]) => {this.proprietaires = data;});
+  this.proprietaireService.findAll().subscribe((data: Proprietaire[]) => {this.proprietaires = data;console.log(this.proprietaires);
+  });
 }
 findAllUtilisateurs(){
-  this.utilisateurService.findAll().subscribe((data:Utilisateur[]) => {this.utilisateurs = data;})
+  this.utilisateurService.findAll().subscribe((data:Utilisateur[]) => {this.utilisateurs = data;console.log(this.utilisateurs);
+  })
 }
 findAllRoles(){
   this.roleService.findAll().subscribe((data:Role[]) => {this.roles=data;console.log(this.roles);
   })
+}
+
+findRoleByLibelle(){
+  this.roleService.findByLibelle("artiste").subscribe((data:Role) => {this.role=data;console.log(this.role)})
 }
 
 }
