@@ -1,10 +1,8 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { AppService } from "src/app/app.service";
 import { Proprietaire } from "src/app/models/proprietaire";
-import { Reservation } from "src/app/models/reservation";
 import { Table } from "src/app/models/table";
 import { ProprietaireService } from "src/app/services/proprietaire.service";
-import { SettingsComponent } from "src/app/views/admin/settings/settings.component";
 
 @Component({
   selector: "app-card-table",
@@ -22,7 +20,7 @@ export class CardTableComponent implements OnInit {
 
   proprietaire: Proprietaire = new Proprietaire()
   proprietaires!: any[];
-  username:string = "admin" //this.appService.username
+  username:string = "test2" //this.appService.username
   
 
     constructor(private proprietaireService:ProprietaireService, 
@@ -34,14 +32,14 @@ export class CardTableComponent implements OnInit {
     }
   
   getProprietaire(username:string){ // this.username
-    this.proprietaireService.findByUsername(username).subscribe((data: Proprietaire) => {this.proprietaire = data;});
-  }
-  
+    this.proprietaireService.findByUsername(username).subscribe((data: Proprietaire) => {this.proprietaire = data;console.log(this.proprietaire);
+    });
+  } 
+   
 tableau1: Table = new Table();
 titre:string = "Liste des réservations"
 generateTable(){
   this.tableau1.titre="Liste des réservations de "+ this.proprietaire.nom
-  this.proprietaire.reservations
   this.tableau1.principal=["Artiste","Durée","Evenements"]
   this.tableau1.contenu=this.proprietaire.salleExposition.reservation
 }
