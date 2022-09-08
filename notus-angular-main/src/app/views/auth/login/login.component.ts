@@ -11,9 +11,8 @@ export class LoginComponent {
 
   credentials = {username: '', password:''}
 
-  constructor(private appService:AppService, private httpClient:HttpClient, private router:Router) { }
+  constructor(private appService:AppService, private router:Router) { }
 
-  // TODO rediriger vers autre page
   login() {
     this.appService.authenticate(this.credentials, () => {this.router.navigateByUrl("/")});
     return false;
