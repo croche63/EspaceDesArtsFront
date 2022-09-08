@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AppService } from '../app.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +8,7 @@ import { AppService } from '../app.service';
 export class ProprietaireService {
   private baseUrl = "http://localhost:7070/Proprietaires";
 
-  constructor(private httpClient:HttpClient, private appService:AppService) { }
+  constructor(private httpClient:HttpClient) { }
 
   public findAll() : Observable<any>{
     return this.httpClient.get(this.baseUrl);

@@ -21,4 +21,9 @@ export class OeuvreService {
   public delete(id:number) : Observable<any>{
     return this.httpClient.delete(this.baseUrl+"/"+id);
   }
+
+  public findByNom(nom:string) : Observable<any>{
+    return this.httpClient.get(this.baseUrl+"/"+nom)
+  }
+
 }
