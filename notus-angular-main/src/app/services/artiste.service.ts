@@ -21,4 +21,9 @@ export class ArtisteService {
   public delete(id:number) : Observable<any>{
     return this.httpClient.delete(this.baseUrl+"/"+id);
   }
+
+  /*
+  public findByUsername(username:string) : Observable<any>{
+    return this.httpClient.get(this.baseUrl+"/"+this.appService.username);
+  }*/
 }
