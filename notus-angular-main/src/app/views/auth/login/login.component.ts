@@ -15,7 +15,7 @@ export class LoginComponent {
 
   // TODO rediriger vers autre page
   login() {
-    this.appService.authenticate(this.credentials, () => {this.router.navigateByUrl("/user-profile")});
+    this.appService.authenticate(this.credentials, () => {this.router.navigateByUrl("/")});
     return false;
   }
 }
