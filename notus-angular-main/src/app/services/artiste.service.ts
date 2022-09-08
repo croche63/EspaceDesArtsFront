@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AppService } from '../app.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { Observable } from 'rxjs';
 export class ArtisteService {
   private baseUrl = "http://localhost:7070/Artistes";
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient:HttpClient, private appService:AppService) { }
 
   public findAll() : Observable<any>{
     return this.httpClient.get(this.baseUrl);
@@ -22,8 +23,7 @@ export class ArtisteService {
     return this.httpClient.delete(this.baseUrl+"/"+id);
   }
 
-  /*
   public findByUsername(username:string) : Observable<any>{
     return this.httpClient.get(this.baseUrl+"/"+this.appService.username);
-  }*/
+  }
 }

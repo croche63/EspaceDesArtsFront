@@ -32,8 +32,8 @@ export class TablesComponent implements OnInit {
   ngOnInit(): void {
     this.findAllSallesExposition();
     this.findAllOeuvres();
-    //this.findArtiste();
-    console.log(this.salleExposition.libelle);
+    this.findArtiste();
+    //console.log(this.salleExposition.libelle);
   }
 
   //Pour faire une reservation
@@ -50,12 +50,12 @@ export class TablesComponent implements OnInit {
     )
   }
 
-  /*
+  
   //Pour l'artiste
    findArtiste(username:string){
     this.artisteService.findByUsername(username).subscribe((date:any[]) => {this.artiste = data;});
     console.log(this.artiste.nom);
-  }*/
+  }
 
   //affichage de toutes les salles
   findAllSallesExposition(){
