@@ -1,6 +1,7 @@
 //TODO pas fini
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -12,6 +13,8 @@ export class AppService {
 
   isAdmin=false;
   isUser=false;
+
+  username!:String
   
   constructor(private httpClient:HttpClient) { }
 
@@ -25,6 +28,7 @@ export class AppService {
         this.responseAll = response;
         if(this.responseAll['username']){
           this.authenticated = true;
+          this.username=credentials.username
           for(let i=0;i<this.responseAll['roles'].length;i++){
             if(this.responseAll['roles'][i]['idRole']==1){
               this.isAdmin = true;
