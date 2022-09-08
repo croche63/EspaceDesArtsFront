@@ -7,7 +7,7 @@ export class Reservation {
     idReservation!:number;
     dateDebut!:Date;
     dateFin!:Date;
-    evenement!:Evenement
+    evenement!:Evenement[]
     proprietaire!:Proprietaire
     artiste!:Artiste
     salleExposition!:SalleExposition
