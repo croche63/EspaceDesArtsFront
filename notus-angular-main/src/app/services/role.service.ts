@@ -21,4 +21,8 @@ export class RoleService {
   public delete(id:number) : Observable<any>{
     return this.httpClient.delete(this.baseUrl+"/"+id);
   }
+
+  public findByLibelle(libelle:string) : Observable<any>{
+    return this.httpClient.get(this.baseUrl+"/libelle/"+libelle)
+  }
 }

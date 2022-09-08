@@ -20,6 +20,7 @@ proprietaires!: any[];
 
 utilisateurs!: any[];
 roles!:any[];
+role!:Role;
 
   constructor(private proprietaireService:ProprietaireService, 
     private appService:AppService, private utilisateurService:UtilisateurService,
@@ -35,6 +36,7 @@ console.log(this.proprietaire.id);
 console.log(this.utilisateurs);
 console.log(this.nom)
 console.log(this.libelle)
+this.findRoleByLibelle()
 
   }
 
@@ -51,6 +53,10 @@ findAllUtilisateurs(){
 findAllRoles(){
   this.roleService.findAll().subscribe((data:Role[]) => {this.roles=data;console.log(this.roles);
   })
+}
+
+findRoleByLibelle(){
+  this.roleService.findByLibelle("artiste").subscribe((data:Role) => {this.role=data;console.log(this.role)})
 }
 
 }
