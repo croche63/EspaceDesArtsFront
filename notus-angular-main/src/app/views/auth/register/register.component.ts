@@ -14,18 +14,33 @@ export class RegisterComponent implements OnInit {
   //TODO : Association role
   //TODO : Images?
   //TODO : Champs supplementaires si role artiste
-  //TODO : Redirections apres inscription
 
   utilisateur:Utilisateur = new Utilisateur();
+
+  selectedFiles:FileList;
+  currentFileUpload:File;
 
   constructor(private utilisateurService:UtilisateurService, private router:Router) { }
 
   ngOnInit(): void {}
 
+  selectFile(event:any){
+    this.selectedFiles = event.target.files;
+  }
+  
   save(){
-    this.utilisateurService.save(this.utilisateur).subscribe(
+
+    // Envoyer une image null si l'utilisateur n'a rien selectionné
+    if(this.selectedFiles == undefined) {
+      this.currentFileUpload = null;
+    } else {
+      this.currentFileUpload = this.selectedFiles.item(0);
+    }
+
+    this.utilisateurService.save(this.currentFileUpload,this.utilisateur).subscribe(
       ()=>{
-        this.utilisateur = new Utilisateur(); //vider formulaire
+        this.utilisateur = new Utilisateur(); //vider formulaire -> Inutile?
+        this.selectedFiles = null;
         this.router.navigateByUrl("/auth/login"); //rediriger vers page de login
       }
     )

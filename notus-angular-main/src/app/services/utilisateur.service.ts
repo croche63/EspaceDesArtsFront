@@ -15,7 +15,7 @@ export class UtilisateurService {
     return this.httpClient.get(this.baseUrl);
   }
 
-  public save(/* image:File, */utilisateur:Utilisateur):Observable<any>{
+  public save(image:File,utilisateur:Utilisateur):Observable<any>{
     const formData=new FormData();
     formData.append('nom',utilisateur.nom);
     formData.append('prenom',utilisateur.prenom);
@@ -23,7 +23,7 @@ export class UtilisateurService {
     formData.append('password',utilisateur.password);
     formData.append('email',utilisateur.email);
     formData.append('numeroTel',utilisateur.numeroTel);
-/*     formData.append('fileU',image); */
+    formData.append('image',image);
     const requete = new HttpRequest('POST',this.baseUrl,formData,
     {reportProgress:true,responseType:'text'});
     return this.httpClient.request(requete);
