@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { AppService } from "src/app/app.service";
 import { Utilisateur } from "src/app/models/utilisateur";
 import { UtilisateurService } from "src/app/services/utilisateur.service";
@@ -17,7 +18,7 @@ export class RegisterComponent implements OnInit {
 
   utilisateur:Utilisateur = new Utilisateur();
 
-  constructor(private utilisateurService:UtilisateurService) { }
+  constructor(private utilisateurService:UtilisateurService, private router:Router) { }
 
   ngOnInit(): void {}
 
@@ -25,6 +26,7 @@ export class RegisterComponent implements OnInit {
     this.utilisateurService.save(this.utilisateur).subscribe(
       ()=>{
         this.utilisateur = new Utilisateur(); //vider formulaire
+        this.router.navigateByUrl("/auth/login"); //rediriger vers page de login
       }
     )
   }
