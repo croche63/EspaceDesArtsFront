@@ -53,6 +53,20 @@ import { FormsModule } from "@angular/forms";
 import { ArtisteService } from "./services/artiste.service";
 import { EvaluationArtisteService } from "./services/evaluation-artiste.service";
 import { Observable } from "rxjs";
+import { ProprietaireService } from "./services/proprietaire.service";
+import { CommentaireOeuvreService } from "./services/commentaire-oeuvre.service";
+import { CommentaireSalleExpositionService } from "./services/commentaire-salle-exposition.service";
+import { CommentaireSalleVirtuelleService } from "./services/commentaire-salle-virtuelle.service";
+import { EvenementService } from "./services/evenement.service";
+import { OeuvreService } from "./services/oeuvre.service";
+import { ReservationService } from "./services/reservation.service";
+import { RoleService } from "./services/role.service";
+import { SalleExpositionService } from "./services/salle-exposition.service";
+import { SalleVirtuelleService } from "./services/salle-virtuelle.service";
+import { SignalementOeuvreService } from "./services/signalement-oeuvre.service";
+import { SignalementSalleExpositionService } from "./services/signalement-salle-exposition.service";
+import { SignalementSalleVirtuelleService } from "./services/signalement-salle-virtuelle.service";
+import { UtilisateurService } from "./services/utilisateur.service";
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor{
@@ -102,7 +116,13 @@ export class XhrInterceptor implements HttpInterceptor{
     ProfileComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
-  providers: [ArtisteService, EvaluationArtisteService, {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi:true}],
+  providers: [ArtisteService, CommentaireOeuvreService, CommentaireSalleExpositionService,
+    CommentaireSalleVirtuelleService, EvaluationArtisteService, EvenementService,
+    OeuvreService, ProprietaireService, ReservationService, RoleService,
+    SalleExpositionService, SalleVirtuelleService, SignalementOeuvreService,
+    SignalementSalleExpositionService, SignalementSalleVirtuelleService,
+    UtilisateurService,
+    {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi:true}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
