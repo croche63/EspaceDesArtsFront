@@ -14,15 +14,13 @@
     <table class="items-center w-full bg-transparent border-collapse">
       <thead>
         <tr>
-     <!-- <th  -->     <th *ngFor="let p of tableau1.principal"
-          
+          <th *ngFor="let p of tableau1.principal"
             class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
             [ngClass]=" 
               color === 'light'
                 ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
                 : 'bg-red-800 text-red-300 border-red-700'
             ">
-            Artiste
             {{p}}
           </th>
         </tr>
@@ -30,7 +28,7 @@
       <tbody>
         <tr>
           <!-- <td *ngFor="let c of tableau1.contenu" -->
-          <td 
+          <td
             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
             <!-- <img src="data:image/jpeg;base64,{{c.artiste.image}}" class="h-12 w-12 bg-white rounded-full border"
               alt="..." /> -->
@@ -45,11 +43,11 @@
           </td>
           <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
             <div class="flex">
-              <a *ngFor="let e of c.evenement" href="">
+              <!-- <a *ngFor="let e of c.evenement" href="">
                 <img src="data:image/jpeg;base64,{{e.logo}}" alt="..."
                   class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow" />
                 {{e.titre}}
-              </a>
+              </a> -->
             </div>
           </td>
           <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
