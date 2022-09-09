@@ -14,32 +14,27 @@
   <span
     class="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-400"
   >
-    Admin Layout
+    Gestion
   </span>
   <a
     [routerLink]="['/admin/dashboard']"
     class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
   >
-    Dashboard  
+    Administration  
   </a>
   <a
     [routerLink]="['/admin/settings']"
     class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
   >
-    Settings
-  </a>
+  <!-- Settings -->
+  Mon espace propriétaire
+</a>
   <a
     [routerLink]="['/admin/tables']"
     class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
   >
     <!--Table-->
     Mon espace artiste
-  </a>
-  <a
-    [routerLink]="['/admin/maps']"
-    class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-  >
-    Maps
   </a>
   <div class="h-0 mx-4 my-2 border border-solid border-blueGray-100"></div>
   <span
@@ -66,15 +61,35 @@
     No Layout
   </span>
   <a
+    [routerLink]="['']"
+    class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+  >
+  Accueil
+  </a>  <a
     [routerLink]="['/landing']"
     class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
   >
-    Landing
+  Salles d'exposition
   </a>
   <a
     [routerLink]="['/profile']"
     class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
   >
-    Profile
+    Salles virtuelles
   </a>
+
+  <div class="h-0 mx-4 my-2 border border-solid border-blueGray-100"></div>
+  <span
+    class="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-400"
+  >
+    Pages en rab'
+  </span>
+
+  <a
+  [routerLink]="['/admin/maps']"
+  class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+>
+  Maps
+</a>
+
 </div>
