@@ -120,7 +120,8 @@
              <span
               class="ml-12 font-bold" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-blueGray-600'">
               {{s.libelle}}<br> 
-              {{s.adresse}}<br>
+              {{s.adresse.numeroRue}} {{s.adresse.nomRue}}, {{s.adresse.ville}}<br>
+              {{s.adresse.pays}}<br>
               Cette salle posséde en environ {{s.dimensionSalle}} mettres carrés disponibles pour votre exposition. <br>
             </span>
           </td>
@@ -285,4 +286,3 @@
   </div>
         
   
-<app-card-table-copie></app-card-table-copie>
