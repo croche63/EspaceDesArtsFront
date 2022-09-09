@@ -21,4 +21,13 @@ export class SalleVirtuelleService {
   public delete(id:number) : Observable<any>{
     return this.httpClient.delete(this.baseUrl+"/"+id);
   }
+
+ public findOne(id:number) : Observable<any>{
+  return this.httpClient.get(this.baseUrl+"/"+id)
+ }
+
+  public update(salleV:any) :Observable<any>{
+    var salleVParse = JSON.parse(salleV)
+    return this.httpClient.put(this.baseUrl+"/"+salleV.id,salleVParse)
+  }
 }
