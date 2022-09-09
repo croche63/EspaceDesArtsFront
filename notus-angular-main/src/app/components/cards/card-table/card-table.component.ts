@@ -1,4 +1,3 @@
-
 import { Component, Input, OnInit } from "@angular/core";
 import { AppService } from "src/app/app.service";
 import { Proprietaire } from "src/app/models/proprietaire";
