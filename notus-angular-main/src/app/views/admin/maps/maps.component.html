@@ -34,9 +34,25 @@
                                 <input matInput placeholder="Description" type="text"
                                 [(ngModel)]="commentaireSalleExposition.description" name="description">
                             </div>
+                            <div class="col-md-6">
+                              <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                              htmlFor="grid-password">Noter votre expérience sur 5</label>
+                              <input  matInput placeholder="note" type="radio"
+                              [(ngModel)]="commentaireSalleExposition.note" name="note">0 
+                              <input  matInput placeholder="Description" type="radio"
+                              [(ngModel)]="commentaireSalleExposition.note" name="note">1 
+                              <input  matInput placeholder="Description" type="radio"
+                              [(ngModel)]="commentaireSalleExposition.note" name="note">2 
+                              <input  matInput placeholder="Description" type="radio"
+                              [(ngModel)]="commentaireSalleExposition.note" name="note">3 
+                              <input  matInput placeholder="Description" type="radio"
+                              [(ngModel)]="commentaireSalleExposition.note" name="note">4 
+                              <input  matInput placeholder="Description" type="radio"
+                              [(ngModel)]="commentaireSalleExposition.note" name="note">5 
+                            </div>
                         </div>
                         <div class="text-center mt-6">
-                          <button type="button" class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150">Ajouter</button>
+                          <button type="submit" class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150">Ajouter</button>
                         </div>
                         <div class="clearfix"></div>
                     </form>
