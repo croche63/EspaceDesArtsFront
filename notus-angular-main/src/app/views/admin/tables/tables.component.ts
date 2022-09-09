@@ -27,6 +27,9 @@ export class TablesComponent implements OnInit {
   oeuvres!: any[];
   oeuvre : Oeuvre = new Oeuvre();
 
+  selectedFiles:FileList;
+  currentFileUpload:File;
+
 
   constructor(private reservationService:ReservationService, private artisteService:ArtisteService, 
     private salleExpositionService:SalleExpositionService, private oeuvreService:OeuvreService, private appService:AppService) {}
@@ -37,12 +40,12 @@ export class TablesComponent implements OnInit {
   }
 
     
-  //Pour l'artiste
+  //ARTISTE
    findArtiste(username:string){
     this.artisteService.findByUsername("bobtest").subscribe((data: Artiste) => {this.artiste = data;console.log(this.artiste)});
   }
 
-  //Pour faire une reservation
+  //RESERVATIONS
   findAllReservations(){
     this.reservationService.findAll().subscribe((data: any[]) => {this.reservations = data;});
   }
@@ -56,13 +59,13 @@ export class TablesComponent implements OnInit {
     )
   }
 
-  //affichage de toutes les salles
+  //SALLES D'EXPOSITION
   findAllSallesExposition(){
     this.salleExpositionService.findAll().subscribe((data: any[]) => {this.salleExpositions = data;});
     console.log(this.salleExpositions);
   }
 
-  //supprimer oeuvre
+  //OEUVRES
   findAllOeuvres(){
     this.oeuvreService.findAll().subscribe((data: any[]) => {this.oeuvres = data;});
     console.log(this.oeuvres);
@@ -71,5 +74,32 @@ export class TablesComponent implements OnInit {
   deleteOeuvre(id:number){
     this.oeuvreService.delete(id).subscribe(()=>{this.findAllOeuvres})
   }
+
+  selectFile(event:any){
+    this.selectedFiles = event.target.files;
+  }
+  
+  saveOeuvre(){
+    this.currentFileUpload = this.selectedFiles.item(0);
+    this.oeuvreService.save(this.currentFileUpload,this.oeuvre).subscribe(
+      ()=>{
+        this.findAllOeuvres(); 
+        this.oeuvre = new Oeuvre(); 
+        this.selectedFiles = undefined;
+        this.displayStyle = "none";
+      }
+    )
+  }
+
+  //Modal pour les oeuvres
+  displayStyle = "none";
+
+  openPopup() {
+    this.displayStyle = "block";
+  }
+  
+  /*closePopup() {
+    this.displayStyle = "none";
+  }*/
 
 }

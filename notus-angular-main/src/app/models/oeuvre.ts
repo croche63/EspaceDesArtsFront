@@ -8,7 +8,7 @@ export class Oeuvre {
     idOeuvre!:number
     nom!:string
     information!:string
-    photoOeuvre!:File
+    image!:File
     prix!:number
     type!:string
     artiste!:Artiste
