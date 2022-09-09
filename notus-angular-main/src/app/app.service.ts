@@ -14,7 +14,7 @@ export class AppService {
   isAdmin=false;
   isUser=false;
 
-  username!:String
+  username!:string
   
   constructor(private httpClient:HttpClient) { }
 

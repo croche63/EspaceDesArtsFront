@@ -15,7 +15,7 @@ export class SalleExposition {
     adresse!:Adresse
     proprietaire!:Proprietaire
     signalementSalleExposition!:SignalementSalleExposition
-    reservation!:Reservation
+    reservation!:Reservation[]
     evaluationArtiste!:EvaluationArtiste
     commentaireSalleExposition!:CommentaireSalleExposition
     oeuvre!:Oeuvre
