@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SalleVirtuelleService {
-  private baseUrl = "http://localhost:3306/SalleVirtuelles";
+  private baseUrl = "http://localhost:7070/SalleVirtuelles";
 
   constructor(private httpClient:HttpClient) { }
 
