@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from "@angular/core";
+
+import { Component, Input, OnInit } from "@angular/core";
 import { AppService } from "src/app/app.service";
 import { Proprietaire } from "src/app/models/proprietaire";
 import { Table } from "src/app/models/table";
