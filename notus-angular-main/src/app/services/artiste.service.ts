@@ -24,6 +24,6 @@ export class ArtisteService {
   }
 
   public findByUsername(username:string) : Observable<any>{
-    return this.httpClient.get(this.baseUrl+"/"+this.appService.username);
+    return this.httpClient.get(this.baseUrl+"/"+username); 
   }
 }

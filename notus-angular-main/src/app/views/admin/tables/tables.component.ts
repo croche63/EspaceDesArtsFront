@@ -19,6 +19,7 @@ export class TablesComponent implements OnInit {
   reservation : Reservation = new Reservation();
 
   artiste : Artiste = new Artiste();
+  username:string =  "bobtest" //this.appService.username;
 
   salleExpositions!: any[];
   salleExposition : SalleExposition = new SalleExposition();
@@ -27,13 +28,18 @@ export class TablesComponent implements OnInit {
   oeuvre : Oeuvre = new Oeuvre();
 
 
-  constructor(private reservationService:ReservationService, private artisteService:ArtisteService, private salleExpositionService:SalleExpositionService, private oeuvreService:OeuvreService, private appService:AppService) {}
+  constructor(private reservationService:ReservationService, private artisteService:ArtisteService, 
+    private salleExpositionService:SalleExpositionService, private oeuvreService:OeuvreService, private appService:AppService) {}
 
   ngOnInit(): void {
     this.findAllSallesExposition();
-    this.findAllOeuvres();
-    this.findArtiste();
-    //console.log(this.salleExposition.libelle);
+    this.findArtiste(this.username);
+  }
+
+    
+  //Pour l'artiste
+   findArtiste(username:string){
+    this.artisteService.findByUsername("bobtest").subscribe((data: Artiste) => {this.artiste = data;console.log(this.artiste)});
   }
 
   //Pour faire une reservation
@@ -50,21 +56,16 @@ export class TablesComponent implements OnInit {
     )
   }
 
-  
-  //Pour l'artiste
-   findArtiste(username:string){
-    this.artisteService.findByUsername(username).subscribe((date:any[]) => {this.artiste = data;});
-    console.log(this.artiste.nom);
-  }
-
   //affichage de toutes les salles
   findAllSallesExposition(){
     this.salleExpositionService.findAll().subscribe((data: any[]) => {this.salleExpositions = data;});
+    console.log(this.salleExpositions);
   }
 
   //supprimer oeuvre
   findAllOeuvres(){
     this.oeuvreService.findAll().subscribe((data: any[]) => {this.oeuvres = data;});
+    console.log(this.oeuvres);
   }
 
   deleteOeuvre(id:number){
