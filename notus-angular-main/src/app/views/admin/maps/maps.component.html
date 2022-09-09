@@ -1,9 +1,47 @@
 <div class="flex flex-wrap">
   <div class="w-full px-4">
-    <div
+   <div
       class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded"
     >
       <app-map-example></app-map-example>
+    </div>
+
+    <div>
+      <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header card-header-danger">
+                    <h4 class="block uppercase text-blueGray-600 text-xs font-bold mb-2"htmlFor="grid-password">Laisser un commentaire sur une salle d'exposition</h4>
+                </div>
+                <div class="card-body">
+                    <form (ngSubmit)="save()">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                              <label
+                              class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                              htmlFor="grid-password">
+                                 Non de l'exposition
+                              </label>
+                              <input matInput placeholder="Non de l'exposition" type="text" [(ngModel)]='commentaireSalleExposition.titre' name="titre">
+                            </div>
+                            <div class="col-md-6">
+                              <label
+                              class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                              htmlFor="grid-password">
+                                 Veullez décrire votre expérience
+                              </label>
+                                <input matInput placeholder="Description" type="text"
+                                [(ngModel)]="commentaireSalleExposition.description" name="description">
+                            </div>
+                        </div>
+                        
+                        <button mat-raised-button type="submit" class="btn btn-danger ">Ajouter</button>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
   </div>
 </div>
