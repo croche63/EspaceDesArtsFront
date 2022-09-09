@@ -1,6 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Artiste } from '../models/artiste';
+import { Oeuvre } from '../models/oeuvre';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +16,17 @@ export class OeuvreService {
     return this.httpClient.get(this.baseUrl);
   }
 
-  public save(variable:any) : Observable<any>{
-    return this.httpClient.post(this.baseUrl,variable);
+  public save(image:File,oeuvre:Oeuvre) : Observable<any>{
+    const formData=new FormData();
+    formData.append('nom',oeuvre.nom);
+    formData.append('type',oeuvre.type);
+    formData.append('information',oeuvre.information);
+    //formData.append('username',oeuvre.artiste.username);
+    formData.append('prix',oeuvre.prix.toString());
+    formData.append('fileU',image);
+    const requete = new HttpRequest('POST',this.baseUrl,formData,
+    {reportProgress:true,responseType:'text'});
+    return this.httpClient.request(requete);
   }
 
   public delete(id:number) : Observable<any>{
