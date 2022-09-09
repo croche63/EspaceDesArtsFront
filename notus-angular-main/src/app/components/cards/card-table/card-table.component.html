@@ -14,29 +14,34 @@
     <table class="items-center w-full bg-transparent border-collapse">
       <thead>
         <tr>
-          <th *ngFor="let p of tableau1.principal"
+     <!-- <th  -->     <th *ngFor="let p of tableau1.principal"
+          
             class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
             [ngClass]=" 
               color === 'light'
                 ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
                 : 'bg-red-800 text-red-300 border-red-700'
             ">
+            Artiste
             {{p}}
           </th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td *ngFor="let c of tableau1.contenu"
+          <!-- <td *ngFor="let c of tableau1.contenu" -->
+          <td 
             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
-            <img src="data:image/jpeg;base64,{{c.artiste.image}}" class="h-12 w-12 bg-white rounded-full border"
-              alt="..." />
+            <!-- <img src="data:image/jpeg;base64,{{c.artiste.image}}" class="h-12 w-12 bg-white rounded-full border"
+              alt="..." /> -->
             <span class="ml-3 font-bold" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'">
-              {{c.artiste.nom}} {{c.artiste.prenom}}
+              <!-- {{c.artiste.nom}} {{c.artiste.prenom}} -->
+              Jenna Stones
             </span>
           </td>
           <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-            {{c.dateDebut}} {{c.dateFin}}
+            <!-- {{c.dateDebut}} - {{c.dateFin}} -->
+            1/09/2022 - 19/09/2022
           </td>
           <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
             <div class="flex">
