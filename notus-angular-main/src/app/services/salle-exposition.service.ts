@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class SalleExpositionService {
 
-  private baseUrl = "http://localhost:3306/SalleExpositions";
+  private baseUrl = "http://localhost:7070/SalleExpositions";
 
   constructor(private httpClient:HttpClient) { }
 
