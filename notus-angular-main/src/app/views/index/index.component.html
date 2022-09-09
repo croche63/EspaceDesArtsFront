@@ -9,7 +9,11 @@
           Titre - Phrase d'accroche.
         </h2>
         <p class="mt-4 text-lg leading-relaxed text-blueGray-500">
-          Détails.
+          Détails. <br>
+          Détails. <br>
+          Détails. <br>
+          Détails. <br>
+          Détails. <br>
         </p>
       </div>
     </div>
@@ -29,7 +33,7 @@
   </div>
   <div class="container mx-auto">
     <div class="flex flex-wrap items-center">
-      <div class=" md:w-4/12 lg:w-4/12 -mt-32">
+      <div class=" lg:w-3/12 -mt-32">
         <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-red-600">
           <img alt="..."
             src="https://img.freepik.com/free-photo/interior-national-art-museum-bucharest-romania-golden-details-marble-painting_1268-19833.jpg?w=1380&t=st=1662730281~exp=1662730881~hmac=f7f7793982d4f50b6b470113ad6ffd6b3c05c4013f832a8517a582f4f11a97b7"
@@ -49,8 +53,8 @@
           </blockquote>
         </div>
       </div>
-      <div class=" md:w-8/12 md:px-4 ">
 
+      <div class=" md:w-9/12 md:px-4 ">
         <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded"
           [ngClass]="color === 'light' ? 'bg-white' : 'bg-red-900 text-white'">
           <div class="rounded-t mb-0 px-4 py-3 border-0">
@@ -92,7 +96,7 @@
                           ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
                           : 'bg-red-800 text-red-300 border-red-700'
                       ">
-                      Nombre d'oeuvres
+                    Nombre d'oeuvres
                   </th>
                   <th
                     class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
@@ -115,55 +119,43 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr
+                *ngFor="let sE of salleExpositions"
+                                >
                   <th
-
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
-                  >
-                    <img
-                      src="assets/img/bootstrap.jpg"
-                      class="h-12 w-12 bg-white rounded-full border"
-                      alt="..."
-                    />
-                    <span
-                      class="ml-3 font-bold"
-                      [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'"
-                    >
-                      Argon Design System
+                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
+                    <img src="data:image/jpeg;base64,{{sE.logo}}" class="h-12 w-12 bg-white rounded-full border" alt="..." />
+                    <span class="ml-3 font-bold" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'">
+                      {{sE.libelle}}
                     </span>
                   </th>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    France
+                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    <span class="ml-3 font-bold" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'">
+                      {{sE.adresse.ville}}
+                    </span>
                   </td>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    Beaucoup
+                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    <span class="ml-3 font-bold" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'">
+                      <!-- {{sE.nbrOeuvres}} -->
+                    </span>
                   </td>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    Plein
+                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    <div>
+                      <span 
+                      
+                        class="ml-3 font-bold" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'">
+                        evenement1
+                      </span>
+                    </div>
                   </td>
-
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                  <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     <button
-                      class="bg-amber-500 text-white active:bg-red-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                      type="button"
-                    >
-                      See all
+                      class="bg-orange-500 text-white active:bg-red-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      type="button">
+                      <i class="fa fa-arrow-right" aria-hidden="true"></i>
                     </button>
-                  </div>
-            
                   </td>
-
-
-                </tbody>
+              </tbody>
             </table>
           </div>
         </div>
