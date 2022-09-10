@@ -320,7 +320,7 @@
                 </div>
                 
                 <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                  <form (ngSubmit)="saveOeuvre()">
+                  <form (ngSubmit)="saveOeuvre(artiste.username)">
                     <table class="w-full">
                       <tr>
                         <td>
@@ -357,8 +357,7 @@
                         class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"><br>
 
                         <br>
-                          <button type="button" class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" 
-                                (click)="saveOeuvre()">
+                          <button type="submit" class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
                                 Ajouter 
                           </button>
 

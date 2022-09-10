@@ -79,9 +79,9 @@ export class TablesComponent implements OnInit {
     this.selectedFiles = event.target.files;
   }
   
-  saveOeuvre(){
+  saveOeuvre(username:string){
     this.currentFileUpload = this.selectedFiles.item(0);
-    this.oeuvreService.save(this.currentFileUpload,this.oeuvre).subscribe(
+    this.oeuvreService.save(username, this.currentFileUpload, this.oeuvre).subscribe(
       ()=>{
         this.findAllOeuvres(); 
         this.oeuvre = new Oeuvre(); 

@@ -16,15 +16,15 @@ export class OeuvreService {
     return this.httpClient.get(this.baseUrl);
   }
 
-  public save(image:File,oeuvre:Oeuvre) : Observable<any>{
+  public save(username:string, image:File,oeuvre:Oeuvre) : Observable<any>{
     const formData=new FormData();
     formData.append('nom',oeuvre.nom);
     formData.append('type',oeuvre.type);
     formData.append('information',oeuvre.information);
-    //formData.append('username',oeuvre.artiste.username);
+    //formData.append('username',username);
     formData.append('prix',oeuvre.prix.toString());
     formData.append('fileU',image);
-    const requete = new HttpRequest('POST',this.baseUrl,formData,
+    const requete = new HttpRequest('POST',this.baseUrl+"/"+username,formData,
     {reportProgress:true,responseType:'text'});
     return this.httpClient.request(requete);
   }
