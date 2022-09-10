@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Reservation } from '../models/reservation';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class ReservationService {
     return this.httpClient.get(this.baseUrl);
   }
 
-  public save(reservation:any) : Observable<any>{
-    return this.httpClient.post(this.baseUrl,reservation);
+  public save(username:string, reservation:Reservation) : Observable<any>{
+    return this.httpClient.post(this.baseUrl+"/"+username,reservation);
   }
 
   public delete(id:number) : Observable<any>{
