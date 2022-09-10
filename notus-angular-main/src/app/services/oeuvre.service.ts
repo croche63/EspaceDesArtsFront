@@ -21,7 +21,6 @@ export class OeuvreService {
     formData.append('nom',oeuvre.nom);
     formData.append('type',oeuvre.type);
     formData.append('information',oeuvre.information);
-    //formData.append('username',username);
     formData.append('prix',oeuvre.prix.toString());
     formData.append('fileU',image);
     const requete = new HttpRequest('POST',this.baseUrl+"/"+username,formData,

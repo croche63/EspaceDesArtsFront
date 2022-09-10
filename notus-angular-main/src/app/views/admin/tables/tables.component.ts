@@ -45,26 +45,36 @@ export class TablesComponent implements OnInit {
     this.artisteService.findByUsername("bobtest").subscribe((data: Artiste) => {this.artiste = data;console.log(this.artiste)});
   }
 
+  //SALLES D'EXPOSITION
+   findAllSallesExposition(){
+    this.salleExpositionService.findAll().subscribe((data: any[]) => {this.salleExpositions = data;});
+    console.log(this.salleExpositions);
+  }
+
   //RESERVATIONS
   findAllReservations(){
     this.reservationService.findAll().subscribe((data: any[]) => {this.reservations = data;});
   }
 
-  save(){
-    this.reservationService.save(this.reservation).subscribe(
+  saveReservation(username:string){
+    this.reservationService.save(username, this.reservation).subscribe(
       ()=>{
         this.findAllReservations(); 
         this.reservation = new Reservation(); 
+        this.displayStyle2 = "none";
       }
     )
   }
+  
+  //Modal pour les reservations
+  displayStyle2 = "none";
 
-  //SALLES D'EXPOSITION
-  findAllSallesExposition(){
-    this.salleExpositionService.findAll().subscribe((data: any[]) => {this.salleExpositions = data;});
-    console.log(this.salleExpositions);
+  openPopup2(id:number) { //id:number ?
+    this.displayStyle2 = "block";
+    console.log(id);
   }
 
+ 
   //OEUVRES
   findAllOeuvres(){
     this.oeuvreService.findAll().subscribe((data: any[]) => {this.oeuvres = data;});
@@ -96,6 +106,15 @@ export class TablesComponent implements OnInit {
 
   openPopup() {
     this.displayStyle = "block";
+  }
+
+  
+
+  //Modal pour les evaluations
+  displayStyle3 = "none";
+
+  openPopup3() {
+    this.displayStyle3 = "block";
   }
   
   /*closePopup() {

@@ -1,49 +1,19 @@
 
 <!-- Réservations -->
       <div class="flex flex-wrap">
-
-        <!--Test-->
-        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
+        <!--Box de reservation-->
+        <div class="w-full lg:w-6/12 xl:w-3/12 px-4" *ngFor="let r of artiste.reservations">
           <div
           class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
           <div class="flex-auto p-4">
             <div class="flex flex-wrap">
               <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
                 <h5 class="text-blueGray-400 uppercase font-bold text-xs">
-                  Nom de la salle d'exposition
-                </h5>
-                <span class="font-semibold text-xl text-blueGray-700">
-                  07/09/2022
-                </span>
-              </div>
-              <div class="relative w-auto pl-4 flex-initial">
-                <div
-                  class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full"
-                  [ngClass]="[statIconColor]">
-                  <i [ngClass]="statIconName"></i>
-                </div>
-              </div>
-            </div>
-            <p class="text-sm text-blueGray-400 mt-4">
-              <span class="whitespace-nowrap">Adresse</span>
-            </p>
-          </div>
-        </div>
-        </div>
-
-        <!--Correcta-->
-        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-          <div
-          class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
-          <div class="flex-auto p-4">
-            <div class="flex flex-wrap">
-              <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                <h5 class="text-blueGray-400 uppercase font-bold text-xs">
-                  Nom de la salle d'exposition
+                  {{r.salleExposition.libelle}}
                   
                 </h5>
                 <span class="font-semibold text-xl text-blueGray-700">
-                  07/09/2022
+                  {{r.dateDebut}}
                   
                 </span>
               </div>
@@ -56,7 +26,7 @@
               </div>
             </div>
             <p class="text-sm text-blueGray-400 mt-4">
-              <span class="whitespace-nowrap">Adresse </span>
+              <span class="whitespace-nowrap">{{r.salleExposition.adresse.ville}}, {{r.salleExposition.adresse.pays}} </span>
             </p>
           </div>
         </div>
@@ -116,7 +86,7 @@
         <tr  *ngFor="let s of salleExpositions">
           <td 
             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
-             <img src="assets/img/bootstrap.jpg" class="h-12 w-12 bg-white rounded-full border" alt="..."/>
+             <img src="data:image/jpeg;base64,{{s.logo}}" class="h-12 w-12 bg-white rounded-full border" alt="..."/>
              <span
               class="ml-12 font-bold" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-blueGray-600'">
               {{s.libelle}}<br> 
@@ -130,7 +100,8 @@
             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
             <button
                 class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                type="button">
+                type="button"
+                (click)="openPopup2(s.id)"> <!--(click)="openPopup2(s.id)"-->
                 Réserver salle
               </button>
           </td>
@@ -138,7 +109,8 @@
             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
             <button
                 class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                type="button">
+                type="button"
+                (click)="openPopup3()">
                 Evaluer
               </button>
           </td>
@@ -148,7 +120,6 @@
     </div>
     
   </div>
-
   </div>
 
   <!--Profil Artiste-->
@@ -159,7 +130,7 @@
     <div class="flex flex-wrap justify-center">
       <div class="w-full px-4 flex justify-center">
         <div class="relative">
-          <img alt="..." src="assets/img/team-2-800x800.jpg"
+          <img alt="..." src="data:image/jpeg;base64,{{artiste.image}}"
             class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-120-px"/>
         </div>
       </div>
@@ -170,7 +141,7 @@
               class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
               {{artiste.oeuvres.length}}
             </span>
-            <span class="text-sm text-blueGray-400">Oeuvres</span>
+            <span class="text-sm text-blueGray-400">Oeuvres en exposition</span>
           </div>
         </div>
       </div>
@@ -209,6 +180,62 @@
   </div>
 </div>
 
+<!--MODAL POUR LES RESERVATIONS-->
+
+<div
+class="modal"
+tabindex="-1"
+role="dialog"
+[ngStyle]="{'display':displayStyle2}">
+<div class="modal-dialog" role="document">
+      <!--Formulaire Réservation-->
+      <div class="container mx-auto px-4 h-full">
+        <div class="flex content-center items-center justify-center h-full">
+          <div class="w-full lg:w-6/12 px-4">
+            <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-red-200 border-0">
+              <div class="rounded-t mb-0 px-10 py-10">
+                <div class="text-center mb-3">
+                  <h6 class="text-light-900 text-sm font-bold">Vueillez vous choisir les dates désirées pour votre exposition:</h6>
+                </div>
+              </div>
+              
+              <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+                <form (ngSubmit)="saveReservation(artiste.username)">
+                  <table class="w-full">
+                    <tr>
+                      <td>
+                        <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                          Date de début 
+                        </label>
+                      <input
+                      type="date" [(ngModel)]="reservation.dateDebut" name="dateDebut"
+                      class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"
+                      placeholder="Date début"/>
+                      </td>
+                      <td>
+                        <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                          Date de fin 
+                        </label>
+                      <input
+                      type="date" [(ngModel)]="reservation.dateFin" name="dateFin"
+                      class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"
+                      placeholder="Date fin"/>
+                      </td>
+                    </tr>
+                    </table>
+                      <br>
+                        <button type="submit" class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
+                              Réserver 
+                        </button>
+                </form>
+              </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
 
 
 
@@ -300,7 +327,7 @@
     
   </div>
 
-  <!--MODAL TEST-->
+<!--MODAL POUR L'AJOUT D'UNE OEUVRE-->
 
 <div
   class="modal"
@@ -360,9 +387,6 @@
                           <button type="submit" class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
                                 Ajouter 
                           </button>
-
-                         <!-- <input type="hidden" name="username" [(ngModel)]="oeuvre.artiste.username"> -->
-                    
                   </form>
                 </div>
           
@@ -371,6 +395,8 @@
     </div>
   </div>
 </div>
+</div>
+
 
 
 
