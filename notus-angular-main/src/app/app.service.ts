@@ -13,6 +13,7 @@ export class AppService {
 
   isAdmin=false;
   isUser=false;
+  isArtiste=false;
 
   username!:string
   
@@ -35,6 +36,9 @@ export class AppService {
             }
             if(this.responseAll['roles'][i]['idRole']==3){
               this.isUser = true;
+            }
+            if(this.responseAll['roles'][i]['libelle']=='Artiste'){
+              this.isArtiste = true;
             }
           }
         }else{
