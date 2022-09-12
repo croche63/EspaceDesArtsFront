@@ -89,7 +89,7 @@
                       ">
                     Localisation
                   </th>
-                  <th
+                  <!-- <th
                     class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
                     [ngClass]="
                         color === 'light'
@@ -97,16 +97,7 @@
                           : 'bg-red-800 text-red-300 border-red-700'
                       ">
                     Nombre d'oeuvres
-                  </th>
-                  <th
-                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-                    [ngClass]="
-                        color === 'light'
-                          ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
-                          : 'bg-red-800 text-red-300 border-red-700'
-                      ">
-                    Evenements a venir
-                  </th>
+                  </th> -->
                   <th
                     class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
                     [ngClass]="
@@ -131,25 +122,17 @@
                   </th>
                   <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     <span class="ml-3 font-bold" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'">
-                      {{sE.adresse.ville}}
+                      {{sE.adresse.ville}}, {{sE.adresse.pays}}
                     </span>
                   </td>
-                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                  <!-- <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     <span class="ml-3 font-bold" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'">
-                      <!-- {{sE.nbrOeuvres}} -->
+                      {{sE.nbrOeuvres}}
                     </span>
-                  </td>
-                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    <div>
-                      <span 
-                      
-                        class="ml-3 font-bold" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'">
-                        evenement1
-                      </span>
-                    </div>
-                  </td>
+                  </td> -->
                   <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     <button
+                      (click)="afficherSalleExpo(sE.id)"
                       class="bg-orange-500 text-white active:bg-red-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                       type="button">
                       <i class="fa fa-arrow-right" aria-hidden="true"></i>
