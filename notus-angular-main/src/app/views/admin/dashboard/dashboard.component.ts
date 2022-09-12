@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { Utilisateur } from "src/app/models/utilisateur";
+import { OeuvreService } from "src/app/services/oeuvre.service";
 import { RoleService } from "src/app/services/role.service";
+import { SalleExpositionService } from "src/app/services/salle-exposition.service";
+import { SalleVirtuelleService } from "src/app/services/salle-virtuelle.service";
 import { SignalementOeuvreService } from "src/app/services/signalement-oeuvre.service";
 import { SignalementSalleExpositionService } from "src/app/services/signalement-salle-exposition.service";
 import { SignalementSalleVirtuelleService } from "src/app/services/signalement-salle-virtuelle.service";
@@ -16,9 +18,6 @@ export class DashboardComponent implements OnInit {
   // Affichage des utilisateurs et de leurs rôles
   // Possibilité de leur associer un role
 
-  //TODO Gestion des reclamations
-  // Supprimer reclamations ou oeuvre
-
   utilisateurs:any[];
   roles:any[];
 
@@ -28,7 +27,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private utilisateurService:UtilisateurService, private roleService:RoleService, private signalementOeuvreService:SignalementOeuvreService,
-    private signalementSalleExpositionService:SignalementSalleExpositionService, private signalementSalleVirtuelleService:SignalementSalleVirtuelleService
+    private signalementSalleExpositionService:SignalementSalleExpositionService, private signalementSalleVirtuelleService:SignalementSalleVirtuelleService,
+    private oeuvreService:OeuvreService, private salleVirtuelleService:SalleVirtuelleService, private salleExpositionService:SalleExpositionService
     ) {}
 
   ngOnInit() {
@@ -41,5 +41,28 @@ export class DashboardComponent implements OnInit {
     this.signalementOeuvreService.findAll().subscribe((data: any[]) => {this.signalementOeuvre = data;});
     this.signalementSalleExpositionService.findAll().subscribe((data: any[]) => {this.signalementSalleExposition = data;});
     this.signalementSalleVirtuelleService.findAll().subscribe((data: any[]) => {this.signalementSalleVirtuelle = data;});
+  }
+
+  // Supprime les signalements et recharge les pages
+  delSignOeuvre(id:number) {
+    this.signalementOeuvreService.delete(id).subscribe(() => {this.findAllInfos()})
+  }
+
+  delSignSalleExpo(id:number) {
+    this.signalementSalleExpositionService.delete(id).subscribe(() => {this.findAllInfos()})
+  }
+
+  delSignSalleVirt(id:number) {
+    this.signalementSalleVirtuelleService.delete(id).subscribe(() => {this.findAllInfos()})
+  }
+
+  delOeuvre(id:number) {
+    this.oeuvreService.delete(id).subscribe(() => {this.findAllInfos()})
+  }
+  delSalleVirt(id:number) {
+    this.salleVirtuelleService.delete(id).subscribe(() => {this.findAllInfos()})
+  }
+  delSalleExpo(id:number) {
+    this.salleExpositionService.delete(id).subscribe(() => {this.findAllInfos()})
   }
 }
