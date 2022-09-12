@@ -19,11 +19,13 @@ export class IndexComponent implements OnInit {
     private salleExpositionService:SalleExpositionService,
     private appService:AppService,private router:Router) {}
     salleExpositions!: SalleExposition[];
+    salleVirtuelles!: SalleVirtuelle[];
     adresse!:Adresse;reservations!:Reservation[];
     nbr!:number
 
   ngOnInit(): void {
     this.findAllSallesExposition();
+    this.findAllSallesVirtuelle();
     // nbr:number = this.reservations.length;
 
   }
@@ -31,6 +33,12 @@ export class IndexComponent implements OnInit {
   findAllSallesExposition(){
     this.salleExpositionService.findAll().subscribe((data: any[]) => {this.salleExpositions = data;
     console.log(this.salleExpositions);
+  });
+  }
+
+  findAllSallesVirtuelle(){
+    this.salleVirtuelleService.findAll().subscribe((data: any[]) => {this.salleVirtuelles = data;
+    console.log(this.salleVirtuelles  );
   });
   }
 

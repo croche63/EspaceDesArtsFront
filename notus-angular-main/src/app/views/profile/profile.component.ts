@@ -1,8 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder } from "@angular/forms";
 import { Router } from "@angular/router";
 import { SalleVirtuelle } from "src/app/models/salle-virtuelle";
-import { ArtisteService } from "src/app/services/artiste.service";
 import { SalleVirtuelleService } from "src/app/services/salle-virtuelle.service";
 
 @Component({
@@ -14,7 +12,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private salleService:SalleVirtuelleService,
-    private router:Router, private formBuilder:FormBuilder
+    private router:Router
   ) {}
 
   ngOnInit(): void {
