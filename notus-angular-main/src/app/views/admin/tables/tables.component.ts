@@ -2,10 +2,12 @@ import { Component, OnInit } from "@angular/core";
 import { connectableObservableDescriptor } from "rxjs/internal/observable/ConnectableObservable";
 import { AppService } from "src/app/app.service";
 import { Artiste } from "src/app/models/artiste";
+import { EvaluationArtiste } from "src/app/models/evaluation-artiste";
 import { Oeuvre } from "src/app/models/oeuvre";
 import { Reservation } from "src/app/models/reservation";
 import { SalleExposition } from "src/app/models/salle-exposition";
 import { ArtisteService } from "src/app/services/artiste.service";
+import { EvaluationArtisteService } from "src/app/services/evaluation-artiste.service";
 import { OeuvreService } from "src/app/services/oeuvre.service";
 import { ReservationService } from "src/app/services/reservation.service";
 import { SalleExpositionService } from "src/app/services/salle-exposition.service";
@@ -27,12 +29,15 @@ export class TablesComponent implements OnInit {
   oeuvres!: any[];
   oeuvre : Oeuvre = new Oeuvre();
 
+  evaluationArtiste : EvaluationArtiste = new EvaluationArtiste();
+
   selectedFiles:FileList;
   currentFileUpload:File;
 
 
   constructor(private reservationService:ReservationService, private artisteService:ArtisteService, 
-    private salleExpositionService:SalleExpositionService, private oeuvreService:OeuvreService, private appService:AppService) {}
+    private salleExpositionService:SalleExpositionService, private oeuvreService:OeuvreService, 
+    private evaluationArtisteService:EvaluationArtisteService, private appService:AppService) {}
 
   ngOnInit(): void {
     this.findAllSallesExposition();
@@ -78,6 +83,10 @@ export class TablesComponent implements OnInit {
 
   }
 
+  closePopupReservation() {
+    this.displayStyle2 = "none";
+  }
+
  
   //OEUVRES
   findAllOeuvres(){
@@ -112,17 +121,38 @@ export class TablesComponent implements OnInit {
     this.displayStyle = "block";
   }
 
+  closePopupOeuvre() {
+    this.displayStyle = "none";
+  }
+
   
 
   //Modal pour les evaluations
   displayStyle3 = "none";
 
-  openPopup3() {
+  openPopup3(id:number) {
     this.displayStyle3 = "block";
+    console.log(id);
+    localStorage.setItem("idSalle", id.toString());
   }
+
+  closePopupEvaluation() {
+    this.displayStyle3 = "none";
+  }
+
+  saveEvaluation(username:string){
+    let evaluationid = localStorage.getItem("idSalle");
+    this.evaluationArtisteService.save(evaluationid, username, this.evaluationArtiste).subscribe(
+      ()=>{
+        this.findAllReservations(); 
+        this.evaluationArtiste = new EvaluationArtiste(); 
+        this.displayStyle3 = "none";
+        localStorage.removeItem("idSalle");
+      }
+    )
+  }
+
+
   
-  /*closePopup() {
-    this.displayStyle = "none";
-  }*/
 
 }
