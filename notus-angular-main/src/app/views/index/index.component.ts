@@ -49,13 +49,13 @@ export class IndexComponent implements OnInit {
     this.router.navigate(['/landing',idSalleExpo.toString()]);
   }
 
-  affcherSalleVirtu(idSalleV:number){
+  affcherSalleVirtu(idSalleVirtu:number){
     //step 2 
     localStorage.removeItem("afficheSalleV")
     // step 1
-    localStorage.setItem("afficheSalleV",idSalleV.toString())
+    localStorage.setItem("afficheSalleV",idSalleVirtu.toString())
     // step 3
-    this.router.navigate(["/profile",idSalleV.toString()])
+    this.router.navigate(["/profile",idSalleVirtu.toString()])
   }
 
 }
