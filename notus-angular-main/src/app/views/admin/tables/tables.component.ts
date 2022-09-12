@@ -57,11 +57,13 @@ export class TablesComponent implements OnInit {
   }
 
   saveReservation(username:string){
-    this.reservationService.save(username, this.reservation).subscribe(
+    let salleid = localStorage.getItem("idSalle");
+    this.reservationService.save(salleid, username, this.reservation).subscribe(
       ()=>{
         this.findAllReservations(); 
         this.reservation = new Reservation(); 
         this.displayStyle2 = "none";
+        localStorage.removeItem("idSalle");
       }
     )
   }
@@ -69,9 +71,11 @@ export class TablesComponent implements OnInit {
   //Modal pour les reservations
   displayStyle2 = "none";
 
-  openPopup2(id:number) { //id:number ?
+  openPopup2(id:number) { 
     this.displayStyle2 = "block";
     console.log(id);
+    localStorage.setItem("idSalle", id.toString());
+
   }
 
  
