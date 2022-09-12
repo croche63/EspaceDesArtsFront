@@ -35,6 +35,12 @@ export class IndexComponent implements OnInit {
   }
 
 
+  afficherSalleExpo(idSalleExpo:number){
+    localStorage.removeItem("idSalleExpo")
+    localStorage.setItem("idSalleExpo",idSalleExpo.toString())
+    this.router.navigate(['/landing',idSalleExpo]);
+  }
+
   selectSalleVirtu(salleV:SalleVirtuelle){
     //step 2 
     localStorage.removeItem("afficheSalleV")
