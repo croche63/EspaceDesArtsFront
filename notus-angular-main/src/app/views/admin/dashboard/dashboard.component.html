@@ -1,6 +1,6 @@
 <div class="flex flex-wrap">
   <!-- Gestion des utilisateurs -->
-  <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
+  <div class="w-full xl:w-12/12 mb-12 xl:mb-0 px-4">
     <div
       class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded"
     >
@@ -39,6 +39,11 @@
             >
               Contact
             </th>
+            <th
+            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+          >
+            Role
+          </th>
             </tr>
           </thead>
           <tbody>
@@ -60,21 +65,26 @@
                 {{u.email}}<br>
                 {{u.numeroTel}}
               </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+              >
+                <span *ngFor="let r of u.roles">{{r.libelle}},</span>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
-  <!-- Signalements oeuvre-->
-  <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
+  <!-- Signalements -->
+  <div class="w-full xl:w-12/12 mb-12 xl:mb-0 px-4">
     <div
       class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded"
     >
       <div class="rounded-t mb-0 px-4 py-3 border-0">
         <div class="flex flex-wrap items-center">
           <div class="relative w-full px-4 max-w-full flex-grow flex-1">
-            <h3 class="font-semibold text-base text-blueGray-700">Signalements oeuvres</h3>
+            <h3 class="font-semibold text-base text-blueGray-700">Signalements</h3>
           </div>
           <!-- <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
             <button
@@ -94,7 +104,7 @@
               <th
               class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
             >
-              Oeuvre
+              Objet signalé
             </th>
               <th
                 class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
@@ -109,8 +119,13 @@
               <th
               class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
             >
-              Date
-            </th>
+                Date
+              </th>
+              <th
+              class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+            >
+                Action
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -118,7 +133,10 @@
               <td
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
               >
-                {{so.oeuvre.nom}}
+                <b>Oeuvre</b><br>
+                <img src="data:image/jpeg;base64,{{so.oeuvre.image}}" alt="Pas d'image" height="120" width="120"/>
+                {{so.oeuvre.nom}}<br>
+                
               </td>
               <td
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
@@ -136,64 +154,28 @@
               >
                 {{so.date}}
               </td>
+              <td
+              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            >
+                <button
+                  class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                  type="button"
+                  (click)="delSignOeuvre(so.id)">
+                  Supprimer réclamation
+                </button>
+                <button
+                  class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                  type="button"
+                  (click)="delOeuvre(so.oeuvre.idOeuvre)">
+                  Supprimer oeuvre
+                </button>
+              </td>
             </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-  <!-- Signalements salle exposition-->
-  <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-    <div
-      class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded"
-    >
-      <div class="rounded-t mb-0 px-4 py-3 border-0">
-        <div class="flex flex-wrap items-center">
-          <div class="relative w-full px-4 max-w-full flex-grow flex-1">
-            <h3 class="font-semibold text-base text-blueGray-700">Signalements salles d'exposition</h3>
-          </div>
-          <!-- <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-            <button
-              class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-              type="button"
-            >
-              See all
-            </button>
-          </div> -->
-        </div>
-      </div>
-      <div class="block w-full overflow-x-auto">
-        <!-- Projects table -->
-        <table class="items-center w-full bg-transparent border-collapse">
-          <thead>
-            <tr>
-              <th
-              class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-            >
-              Salle d'exposition
-            </th>
-              <th
-                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-              >
-                Signalement
-              </th>
-              <th
-                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-              >
-                Utilisateur
-              </th>
-              <th
-              class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-            >
-              Date
-            </th>
-            </tr>
-          </thead>
-          <tbody>
             <tr *ngFor="let sse of signalementSalleExposition">
               <td
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
               >
+                <b>Salle d'exposition</b><br>
                 {{sse.salleExposition.libelle}}
               </td>
               <td
@@ -212,86 +194,66 @@
               >
                 {{sse.date}}
               </td>
+              <td
+              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            >
+                <button
+                  class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                  type="button"
+                  (click)="delSignSalleExpo(sse.id)">
+                  Supprimer réclamation
+                </button>
+                <button
+                  class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                  type="button"
+                  (click)="delSalleExpo(sse.salleExposition.id)">
+                  Supprimer salle exposition
+                </button>
+              </td>
+            </tr>
+            <tr *ngFor="let ssv of signalementSalleVirtuelle">
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+              <b>Salle virtuelle</b><br>
+              {{ssv.salleVirtuelle.libelle}}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+              >
+                <b>{{ssv.titre}}</b><br>
+                {{ssv.description}}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{ssv.utilisateur.username}}
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                {{ssv.date}}
+              </td>
+              <td
+              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            >
+                <button
+                  class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                  type="button"
+                  (click)="delSignSalleVirt(ssv.id)">
+                  Supprimer réclamation
+                </button>
+                <button
+                  class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                  type="button"
+                  (click)="delSalleVirt(sse.salleVirtuelle.id)">
+                  Supprimer salle virtuelle
+              </button>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
-    <!-- Signalements salle exposition-->
-    <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-      <div
-        class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded"
-      >
-        <div class="rounded-t mb-0 px-4 py-3 border-0">
-          <div class="flex flex-wrap items-center">
-            <div class="relative w-full px-4 max-w-full flex-grow flex-1">
-              <h3 class="font-semibold text-base text-blueGray-700">Signalements salles virtuelles</h3>
-            </div>
-            <!-- <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-              <button
-                class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                type="button"
-              >
-                See all
-              </button>
-            </div> -->
-          </div>
-        </div>
-        <div class="block w-full overflow-x-auto">
-          <!-- Projects table -->
-          <table class="items-center w-full bg-transparent border-collapse">
-            <thead>
-              <tr>
-                <th
-                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-              >
-                Salle virtuelle
-              </th>
-                <th
-                  class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-                >
-                  Signalement
-                </th>
-                <th
-                  class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-                >
-                  Utilisateur
-                </th>
-                <th
-                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-              >
-                Date
-              </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let ssv of signalementSalleVirtuelle">
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                >
-                  {{ssv.salleVirtuelle.libelle}}
-                </td>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-                >
-                  <b>{{ssv.titre}}</b><br>
-                  {{ssv.description}}
-                </td>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                >
-                  {{ssv.utilisateur.username}}
-                </td>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                >
-                  {{ssv.date}}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
 </div>
