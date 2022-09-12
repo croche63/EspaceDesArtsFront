@@ -30,7 +30,7 @@ export class AppService {
           this.authenticated = true;
           this.username=credentials.username
           for(let i=0;i<this.responseAll['roles'].length;i++){
-            if(this.responseAll['roles'][i]['idRole']==1){
+            if(this.responseAll['roles'][i]['libelle']=='Admin'){
               this.isAdmin = true;
             }
             if(this.responseAll['roles'][i]['idRole']==3){

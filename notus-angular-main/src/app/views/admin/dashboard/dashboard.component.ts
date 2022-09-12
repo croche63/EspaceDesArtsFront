@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { AppService } from "src/app/app.service";
 import { OeuvreService } from "src/app/services/oeuvre.service";
 import { RoleService } from "src/app/services/role.service";
 import { SalleExpositionService } from "src/app/services/salle-exposition.service";
@@ -28,7 +29,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private utilisateurService:UtilisateurService, private roleService:RoleService, private signalementOeuvreService:SignalementOeuvreService,
     private signalementSalleExpositionService:SignalementSalleExpositionService, private signalementSalleVirtuelleService:SignalementSalleVirtuelleService,
-    private oeuvreService:OeuvreService, private salleVirtuelleService:SalleVirtuelleService, private salleExpositionService:SalleExpositionService
+    private oeuvreService:OeuvreService, private salleVirtuelleService:SalleVirtuelleService, private salleExpositionService:SalleExpositionService,
+    private appService:AppService,
     ) {}
 
   ngOnInit() {
@@ -64,5 +66,13 @@ export class DashboardComponent implements OnInit {
   }
   delSalleExpo(id:number) {
     this.salleExpositionService.delete(id).subscribe(() => {this.findAllInfos()})
+  }
+
+  isAdmin(){
+    if(this.appService.isAdmin == true) {
+      return false;
+    } else {
+      return true;
+    }
   }
 }
