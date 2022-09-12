@@ -29,6 +29,7 @@ export class TablesComponent implements OnInit {
   oeuvres!: any[];
   oeuvre : Oeuvre = new Oeuvre();
 
+  evaluationArtistes!: any[];
   evaluationArtiste : EvaluationArtiste = new EvaluationArtiste();
 
   selectedFiles:FileList;
@@ -140,11 +141,16 @@ export class TablesComponent implements OnInit {
     this.displayStyle3 = "none";
   }
 
+  findAllEvaluations(){
+    this.evaluationArtisteService.findAll().subscribe((data: any[]) => {this.evaluationArtistes = data;});
+    console.log(this.evaluationArtistes);
+  }
+
   saveEvaluation(username:string){
     let evaluationid = localStorage.getItem("idSalle");
     this.evaluationArtisteService.save(evaluationid, username, this.evaluationArtiste).subscribe(
       ()=>{
-        this.findAllReservations(); 
+        this.findAllEvaluations(); 
         this.evaluationArtiste = new EvaluationArtiste(); 
         this.displayStyle3 = "none";
         localStorage.removeItem("idSalle");

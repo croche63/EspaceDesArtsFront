@@ -22,7 +22,7 @@ export class SalleVirtuelleService {
     return this.httpClient.delete(this.baseUrl+"/"+id);
   }
 
- public findOne(id:number) : Observable<any>{
+ public findOne(id:string) : Observable<any>{
   return this.httpClient.get(this.baseUrl+"/"+id)
  }
 
