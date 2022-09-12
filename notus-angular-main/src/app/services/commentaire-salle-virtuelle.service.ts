@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CommentaireSalleVirtuelle } from '../models/commentaire-salle-virtuelle';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class CommentaireSalleVirtuelleService {
     return this.httpClient.get(this.baseUrl);
   }
 
-  public save(variable:any) : Observable<any>{
-    return this.httpClient.post(this.baseUrl,variable);
+  public save(idSalleVirt:number, commentaireSalleVirtuelle:CommentaireSalleVirtuelle) : Observable<any>{
+    return this.httpClient.post(this.baseUrl+"/"+idSalleVirt, commentaireSalleVirtuelle);
   }
 
   public delete(id:number) : Observable<any>{
