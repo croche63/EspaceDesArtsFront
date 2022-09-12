@@ -2,6 +2,7 @@ import { Adresse } from "./adresse";
 import { EvaluationArtiste } from "./evaluation-artiste";
 import { Oeuvre } from "./oeuvre";
 import { Reservation } from "./reservation";
+import { SalleVirtuelle } from "./salle-virtuelle";
 import { Utilisateur } from "./utilisateur";
 
 export class Artiste extends Utilisateur{
@@ -11,4 +12,5 @@ export class Artiste extends Utilisateur{
     reservations!:Reservation
     evaluationArtistes!:EvaluationArtiste
     oeuvres!:Oeuvre
+    salleVirtuelle!:SalleVirtuelle
 }
