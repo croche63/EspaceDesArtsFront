@@ -21,7 +21,7 @@ export class TablesComponent implements OnInit {
   reservation : Reservation = new Reservation();
 
   artiste : Artiste = new Artiste();
-  username:string =  "bobtest" //this.appService.username;
+  username:string = this.appService.username; // "bobtest"
 
   salleExpositions!: any[];
   salleExposition : SalleExposition = new SalleExposition();
@@ -47,7 +47,7 @@ export class TablesComponent implements OnInit {
     
   //ARTISTE
    findArtiste(username:string){
-    this.artisteService.findByUsername("bobtest").subscribe((data: Artiste) => {this.artiste = data;console.log(this.artiste)});
+    this.artisteService.findByUsername(this.username).subscribe((data: Artiste) => {this.artiste = data;console.log(this.artiste)});
   }
 
   //SALLES D'EXPOSITION
@@ -150,6 +150,16 @@ export class TablesComponent implements OnInit {
         localStorage.removeItem("idSalle");
       }
     )
+  }
+
+
+
+  isArtiste(){
+    if(this.appService.isArtiste == true) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
 

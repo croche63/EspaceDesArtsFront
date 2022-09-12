@@ -1,4 +1,5 @@
 
+<div [hidden]="isArtiste()">
 <!-- Réservations -->
       <div class="flex flex-wrap">
         <!--Box de reservation-->
@@ -499,6 +500,16 @@ role="dialog"
   </div>
 </div>
 </div>
+
+</div>
+
+<div [hidden]="!isArtiste()">
+  <br><br><br><br><br>
+  <div class="w-full xl:w-12/12 mb-12 xl:mb-0 px-4">
+    Vous devez être connecté en tant qu'artiste pour consulter cette page!
+  </div>
+</div>
+
 
 
 
