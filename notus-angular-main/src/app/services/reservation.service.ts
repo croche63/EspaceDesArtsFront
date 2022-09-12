@@ -15,8 +15,8 @@ export class ReservationService {
     return this.httpClient.get(this.baseUrl);
   }
 
-  public save(username:string, reservation:Reservation) : Observable<any>{
-    return this.httpClient.post(this.baseUrl+"/"+username,reservation);
+  public save(idSalle:string, username:string, reservation:Reservation) : Observable<any>{
+    return this.httpClient.post(this.baseUrl+"/"+username+"/"+idSalle,reservation);
   }
 
   public delete(id:number) : Observable<any>{
