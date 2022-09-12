@@ -11,7 +11,6 @@ export class SalleVirtuelle {
     signalementSalleVirtuelle!:SignalementSalleVirtuelle;
     commentaireSalleVirtuelle!:CommentaireSalleVirtuelle;
     proprietaire!:Proprietaire;
-    oeuvres!:Oeuvre[];
     artiste!:Artiste;
 
 }
