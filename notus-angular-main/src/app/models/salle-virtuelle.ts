@@ -1,3 +1,4 @@
+import { Artiste } from "./artiste";
 import { CommentaireSalleVirtuelle } from "./commentaire-salle-virtuelle";
 import { Oeuvre } from "./oeuvre";
 import { Proprietaire } from "./proprietaire";
@@ -10,6 +11,6 @@ export class SalleVirtuelle {
     signalementSalleVirtuelle!:SignalementSalleVirtuelle;
     commentaireSalleVirtuelle!:CommentaireSalleVirtuelle;
     proprietaire!:Proprietaire;
-    oeuvre!:Oeuvre;
+    artiste!:Artiste;
 
 }

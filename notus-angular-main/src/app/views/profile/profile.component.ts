@@ -8,17 +8,23 @@ import { SalleVirtuelleService } from "src/app/services/salle-virtuelle.service"
   templateUrl: "./profile.component.html",
 })
 export class ProfileComponent implements OnInit {
+
  salleV:SalleVirtuelle = new SalleVirtuelle();
 
-  constructor(
-    private salleService:SalleVirtuelleService,
-    private router:Router
-  ) {}
+  constructor(private salleService:SalleVirtuelleService, private router:Router) {}
 
   ngOnInit(): void {
-    let salleVId = localStorage.getItem("afficheSalleV")
-    this.salleService.findOne(+salleVId).subscribe(data => {this.salleV = data})
+    let salleVId = localStorage.getItem("afficheSalleV");
+    this.salleService.findOne(+salleVId).subscribe(data => {this.salleV = data});
     
+  }
+
+  idSalleVirtuelle!:number;
+  recuperarSalleVirtuelle(afficheSalleV:string){
+    let salleVId = localStorage.getItem("afficheSalleV");
+    this.idSalleVirtuelle = Number(afficheSalleV);
+    
+
   }
 
   
