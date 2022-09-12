@@ -46,24 +46,16 @@ export class IndexComponent implements OnInit {
   afficherSalleExpo(idSalleExpo:number){
     localStorage.removeItem("idSalleExpo")
     localStorage.setItem("idSalleExpo",idSalleExpo.toString())
-    this.router.navigate(['/landing',idSalleExpo]);
+    this.router.navigate(['/landing',idSalleExpo.toString()]);
   }
 
-  selectSalleVirtu(salleV:SalleVirtuelle){
+  affcherSalleVirtu(idSalleVirtu:number){
     //step 2 
     localStorage.removeItem("afficheSalleV")
     // step 1
-    localStorage.setItem("afficheSalleV",salleV.id.toString())
+    localStorage.setItem("afficheSalleV",idSalleVirtu.toString())
     // step 3
-    this.router.navigate(["/profile",salleV.id])
-  }
-  selectSalleExpo(salleE:SalleExposition){
-    //step 2 
-    localStorage.removeItem("afficheSalleE")
-    // step 1
-    localStorage.setItem("afficheSalleE",salleE.id.toString())
-    // step 3
-    this.router.navigate(["/profile",salleE.id])
+    this.router.navigate(["/profile",idSalleVirtu.toString()])
   }
 
 }

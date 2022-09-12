@@ -22,5 +22,8 @@ export class SalleExpositionService {
   public delete(id:number) : Observable<any>{
     return this.httpClient.delete(this.baseUrl+"/"+id);
   }
+  public findById(id:string): Observable<any>{
+    return this.httpClient.get(this.baseUrl+"/"+id);
+  }
 
 }

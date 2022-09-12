@@ -15,8 +15,8 @@ export class UtilisateurService {
     return this.httpClient.get(this.baseUrl);
   }
 
-  public save(image:File,utilisateur:Utilisateur):Observable<any>{
-    const formData=new FormData();
+  public save(/* image:File, */utilisateur:Utilisateur):Observable<any>{
+/*     const formData=new FormData();
     formData.append('nom',utilisateur.nom);
     formData.append('prenom',utilisateur.prenom);
     formData.append('username',utilisateur.username);
@@ -24,9 +24,11 @@ export class UtilisateurService {
     formData.append('email',utilisateur.email);
     formData.append('numeroTel',utilisateur.numeroTel);
     formData.append('image',image);
+    formData.append('role', JSON.stringify(utilisateur.roles));
     const requete = new HttpRequest('POST',this.baseUrl,formData,
     {reportProgress:true,responseType:'text'});
-    return this.httpClient.request(requete);
+    return this.httpClient.request(requete); */
+    return this.httpClient.post(this.baseUrl, utilisateur);
   }
 
   public delete(id:number) : Observable<any>{
