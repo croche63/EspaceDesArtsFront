@@ -47,4 +47,9 @@ export class AppService {
         return callback && callback();
       })
   }
+
+  logout(callback:any){
+    this.httpClient.get('http://localhost:7070/logout')
+    return callback && callback();
+  }
 }
