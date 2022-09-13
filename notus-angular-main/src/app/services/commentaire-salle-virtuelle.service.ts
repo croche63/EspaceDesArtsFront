@@ -9,17 +9,17 @@ import { CommentaireSalleVirtuelle } from '../models/commentaire-salle-virtuelle
 export class CommentaireSalleVirtuelleService {
   private baseUrl = "http://localhost:7070/commentaireSalleVirt";
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-  public findAll() : Observable<any>{
+  public findAll(): Observable<any> {
     return this.httpClient.get(this.baseUrl);
   }
 
-  public save(idSalleVirt:number, username:string, commentaireSalleVirtuelle:CommentaireSalleVirtuelle) : Observable<any>{
-    return this.httpClient.post(this.baseUrl+"/"+idSalleVirt+"/"+username, commentaireSalleVirtuelle);
+  public save(idSalleVirt: number, username: string, commentaireSalleVirtuelle: CommentaireSalleVirtuelle): Observable<any> {
+    return this.httpClient.post(this.baseUrl + "/" + idSalleVirt + "/" + username, commentaireSalleVirtuelle);
   }
 
-  public delete(id:number) : Observable<any>{
-    return this.httpClient.delete(this.baseUrl+"/"+id);
+  public delete(id: number): Observable<any> {
+    return this.httpClient.delete(this.baseUrl + "/" + id);
   }
 }
