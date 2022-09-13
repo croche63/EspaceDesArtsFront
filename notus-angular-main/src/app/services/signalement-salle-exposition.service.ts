@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { SignalementSalleExposition } from '../models/signalement-salle-exposition';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class SignalementSalleExpositionService {
     return this.httpClient.get(this.baseUrl);
   }
 
-  public save(variable:any) : Observable<any>{
-    return this.httpClient.post(this.baseUrl,variable);
+  public save(idSalleExpo: number, username: string, signalementSalleExpo: SignalementSalleExposition) : Observable<any>{
+    return this.httpClient.post(this.baseUrl+"/"+idSalleExpo+"/"+username+"/",signalementSalleExpo);
   }
 
   public delete(id:number) : Observable<any>{
