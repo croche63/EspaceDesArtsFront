@@ -15,8 +15,8 @@ export class CommentaireSalleVirtuelleService {
     return this.httpClient.get(this.baseUrl);
   }
 
-  public save(idSalleVirt:number, commentaireSalleVirtuelle:CommentaireSalleVirtuelle) : Observable<any>{
-    return this.httpClient.post(this.baseUrl+"/"+idSalleVirt, commentaireSalleVirtuelle);
+  public save(idSalleVirt:number, username:string, commentaireSalleVirtuelle:CommentaireSalleVirtuelle) : Observable<any>{
+    return this.httpClient.post(this.baseUrl+"/"+idSalleVirt+"/"+username, commentaireSalleVirtuelle);
   }
 
   public delete(id:number) : Observable<any>{

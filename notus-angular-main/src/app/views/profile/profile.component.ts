@@ -1,10 +1,15 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { AppService } from "src/app/app.service";
+import { CommentaireOeuvre } from "src/app/models/commentaire-oeuvre";
 import { CommentaireSalleVirtuelle } from "src/app/models/commentaire-salle-virtuelle";
 import { SalleVirtuelle } from "src/app/models/salle-virtuelle";
+import { SignalementOeuvre } from "src/app/models/signalement-oeuvre";
 import { SignalementSalleVirtuelle } from "src/app/models/signalement-salle-virtuelle";
+import { CommentaireOeuvreService } from "src/app/services/commentaire-oeuvre.service";
 import { CommentaireSalleVirtuelleService } from "src/app/services/commentaire-salle-virtuelle.service";
 import { SalleVirtuelleService } from "src/app/services/salle-virtuelle.service";
+import { SignalementOeuvreService } from "src/app/services/signalement-oeuvre.service";
 import { SignalementSalleVirtuelleService } from "src/app/services/signalement-salle-virtuelle.service";
 
 @Component({
@@ -12,6 +17,8 @@ import { SignalementSalleVirtuelleService } from "src/app/services/signalement-s
   templateUrl: "./profile.component.html",
 })
 export class ProfileComponent implements OnInit {
+
+  username:string = this.appService.username;
 
  salleVirtuelle: SalleVirtuelle = new SalleVirtuelle();
  
@@ -21,12 +28,22 @@ export class ProfileComponent implements OnInit {
  signalementsSalleVirtuelle!: any[];
  signalementSalleVirtuelle: SignalementSalleVirtuelle = new SignalementSalleVirtuelle();
 
+ commentairesOeuvre!: any[];
+ commentaireOeuvre: CommentaireOeuvre = new CommentaireOeuvre();
+
+ signalementsOeuvre!: any[];
+ signalementOeuvre: SignalementOeuvre = new SignalementOeuvre();
+
   constructor(private salleVirtuelleService:SalleVirtuelleService, private router:Router,
               private commentaireSalleVirtuelleService:CommentaireSalleVirtuelleService,
-              private signalementSalleVirtuelleService:SignalementSalleVirtuelleService) {}
+              private signalementSalleVirtuelleService:SignalementSalleVirtuelleService,
+              private commentaireOeuvreService:CommentaireOeuvreService,
+              private signalementOeuvreService:SignalementOeuvreService,
+              private appService:AppService) {}
 
   ngOnInit(): void {
     this.findSalleVirtuelle();
+    this.noteSalleVirtu();
   }
 
   findSalleVirtuelle(){
@@ -50,12 +67,14 @@ export class ProfileComponent implements OnInit {
     console.log(this.commentairesSalleVirtuelle);
   }
 
-  saveCommentaire(idSalleVirt:number){
-    this.commentaireSalleVirtuelleService.save(idSalleVirt, this.commentaireSalleVirtuelle).subscribe(
+  saveCommentaire(idSalleVirt:number, username:string){
+    this.commentaireSalleVirtuelleService.save(idSalleVirt, username, this.commentaireSalleVirtuelle).subscribe(
       ()=>{
         this.findAllCommentaires(); 
         this.commentaireSalleVirtuelle = new CommentaireSalleVirtuelle(); 
         this.displayStyle = "none";
+        console.log(idSalleVirt);
+        console.log(username);
       }
     )
   }
@@ -77,18 +96,93 @@ export class ProfileComponent implements OnInit {
     console.log(this.signalementsSalleVirtuelle);
   }
 
-  saveSignalement(idSalleVirt:number){
-    this.signalementSalleVirtuelleService.save(idSalleVirt, this.signalementSalleVirtuelle).subscribe(
+  saveSignalement(idSalleVirt:number, username:string){
+    this.signalementSalleVirtuelleService.save(idSalleVirt, username, this.signalementSalleVirtuelle).subscribe(
       ()=>{
         this.findAllSignalements(); 
         this.signalementSalleVirtuelle = new SignalementSalleVirtuelle(); 
         this.displayStyle1 = "none";
+        console.log(idSalleVirt);
+        console.log(username);
       }
     )
   }
 
+
+ //COMMENTAIRE OEUVRE
+ displayStyle2 = "none";
+
+ openPopup2(idOeuvre:number) {
+   this.displayStyle2 = "block";
+   console.log(idOeuvre);
+   localStorage.setItem("idOeuvre", idOeuvre.toString());
+ }
+
+ closePopupCommentaire2() {
+   this.displayStyle2 = "none";
+ }
+
+ findAllCommentaires2(){
+   this.commentaireOeuvreService.findAll().subscribe((data: any[]) => {this.commentairesOeuvre = data;});
+ }
+
+ saveCommentaire2(username:string){
+  let idOeuvre = localStorage.getItem("idOeuvre");
+   this.commentaireOeuvreService.save(idOeuvre, username, this.commentaireOeuvre).subscribe(
+     ()=>{
+       this.findAllCommentaires2(); 
+       this.commentaireOeuvre = new CommentaireOeuvre(); 
+       this.displayStyle2 = "none";
+       localStorage.removeItem("idOeuvre");
+     }
+   )
+ }
+
+
+ //SIGNALEMENT OEUVRE
+ displayStyle3 = "none";
+
+ openPopup3(idOeuvre:number) {
+   this.displayStyle3 = "block";
+   localStorage.setItem("idOeuvre", idOeuvre.toString());
+ }
+
+ closePopupSignalement3() {
+   this.displayStyle3 = "none";
+ }
+
+ findAllSignalements3(){
+   this.signalementOeuvreService.findAll().subscribe((data: any[]) => {this.signalementsOeuvre = data;});
+   console.log(this.signalementsOeuvre);
+ }
+
+ saveSignalement3(username:string){
+  let idOeuvre = localStorage.getItem("idOeuvre");
+   this.signalementOeuvreService.save(idOeuvre, username, this.signalementOeuvre).subscribe(
+     ()=>{
+       this.findAllSignalements3(); 
+       this.signalementOeuvre = new SignalementOeuvre(); 
+       this.displayStyle3 = "none";
+       localStorage.removeItem("idOeuvre");
+     }
+   )
+ }
+
+ average!:number;
+ 
+ noteSalleVirtu(){
+  let note:number = 0;
   
 
-  
+  for(let i=0;i<this.salleVirtuelle['commentairesSalleVirtuelle'].length;i++){
+    note+=this.salleVirtuelle['commentairesSalleVirtuelle'][i]['note']
+    console.log(note);
+  }
+  this.average  = (note/this.salleVirtuelle['commentairesSalleVirtuelle'].length)
+  console.log(this.average);
+
+  return this.average;
+}
+
 
 }

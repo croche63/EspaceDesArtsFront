@@ -15,8 +15,8 @@ export class SignalementSalleVirtuelleService {
     return this.httpClient.get(this.baseUrl);
   }
 
-  public save(idSalleVirt:number, signalementSalleVirtuelle:SignalementSalleVirtuelle) : Observable<any>{
-    return this.httpClient.post(this.baseUrl+"/"+idSalleVirt,signalementSalleVirtuelle);
+  public save(idSalleVirt:number, username:string, signalementSalleVirtuelle:SignalementSalleVirtuelle) : Observable<any>{
+    return this.httpClient.post(this.baseUrl+"/"+idSalleVirt+"/"+username,signalementSalleVirtuelle);
   }
 
   public delete(id:number) : Observable<any>{

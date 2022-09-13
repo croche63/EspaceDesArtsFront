@@ -54,7 +54,7 @@
                 </div>
                 <div class="lg:mr-3 p-3 text-center">
                   <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                    4.5
+                    {{average}}
                     <!-- {{salleVirtuelle.commentaireSalleVirtuelle.note.moyenne}}  -->
                   </span>
                   <span class="text-sm text-blueGray-400">Note</span>
@@ -88,11 +88,29 @@
           </div>
 
           <!--Affichage des oeuvres-->
-          <div class="mt-10 py-10 border-t border-blueGray-200 text-center" *ngFor="let sao of salleVirtuelle.artiste.oeuvres">
+          <div class="text-center mt-12">
+            <h3 class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+              Oeuvres de l'artiste en exposition
+            </h3>
+          </div>
+          <div class="mt-10 py-5 border-t border-blueGray-200 text-center" *ngFor="let sao of salleVirtuelle.artiste.oeuvres">
+            <!--Buttons pour commenter et signaller-->
+            <div class="w-full lg:w-12/12 px-4 lg:order-3 lg:text-right lg:self-center">
+              <div class="py-3 px-1 mt-32 sm:mt-0">      
+                 <button type="button" class="text-2xl" (click)="openPopup2(sao.idOeuvre)">
+                  <i class="fas fa-comments"></i>
+                 </button>
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 <button type="button" class="text-2xl" (click)="openPopup3(sao.idOeuvre)">
+                   <i class="fas fa-thumbtack"></i>
+                 </button>
+             </div> 
+           </div>
+           <!--Affichage-->
             <table>
               <tr>
                 <td>
-                  <img src="data:image/jpeg;base64,{{sao.image}}" class="bg-white border" height="400" width="400"/>
+                  <img src="data:image/jpeg;base64,{{sao.image}}" class="bg-white border" height="300" width="300"/>
                 </td>
                 <br>
                 <td>
@@ -165,9 +183,13 @@ role="dialog"
                   X
                   </button>
                   </div>
+
+                  <div class="text-center mb-3">
+                    <h6 class="text-light-900 text-sm font-bold">Vueillez vous laissez votre commentaire pour cette Salle Virtuelle:</h6>
+                  </div>
               
               <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                <form (ngSubmit)="saveCommentaire(salleVirtuelle.id)">
+                <form (ngSubmit)="saveCommentaire(salleVirtuelle.id, username)">
                   <table class="w-full">
                     <tr>
                         <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
@@ -220,7 +242,7 @@ role="dialog"
 </div>
 </div>
 
-<!--MODAL POUR LES SIGNALEMENTS-->
+<!--MODAL POUR LES SIGNALEMENTS DE LA SALLE-->
 <div
 class="modal"
 tabindex="-1"
@@ -242,9 +264,13 @@ role="dialog"
                   X
                   </button>
                   </div>
+
+                  <div class="text-center mb-3">
+                    <h6 class="text-light-900 text-sm font-bold">Vueillez vous remplir le formulaire ci-dessus pour signaler cette Salle Virtuelle:</h6>
+                  </div>
               
               <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                <form (ngSubmit)="saveSignalement(salleVirtuelle.id)">
+                <form (ngSubmit)="saveSignalement(salleVirtuelle.id, username)">
                   <table class="w-full">
                     <tr>
                         <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
@@ -261,6 +287,152 @@ role="dialog"
                         </label>
                       <textarea
                       [(ngModel)]="signalementSalleVirtuelle.description" name="description"
+                      class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"></textarea>
+                    </tr>
+                    </table>
+                      <br>
+                        <button type="submit" class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
+                              Envoyer 
+                        </button>
+                </form>
+              </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+
+<!--MODAL POUR LES COMMENTAIRES D'UNE OEUVRE-->
+<div
+class="modal"
+tabindex="-1"
+role="dialog"
+[ngStyle]="{'display':displayStyle2}">
+<div class="modal-dialog" role="document">
+      <!--Formulaire Commentaire-->
+      <div class="container mx-auto px-4 h-full">
+        <div class="flex content-center items-center justify-center h-full">
+          <div class="w-full lg:w-6/12 px-4">
+            <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-red-200 border-0">
+              <div class="rounded-t mb-0 px-10 py-0">
+
+                <div class="p-2 text-right">
+                  <button
+                  class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-s px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                  (click)="closePopupCommentaire2()"
+                  type="button">
+                  X
+                  </button>
+                  </div>
+
+                  <div class="text-center mb-3">
+                    <h6 class="text-light-900 text-sm font-bold">Vueillez vous laissez votre commentaire pour cette oeuvre:</h6>
+                  </div>
+              
+              <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+                <form (ngSubmit)="saveCommentaire2(username)">
+                  <table class="w-full">
+                    <tr>
+                        <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                          Titre 
+                        </label>
+                      <input
+                      type="text" [(ngModel)]="commentaireOeuvre.titre" name="titre"
+                      class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"/>
+                    </tr>
+                    <br>
+                    <tr>
+                      <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                        Note 
+                      </label>
+                      <div class="starRating">
+                        <input id="r5" type="radio" [(ngModel)]="commentaireOeuvre.note" name="note" value="5">
+                        <label for="r5">5</label>&nbsp;&nbsp;&nbsp;&nbsp; <!--four spaces-->
+                        <input id="r4" type="radio" [(ngModel)]="commentaireOeuvre.note" name="note" value="4">
+                        <label for="r4">4</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input id="r3" type="radio" [(ngModel)]="commentaireOeuvre.note" name="note" value="3">
+                        <label for="r3">3</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input id="r2" type="radio" [(ngModel)]="commentaireOeuvre.note" name="note" value="2">
+                        <label for="r2">2</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input id="r1" type="radio" [(ngModel)]="commentaireOeuvre.note" name="note" value="1">
+                        <label for="r1">1</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                      </div>
+                    </tr>
+                    <br>
+                    <tr>
+                        <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                          Commentaire 
+                        </label>
+                      <textarea
+                      [(ngModel)]="commentaireOeuvre.description" name="description"
+                      class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"></textarea>
+                    </tr>
+                    </table>
+                      <br>
+                        <button type="submit" class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
+                              Envoyer 
+                        </button>
+                </form>
+              </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+
+<!--MODAL POUR LES SIGNALEMENTS D'UNE OEUVRE-->
+<div
+class="modal"
+tabindex="-1"
+role="dialog"
+[ngStyle]="{'display':displayStyle3}">
+<div class="modal-dialog" role="document">
+      <!--Formulaire Signalement-->
+      <div class="container mx-auto px-4 h-full">
+        <div class="flex content-center items-center justify-center h-full">
+          <div class="w-full lg:w-6/12 px-4">
+            <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-red-200 border-0">
+              <div class="rounded-t mb-0 px-10 py-0">
+
+                <div class="p-2 text-right">
+                  <button
+                  class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-s px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                  (click)="closePopupSignalement3()"
+                  type="button">
+                  X
+                  </button>
+                  </div>
+
+                  <div class="text-center mb-3">
+                    <h6 class="text-light-900 text-sm font-bold">Vueillez vous remplir le formulaire ci-dessus pour signaler l'oeuvre choisie:</h6>
+                  </div>
+                
+              <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+                <form (ngSubmit)="saveSignalement3(username)">
+                  <table class="w-full">
+                    <tr>
+                        <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                          Titre 
+                        </label>
+                      <input
+                      type="text" [(ngModel)]="signalementOeuvre.titre" name="titre"
+                      class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"/>
+                    </tr>
+                    <br>
+                    <tr>
+                        <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                          Commentaire 
+                        </label>
+                      <textarea
+                      [(ngModel)]="signalementOeuvre.description" name="description"
                       class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"></textarea>
                     </tr>
                     </table>
