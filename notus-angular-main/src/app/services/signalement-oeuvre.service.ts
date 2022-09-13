@@ -9,17 +9,17 @@ import { SignalementOeuvre } from '../models/signalement-oeuvre';
 export class SignalementOeuvreService {
   private baseUrl = "http://localhost:7070/signalementOeuvre";
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-  public findAll() : Observable<any>{
+  public findAll(): Observable<any> {
     return this.httpClient.get(this.baseUrl);
   }
 
-  public save(idOeuvre:string, username:string, signalementOeuvre:SignalementOeuvre) : Observable<any>{
-    return this.httpClient.post(this.baseUrl+"/"+idOeuvre+"/"+username,signalementOeuvre);
+  public save(idOeuvre: string, username: string, signalementOeuvre: SignalementOeuvre): Observable<any> {
+    return this.httpClient.post(this.baseUrl + "/" + idOeuvre + "/" + username, signalementOeuvre);
   }
 
-  public delete(id:number) : Observable<any>{
-    return this.httpClient.delete(this.baseUrl+"/"+id);
+  public delete(id: number): Observable<any> {
+    return this.httpClient.delete(this.baseUrl + "/" + id);
   }
 }
