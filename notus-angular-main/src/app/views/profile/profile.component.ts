@@ -188,21 +188,6 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  // noteSalleVirtu() {
-  //   let note: number = 0;
-
-
-  //   for (let i = 0; i < this.salleVirtuelle.commentaireSalleVirtuelle?.length; i++) {
-  //     note += this.salleVirtuelle['commentaireSalleVirtuelle'][i]['note']
-  //     console.log(note);
-  //   }
-  //   this.average = (note / this.salleVirtuelle.commentaireSalleVirtuelle?.length)
-  //   console.log(this.salleVirtuelle.commentaireSalleVirtuelle?.length);
-
-  //   console.log(this.average);
-
-  //   return this.average;
-  // }
 
 
 }

@@ -1,5 +1,6 @@
 
 <div [hidden]="isArtiste()">
+  <div *ngIf="artiste">
 <!-- Réservations -->
       <div class="flex flex-wrap">
         <!--Box de reservation-->
@@ -19,10 +20,8 @@
                 </span>
               </div>
               <div class="relative w-auto pl-4 flex-initial">
-                <div
-                  class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full"
-                  [ngClass]="[statIconColor]">
-                  <i [ngClass]="statIconName"></i>
+                <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full">
+                  <img src="data:image/jpeg;base64,{{r.salleExposition.logo}}"/>
                 </div>
               </div>
             </div>
@@ -500,7 +499,7 @@ role="dialog"
   </div>
 </div>
 </div>
-
+</div>
 </div>
 
 <div [hidden]="!isArtiste()">
