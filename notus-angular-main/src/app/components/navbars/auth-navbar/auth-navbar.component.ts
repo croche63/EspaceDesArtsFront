@@ -7,9 +7,9 @@ import { Component, OnInit } from "@angular/core";
 export class AuthNavbarComponent implements OnInit {
   navbarOpen = false;
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   setNavbarOpen() {
     this.navbarOpen = !this.navbarOpen;
