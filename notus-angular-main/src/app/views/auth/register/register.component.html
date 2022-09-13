@@ -20,7 +20,7 @@
                 Nom
               </label>
               <input
-                type="text" [(ngModel)]="utilisateur.nom" name="nom"
+                type="text" [(ngModel)]="artiste.nom" name="nom"
                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                 placeholder="Nom"
               />
@@ -34,7 +34,7 @@
                 Prenom
               </label>
               <input
-                type="text" [(ngModel)]="utilisateur.prenom" name="prenom"
+                type="text" [(ngModel)]="artiste.prenom" name="prenom"
                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                 placeholder="Prenom"
               />
@@ -48,7 +48,7 @@
                 Pseudo
               </label>
               <input
-                type="text" [(ngModel)]="utilisateur.username" name="username"
+                type="text" [(ngModel)]="artiste.username" name="username"
                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                 placeholder="Pseudo"
               />
@@ -62,7 +62,7 @@
                 Mot de passe
               </label>
               <input
-                type="password" [(ngModel)]="utilisateur.password" name="password"
+                type="password" [(ngModel)]="artiste.password" name="password"
                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                 placeholder="Mot de passe"
               />
@@ -76,7 +76,7 @@
                 Email
               </label>
               <input
-                type="email" [(ngModel)]="utilisateur.email" name="email"
+                type="email" [(ngModel)]="artiste.email" name="email"
                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                 placeholder="Email"
               />
@@ -90,7 +90,7 @@
                 Telephone
               </label>
               <input
-                type="text" [(ngModel)]="utilisateur.numeroTel" name="numeroTel"
+                type="text" [(ngModel)]="artiste.numeroTel" name="numeroTel"
                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                 placeholder="Telephone"
               />
@@ -116,7 +116,7 @@
               >
                   Vous êtes
               </label>
-              <select multiple name="roles" [(ngModel)] = "utilisateur.roles">
+              <select multiple name="roles" [(ngModel)] = "artiste.roles">
                 <option *ngFor="let r of roles" [ngValue]="r">
                     {{r.libelle}}
                 </option>
