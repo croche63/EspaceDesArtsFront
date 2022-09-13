@@ -1,7 +1,53 @@
 <div class="flex flex-wrap">
   <div class="w-full lg:w-9/12 px-4">
     <br>
-    <app-card-table></app-card-table>
+    <div
+        class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded"
+      >
+        <div class="rounded-t mb-0 px-4 py-3 border-0">
+          <div class="flex flex-wrap items-center">
+            <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+              <h3 class="font-semibold text-base text-blueGray-700">Ma salle d'exposition</h3>
+            </div>
+          </div>
+        </div>
+        <div class="block w-full overflow-x-auto">
+          <!-- Salle expo table -->
+          <table class="items-center w-full bg-transparent border-collapse">
+            <tbody>
+              <tr>
+                <td
+                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                >
+                <img src="data:image/jpeg;base64,{{proprietaire.salleExposition.logo}}" alt="*" height="120" width="120"/>
+                  {{proprietaire.salleExposition.libelle}}
+                </td>
+                <td
+                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+                >
+                  {{proprietaire.salleExposition.dimensionSalle}}
+                </td>
+                <td
+                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                >
+                  {{proprietaire.salleExposition.adresse.numeroRue}} {{proprietaire.salleExposition.adresse.nomRue}}<br>
+                  {{proprietaire.salleExposition.adresse.codePostal}} {{proprietaire.salleExposition.adresse.ville}} {{proprietaire.salleExposition.adresse.pays}}
+                </td>
+                <td
+                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                  <button
+                      class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                      type="button"
+                      (click)="editSalle(proprietaire.id)">
+                      Modifier
+                    </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+    </div>
   </div>
   <div class="w-full lg:w-3/12 px-4">
     <app-card-profile></app-card-profile>
