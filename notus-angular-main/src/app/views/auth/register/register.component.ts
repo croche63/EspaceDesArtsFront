@@ -39,9 +39,10 @@ export class RegisterComponent implements OnInit {
 
   save() {
     console.log(this.artiste.roles[0].libelle);
-    
-    if (this.artiste.roles[0].libelle == "Admin") { console.log("if Admin");
-    
+
+    if (this.artiste.roles[0].libelle == "Admin") {
+      console.log("if Admin");
+
       let currentUser = new Utilisateur();
       currentUser.prenom = this.artiste.prenom;
       currentUser.nom = this.artiste.nom
@@ -58,8 +59,9 @@ export class RegisterComponent implements OnInit {
         })
     }
 
-    else if (this.artiste.roles[0].libelle == "Artiste") { console.log("Else artiste");
-    
+    else if (this.artiste.roles[0].libelle == "Artiste") {
+      console.log("Else artiste");
+
       let currentUser = new Artiste();
       currentUser.prenom = this.artiste.prenom;
       currentUser.nom = this.artiste.nom
@@ -76,8 +78,9 @@ export class RegisterComponent implements OnInit {
         })
     }
 
-    else if (this.artiste.roles[0].libelle == "Proprietaire") { console.log("Else proprio");
-    
+    else if (this.artiste.roles[0].libelle == "Proprietaire") {
+      console.log("Else proprio");
+
       let currentUser = new Proprietaire();
       currentUser.prenom = this.artiste.prenom;
       currentUser.nom = this.artiste.nom
@@ -94,8 +97,9 @@ export class RegisterComponent implements OnInit {
         })
     }
 
-    else{ console.log("else");
-    
+    else {
+      console.log("else");
+
       let currentUser = new Utilisateur();
       currentUser.prenom = this.artiste.prenom;
       currentUser.nom = this.artiste.nom
