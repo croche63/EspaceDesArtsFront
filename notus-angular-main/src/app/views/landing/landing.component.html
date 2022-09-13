@@ -1,4 +1,7 @@
+<app-index-navbar></app-index-navbar>
+
 <!-- Affichage des info de l'expo -->
+<section class="mt-48 md:mt-40  relative bg-blueGray-100">
 <div class=" md:w-9/12 md:px-4 ">
   <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded"
     [ngClass]="color === 'light' ? 'bg-white' : 'bg-red-900 text-white'">
@@ -34,15 +37,6 @@
                 ">
               Localisation <!--Adresse-->
             </th>
-           <!-- <th
-              class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-              [ngClass]="
-                  color === 'light'
-                    ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
-                    : 'bg-red-800 text-red-300 border-red-700'
-                ">
-              Logo
-            </th>-->
             <th
               class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
               [ngClass]="
@@ -155,18 +149,20 @@
             </td>
             <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"> <!--Oeuvres présentes-->
               <span class="ml-3 font-bold" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'">
-                {{sE.oeuvres.nom}}
+                {{sE.oeuvres.nom}}, {{sE.oeuvres.image}}
               </span>
             </td>
             
         </tbody>
       </table>
     </div>
-    </div>
-    
+  </div>
+</div>
+</section>
 
 
 <!-- Laisser un comentaire-->
+<section class="mt-48 md:mt-40  relative bg-blueGray-100">
   <div class="flex flex-wrap">
     <div class="w-full px-4">
   
@@ -178,7 +174,7 @@
                       <h2 class="text-blueGray-500 text-sm font-bold"htmlFor="grid-password">Laisser un commentaire sur une salle d'exposition</h2>
                   </div>
                   <div class="card-body">
-                      <form (ngSubmit)="save()">
+                      <form (ngSubmit)="savecommentaire()">
   
                           <div class="row">
                               <div class="col-md-6">
@@ -227,4 +223,7 @@
       </div>
     </div>
   </div>
+  </div>
+</section>
 
+  <app-footer></app-footer>
