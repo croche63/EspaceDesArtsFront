@@ -25,5 +25,9 @@ export class SalleExpositionService {
   public findById(id:string): Observable<any>{
     return this.httpClient.get(this.baseUrl+"/"+id);
   }
+  public update(salleV: any): Observable<any> {
+    var salleVParse = JSON.parse(salleV)
+    return this.httpClient.put(this.baseUrl + "/" + salleV.id, salleVParse)
+  }
 
 }

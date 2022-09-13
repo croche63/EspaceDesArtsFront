@@ -14,10 +14,10 @@ export class SalleExposition {
     dimensionSalle!:string
     adresse!:Adresse
     proprietaire!:Proprietaire
-    signalementSalleExposition!:SignalementSalleExposition
+    signalementSalleExposition!:SignalementSalleExposition[]
     reservation!:Reservation[]
     evaluationArtiste!:EvaluationArtiste
-    commentaireSalleExposition!:CommentaireSalleExposition
+    commentaireSalleExposition!:CommentaireSalleExposition[]
     oeuvres!:Oeuvre[]
     
 }
