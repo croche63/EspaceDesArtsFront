@@ -1,5 +1,6 @@
 
 <div [hidden]="isArtiste()">
+  <div *ngIf="artiste">
 <!-- Réservations -->
       <div class="flex flex-wrap">
         <!--Box de reservation-->
@@ -498,7 +499,7 @@ role="dialog"
   </div>
 </div>
 </div>
-
+</div>
 </div>
 
 <div [hidden]="!isArtiste()">
