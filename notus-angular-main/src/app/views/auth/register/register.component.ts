@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { AppService } from "src/app/app.service";
 import { Artiste } from "src/app/models/artiste";
 import { Proprietaire } from "src/app/models/proprietaire";
+import { Role } from "src/app/models/role";
 import { Utilisateur } from "src/app/models/utilisateur";
 import { ArtisteService } from "src/app/services/artiste.service";
 import { ProprietaireService } from "src/app/services/proprietaire.service";
@@ -22,7 +23,7 @@ export class RegisterComponent implements OnInit {
 
   artiste: Artiste = new Artiste();
 
-  roles: any[]
+  roles: Role[]
 
   /*   selectedFiles:FileList;
     currentFileUpload:File; */
@@ -37,7 +38,10 @@ export class RegisterComponent implements OnInit {
   }
 
   save() {
-    if (this.artiste.roles[0].libelle === this.roles[0] || this.artiste.roles[0].libelle === this.roles[2]) {
+    console.log(this.artiste.roles[0].libelle);
+    
+    if (this.artiste.roles[0].libelle == "Admin") { console.log("if Admin");
+    
       let currentUser = new Utilisateur();
       currentUser.prenom = this.artiste.prenom;
       currentUser.nom = this.artiste.nom
@@ -54,7 +58,8 @@ export class RegisterComponent implements OnInit {
         })
     }
 
-    else if (this.artiste.roles[0].libelle === this.roles[1]) {
+    else if (this.artiste.roles[0].libelle == "Artiste") { console.log("Else artiste");
+    
       let currentUser = new Artiste();
       currentUser.prenom = this.artiste.prenom;
       currentUser.nom = this.artiste.nom
@@ -71,7 +76,8 @@ export class RegisterComponent implements OnInit {
         })
     }
 
-    else if (this.artiste.roles[0].libelle === this.roles[3]) {
+    else if (this.artiste.roles[0].libelle == "Proprietaire") { console.log("Else proprio");
+    
       let currentUser = new Proprietaire();
       currentUser.prenom = this.artiste.prenom;
       currentUser.nom = this.artiste.nom
@@ -82,6 +88,24 @@ export class RegisterComponent implements OnInit {
       currentUser.numeroTel = this.artiste.numeroTel;
 
       this.proprietaireService.save(currentUser).subscribe(
+        () => {
+          this.artiste = new Artiste(); //vider formulaire -> Inutile?
+          this.router.navigateByUrl("/auth/login"); //rediriger vers page de login
+        })
+    }
+
+    else{ console.log("else");
+    
+      let currentUser = new Utilisateur();
+      currentUser.prenom = this.artiste.prenom;
+      currentUser.nom = this.artiste.nom
+      currentUser.username = this.artiste.username
+      currentUser.password = this.artiste.password
+      currentUser.roles = this.roles[2]
+      currentUser.email = this.artiste.email;
+      currentUser.numeroTel = this.artiste.numeroTel;
+
+      this.utilisateurService.save(currentUser).subscribe(
         () => {
           this.artiste = new Artiste(); //vider formulaire -> Inutile?
           this.router.navigateByUrl("/auth/login"); //rediriger vers page de login
