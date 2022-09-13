@@ -1,5 +1,3 @@
-//TODO pas fini
-
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Injectable } from '@angular/core';
@@ -12,7 +10,7 @@ export class AppService {
   responseAll: any;
 
   isAdmin=false;
-  isUser=false;
+  isProprietaire=false;
   isArtiste=false;
 
   username!:string
@@ -34,8 +32,8 @@ export class AppService {
             if(this.responseAll['roles'][i]['libelle']=='Admin'){
               this.isAdmin = true;
             }
-            if(this.responseAll['roles'][i]['idRole']==3){
-              this.isUser = true;
+            if(this.responseAll['roles'][i]['libelle']=='Proprietaire'){
+              this.isProprietaire = true;
             }
             if(this.responseAll['roles'][i]['libelle']=='Artiste'){
               this.isArtiste = true;

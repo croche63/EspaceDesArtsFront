@@ -29,6 +29,14 @@ export class SettingsComponent implements OnInit {
   findAllInfos() {
     this.proprietaireService.findByUsername(this.username).subscribe((data: Proprietaire) => {this.proprietaire = data;console.log(this.proprietaire)});
   }
+
+  isProprietaire(){
+    if(this.appService.isProprietaire == true) {
+      return false;
+    } else {
+      return true;
+    }
+  }
   
   //Modal pour les oeuvres
   displayStyle = "none";
