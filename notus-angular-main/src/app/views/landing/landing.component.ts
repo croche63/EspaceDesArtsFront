@@ -12,25 +12,35 @@ import { SalleExpositionService } from "src/app/services/salle-exposition.servic
 })
 export class LandingComponent implements OnInit {
   commentaire!:any[];
-  salleExpo:SalleExposition[];
-  salleExpoService!:SalleExpositionService;
+  salleExpo:SalleExposition;
+  //salleExpoService!:SalleExpositionService;
   commentaireSalleExposition:CommentaireSalleExposition=new CommentaireSalleExposition;
  
 
-  constructor(private commentaireSalleExpositionService:CommentaireSalleExpositionService, private appService:AppService, private router:Router) { }
+  constructor(private commentaireSalleExpositionService:CommentaireSalleExpositionService,private salleExpoService:SalleExpositionService, private appService:AppService, private router:Router) { }
 
   ngOnInit(): void {
     this.findAllCommentaireSalleExpo();
+    this.findAllSalleExpo();
+  }
+  findAllSalleExpo() {
+    this.salleExpoService.findAll().subscribe(data => {this.salleExpo=data;})
   }
   findAllCommentaireSalleExpo() {
     this.commentaireSalleExpositionService.findAll().subscribe(data => {this.commentaire=data;})
   }
   
-  save(){
+  savecommentaire(){
     this.commentaireSalleExpositionService.save(this.commentaireSalleExposition).subscribe(()=>{this.findAllCommentaireSalleExpo();this.commentaireSalleExposition=new CommentaireSalleExposition})
   }
-  delete(id:number){
+  saveSalle(){
+    this.salleExpoService.save(this.salleExpo).subscribe(()=>{this.findAllSalleExpo(); this.salleExpo=new SalleExposition})
+  }
+  deletecommentaire(id:number){
     this.commentaireSalleExpositionService.delete(id).subscribe(()=>{this.findAllCommentaireSalleExpo()});
+  }
+  delecteSalle(id:number){
+    this.salleExpoService.delete(id).subscribe(()=>{this.findAllSalleExpo()});
   }
   recupereSalleExpo(){
     let idSalleExpo= localStorage.getItem("idSalleExpo");
