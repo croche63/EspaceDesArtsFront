@@ -8,26 +8,26 @@ import { Observable } from 'rxjs';
 export class SalleVirtuelleService {
   private baseUrl = "http://localhost:7070/SalleVirtuelles";
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-  public findAll() : Observable<any>{
+  public findAll(): Observable<any> {
     return this.httpClient.get(this.baseUrl);
   }
 
-  public save(evaluationArtiste:any) : Observable<any>{
-    return this.httpClient.post(this.baseUrl,evaluationArtiste);
+  public save(evaluationArtiste: any): Observable<any> {
+    return this.httpClient.post(this.baseUrl, evaluationArtiste);
   }
 
-  public delete(id:number) : Observable<any>{
-    return this.httpClient.delete(this.baseUrl+"/"+id);
+  public delete(id: number): Observable<any> {
+    return this.httpClient.delete(this.baseUrl + "/" + id);
   }
 
- public findOne(id:string) : Observable<any>{
-  return this.httpClient.get(this.baseUrl+"/"+id)
- }
+  public findOne(id: string): Observable<any> {
+    return this.httpClient.get(this.baseUrl + "/" + id)
+  }
 
-  public update(salleV:any) :Observable<any>{
+  public update(salleV: any): Observable<any> {
     var salleVParse = JSON.parse(salleV)
-    return this.httpClient.put(this.baseUrl+"/"+salleV.id,salleVParse)
+    return this.httpClient.put(this.baseUrl + "/" + salleV.id, salleVParse)
   }
 }
