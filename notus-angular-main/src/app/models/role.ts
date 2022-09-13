@@ -1,5 +1,5 @@
 export class Role {
-    id!:number
-    libelle!:string
-    
+    id!: number
+    libelle!: string
+
 }
