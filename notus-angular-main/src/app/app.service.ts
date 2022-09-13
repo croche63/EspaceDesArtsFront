@@ -32,7 +32,7 @@ export class AppService {
             if(this.responseAll['roles'][i]['libelle']=='Admin'){
               this.isAdmin = true;
             }
-            if(this.responseAll['roles'][i]['idRole']=='Proprietaire'){
+            if(this.responseAll['roles'][i]['libelle']=='Proprietaire'){
               this.isProprietaire = true;
             }
             if(this.responseAll['roles'][i]['libelle']=='Artiste'){
