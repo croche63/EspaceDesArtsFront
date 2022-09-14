@@ -5,6 +5,7 @@ import { Adresse } from "src/app/models/adresse";
 import { Proprietaire } from "src/app/models/proprietaire";
 import { Reservation } from "src/app/models/reservation";
 import { SalleExposition } from "src/app/models/salle-exposition";
+import { SalleVirtuelle } from "src/app/models/salle-virtuelle";
 import { ArtisteService } from "src/app/services/artiste.service";
 import { ProprietaireService } from "src/app/services/proprietaire.service";
 import { ReservationService } from "src/app/services/reservation.service";
@@ -32,6 +33,7 @@ export class SettingsComponent implements OnInit {
 
   sallesExposition:any[];
   salleExposition:SalleExposition = new SalleExposition();
+  salleVirtuelle:SalleVirtuelle = new SalleVirtuelle();
   selectedFiles:FileList;
   currentFileUpload:File;
 
@@ -46,7 +48,7 @@ export class SettingsComponent implements OnInit {
   ngOnInit(): void {
     // Créer une adresse vide pour la salle d'exposition afin d'être capable de la renseigner avec le ngModel
     this.salleExposition.adresse = new Adresse();
-    
+
     this.findAllInfos();
     console.log(this.proprietaire.prenom);
     this.findAllArtistes();
