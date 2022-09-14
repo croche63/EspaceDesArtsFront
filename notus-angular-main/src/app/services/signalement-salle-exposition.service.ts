@@ -9,17 +9,17 @@ import { SignalementSalleExposition } from '../models/signalement-salle-expositi
 export class SignalementSalleExpositionService {
   private baseUrl = "http://localhost:7070/signalementSalleExp";
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-  public findAll() : Observable<any>{
+  public findAll(): Observable<any> {
     return this.httpClient.get(this.baseUrl);
   }
 
-  public save(idSalleExpo: number, username: string, signalementSalleExpo: SignalementSalleExposition) : Observable<any>{
-    return this.httpClient.post(this.baseUrl+"/"+idSalleExpo+"/"+username+"/",signalementSalleExpo);
+  public save(idSalleExpo: number, username: string, signalementSalleExpo: SignalementSalleExposition): Observable<any> {
+    return this.httpClient.post(this.baseUrl + "/" + idSalleExpo + "/" + username + "/", signalementSalleExpo);
   }
 
-  public delete(id:number) : Observable<any>{
-    return this.httpClient.delete(this.baseUrl+"/"+id);
+  public delete(id: number): Observable<any> {
+    return this.httpClient.delete(this.baseUrl + "/" + id);
   }
 }

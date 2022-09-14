@@ -35,6 +35,7 @@ export class LandingComponent implements OnInit {
   signalementsOeuvre!: any[];
   signalementOeuvre: SignalementOeuvre = new SignalementOeuvre();
 
+
   constructor(private SalleExpositionService: SalleExpositionService, private router: Router,
     private commentaireSalleExpositionService: CommentaireSalleExpositionService,
     private signalementSalleExpositionService: SignalementSalleExpositionService,
@@ -115,13 +116,13 @@ export class LandingComponent implements OnInit {
     console.log(this.signalementsSalleExposition);
   }
 
-  saveSignalement(idSalleVirt: number, username: string) {
-    this.signalementSalleExpositionService.save(idSalleVirt, username, this.signalementSalleExposition).subscribe(
+  saveSignalement(idSalleExpo: number, username: string) {
+    this.signalementSalleExpositionService.save(idSalleExpo, username, this.signalementSalleExposition).subscribe(
       () => {
         this.findAllSignalements();
         this.signalementSalleExposition = new SignalementSalleExposition();
         this.displayStyle1 = "none";
-        console.log(idSalleVirt);
+        console.log(idSalleExpo);
         console.log(username);
       }
     )
@@ -190,10 +191,10 @@ export class LandingComponent implements OnInit {
 
 
 
-  authorities(){
-    if(this.appService.isAdmin == true){
+  authorities() {
+    if (this.appService.isAdmin == true) {
       return false;
-    }else{
+    } else {
       return true;
     }
   }
