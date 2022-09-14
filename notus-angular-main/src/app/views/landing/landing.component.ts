@@ -71,7 +71,8 @@ export class LandingComponent implements OnInit {
   }
   // Partie Salle Expo
   findAllSalleExpo() {
-    this.salleExpoService.findAll().subscribe(data => {this.salleExpo=data;})
+    let idSalleExpo= localStorage.getItem("idSalleExpo");
+    this.salleExpoService.findById(idSalleExpo).subscribe(data => {this.salleExpo=data;})
   }
   saveSalle(){
     this.salleExpoService.save(this.salleExpo).subscribe(()=>{
