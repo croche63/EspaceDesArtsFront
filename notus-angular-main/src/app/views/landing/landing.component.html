@@ -44,7 +44,7 @@
                     ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
                     : 'bg-red-800 text-red-300 border-red-700'
                 ">
-              Dimention de la salle
+                Dimensions de la salle
             </th>
             <!--<th
               class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
@@ -89,7 +89,7 @@
                     ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
                     : 'bg-red-800 text-red-300 border-red-700'
                 ">
-              Commantaires
+                Commentaires
             </th>
             <th
               class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
@@ -162,7 +162,7 @@
 
 
 <!-- Laisser un comentaire-->
-<section class="mt-48 md:mt-40  relative bg-blueGray-100">
+<!--<section class="mt-48 md:mt-40  relative bg-blueGray-100">
   <div class="flex flex-wrap">
     <div class="w-full px-4">
   
@@ -188,7 +188,6 @@
                                 <input
                                 type="text" [(ngModel)]="commentaireSalleExposition.titre" name="titre"
                                 class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"/>
-                                <!--<input matInput placeholder="Non de l'exposition" type="text" [(ngModel)]='commentaireSalleExposition.titre' name="titre">-->
                               </div>
                               </div>
                           </tr>
@@ -212,7 +211,7 @@
                                 </label>
                                 <div class="starRating">
                                   <input id="r5" type="radio" [(ngModel)]="commentaireSalleExposition.note" name="note" value="5">
-                                  <label for="r5">5</label>&nbsp;&nbsp;&nbsp;&nbsp; <!--four spaces-->
+                                  <label for="r5">5</label>&nbsp;&nbsp;&nbsp;&nbsp;
                                   <input id="r4" type="radio" [(ngModel)]="commentaireSalleExposition.note" name="note" value="4">
                                   <label for="r4">4</label>&nbsp;&nbsp;&nbsp;&nbsp;
                                   <input id="r3" type="radio" [(ngModel)]="commentaireSalleExposition.note" name="note" value="3">
@@ -239,7 +238,97 @@
     </div>
   </div>
   </div>
-</section>
+</section>-->
+
+<section class="relative block h-500-px">
+<!--MODAL POUR LES COMMENTAIRES DE LA SALLE-->
+<div
+class="modal"
+tabindex="-1"
+role="dialog"
+[ngStyle]="{'display':displayStyle}">
+<div class="modal-dialog" role="document">
+      <!--Formulaire Commentaire-->
+      <div class="container mx-auto px-4 h-full">
+        <div class="flex content-center items-center justify-center h-full">
+          <div class="w-full lg:w-6/12 px-4">
+            <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-red-200 border-0">
+              <div class="rounded-t mb-0 px-10 py-0">
+
+                <div class="p-2 text-right">
+                  <button
+                  class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-s px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                  (click)="closePopupCommentaire()"
+                  type="button">
+                  X
+                  </button>
+                  </div>
+
+                  <div class="text-center mb-3">
+                    <h6 class="text-light-900 text-sm font-bold">Veuillez vous laissez votre commentaire pour cette Salle d'exposition:</h6>
+                  </div>
+              
+              <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+                <form (ngSubmit)="saveCommentaire(salleExpo.id, username)">
+                  <table class="w-full">
+                    <tr>
+                        <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                          Titre 
+                        </label>
+                      <input
+                      type="text" [(ngModel)]="commentaireSalleExposition.titre" name="titre"
+                      class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"/>
+                    </tr>
+                    <br>
+                    <tr>
+                      <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                        Note 
+                      </label>
+                      <div class="starRating">
+                        <input id="r5" type="radio" [(ngModel)]="commentaireSalleExposition.note" name="note" value="5">
+                        <label for="r5">5</label>&nbsp;&nbsp;&nbsp;&nbsp; <!--four spaces-->
+                        <input id="r4" type="radio" [(ngModel)]="commentaireSalleExposition.note" name="note" value="4">
+                        <label for="r4">4</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input id="r3" type="radio" [(ngModel)]="commentaireSalleExposition.note" name="note" value="3">
+                        <label for="r3">3</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input id="r2" type="radio" [(ngModel)]="commentaireSalleExposition.note" name="note" value="2">
+                        <label for="r2">2</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input id="r1" type="radio" [(ngModel)]="commentaireSalleExposition.note" name="note" value="1">
+                        <label for="r1">1</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                      </div>
+                    </tr>
+                    <br>
+                    <tr>
+                        <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                          Commentaire 
+                        </label>
+                      <textarea
+                      [(ngModel)]="commentaireSalleExposition.description" name="description"
+                      class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"></textarea>
+                    </tr>
+                    </table>
+                      <br>
+                        <button type="submit" class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
+                              Envoyer 
+                        </button>
+                </form>
+              </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+ </section>
+
 </main>
 
 <app-footer></app-footer>
