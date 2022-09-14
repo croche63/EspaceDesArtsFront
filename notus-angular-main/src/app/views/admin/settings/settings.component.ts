@@ -1,13 +1,16 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AppService } from "src/app/app.service";
+import { Adresse } from "src/app/models/adresse";
 import { Proprietaire } from "src/app/models/proprietaire";
 import { Reservation } from "src/app/models/reservation";
 import { SalleExposition } from "src/app/models/salle-exposition";
+import { SalleVirtuelle } from "src/app/models/salle-virtuelle";
 import { ArtisteService } from "src/app/services/artiste.service";
 import { ProprietaireService } from "src/app/services/proprietaire.service";
 import { ReservationService } from "src/app/services/reservation.service";
 import { SalleExpositionService } from "src/app/services/salle-exposition.service";
+import { SalleVirtuelleService } from "src/app/services/salle-virtuelle.service";
 
 @Component({
   selector: "app-settings",
@@ -29,7 +32,11 @@ export class SettingsComponent implements OnInit {
   proprietaire:Proprietaire = new Proprietaire();
   username:string = this.appService.username;
 
+  sallesExposition:any[];
   salleExposition:SalleExposition = new SalleExposition();
+  salleVirtuelle:SalleVirtuelle = new SalleVirtuelle();
+  selectedFiles:FileList;
+  currentFileUpload:File;
 
   constructor(
     private appService:AppService,
@@ -37,21 +44,22 @@ export class SettingsComponent implements OnInit {
     private reservationService:ReservationService,
     private salleExpositionService:SalleExpositionService,
     private artisteService:ArtisteService,
+    private salleVirtuelleService:SalleVirtuelleService,
   ) {}
 
   ngOnInit(): void {
+    // Créer une adresse vide pour la salle d'exposition afin d'être capable de la renseigner avec le ngModel
+    this.salleExposition.adresse = new Adresse();
+
     this.findAllInfos();
     console.log(this.proprietaire.prenom);
-    this.findAllArtistes();
   }
 
   findAllInfos() {
     this.reservationService.findAll().subscribe((data: any[]) => {this.reservations = data;});
     this.proprietaireService.findByUsername(this.username).subscribe((data: Proprietaire) => {this.proprietaire = data;console.log(this.proprietaire)});
-  }
-
-  findAllArtistes(){
     this.artisteService.findAll().subscribe((data: any[]) => {this.artistes = data;});
+    this.salleExpositionService.findAll().subscribe((data: any[]) => {this.sallesExposition = data;});
   }
 
   isProprietaire(){
@@ -62,19 +70,58 @@ export class SettingsComponent implements OnInit {
     }
   }
 
+  displayStyle2 = "none";
+
+  openPopupSalleExpo(){
+    this.displayStyle2 = "block";
+  }
+
+  closePopupSalleExpo() {
+    this.displayStyle2 = "none";
+  }
+
+  selectFile(event:any){
+    this.selectedFiles = event.target.files;
+  }
+  
+  saveSalleExpo(username:string){
+    this.currentFileUpload = this.selectedFiles.item(0);
+    this.salleExpositionService.saveSalle(username, this.currentFileUpload, this.salleExposition).subscribe(
+      ()=>{
+        this.findAllInfos(); 
+        this.salleExposition = new SalleExposition(); 
+        this.selectedFiles = undefined;
+        this.displayStyle2 = "none";
+      }
+    )
+  }
+
   //Ajout d'une salle virtuelle
   displayStyle1 = "none";
-  
-  openPopupSalle(){
+
+  openPopupSalleVirtuelle(){
     this.displayStyle1 = "block";
   }
 
-  closePopupSalle() {
+  closePopupSalleVirtuelle() {
     this.displayStyle1 = "none";
   }
 
-  saveSalle(){
+  saveSalleVirtuelle(){
+    // Pour eviter boucle infinie, proprietaire ignore dans salleVirtuelle. On passe pas le proprio pour enregistrer ses salles Virtuelles
+    this.proprietaire.salleVirtuelles = this.salleVirtuelle;
 
+    this.proprietaireService.save(this.proprietaire).subscribe(
+      ()=>{
+        this.findAllInfos(); 
+        this.salleVirtuelle = new SalleVirtuelle(); 
+        this.selectedFiles = undefined;
+        this.displayStyle2 = "none";
+      }
+    )
+
+    console.log(this.proprietaire.salleVirtuelles)
   }
+
 
 }

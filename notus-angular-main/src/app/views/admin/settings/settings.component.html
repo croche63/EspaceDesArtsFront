@@ -1,306 +1,411 @@
 <div [hidden]="isProprietaire()">
-<div *ngIf="proprietaire">
-
-  <div class="flex flex-wrap mt-4">
-    <div class="w-full lg:w-9/12 px-4">
-      <br>
-      <!--First table-->
-      <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+  <div *ngIf="proprietaire">
+  
+    <div class="flex flex-wrap mt-4">
+      <div class="w-full lg:w-9/12 px-4">
+        <br>
+        <!--First table-->
+        <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+          <table>
+            <tr>
+              <td>
+                  <div class="rounded-t mb-0 px-4 py-3 border-0">
+                  <div class="flex flex-wrap items-center">
+                  <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+                
+                      <h3 class="font-semibold text-base text-blueGray-700"
+                          [ngClass]="color === 'light' ? 'text-blueGray-700' : 'text-blueGray-700'">
+                           Ma salle d'exposition
+                      </h3>
+                  </div>
+                  </div>
+                  </div>
+              </td>
+              <td class="p-5 text-right"  *ngIf="!proprietaire.salleExposition">
+                      <button
+                      class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                      (click)="openPopupSalleExpo()"
+                      type="button">
+                      <i class="fas fa-plus"></i>
+                    </button>
+              </td>
+            </tr>
+          </table>
+            <div class="block w-full overflow-x-auto">
+              <!-- Salle expo table -->
+              <table class="items-center w-full bg-transparent border-collapse">
+                <thead>
+                  <tr>
+                    <th
+                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                    Salle
+                    </th>
+                    <th
+                  class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                  Dimension
+                    </th>
+                    <th
+                  class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                  Adresse
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngIf="proprietaire.salleExposition">
+                    <td
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    <img src="data:image/jpeg;base64,{{proprietaire.salleExposition.logo}}" alt="*" height="120" width="120"/>
+                      {{proprietaire.salleExposition.libelle}}
+                    </td>
+                    <td
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                      {{proprietaire.salleExposition.dimensionSalle}}
+                    </td>
+                    <td
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      {{proprietaire.salleExposition.adresse.numeroRue}} {{proprietaire.salleExposition.adresse.nomRue}}<br>
+                      {{proprietaire.salleExposition.adresse.codePostal}} {{proprietaire.salleExposition.adresse.ville}} {{proprietaire.salleExposition.adresse.pays}}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+  
+        <!--Second table-->
+        <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
           <div class="rounded-t mb-0 px-4 py-3 border-0">
             <div class="flex flex-wrap items-center">
               <div class="relative w-full px-4 max-w-full flex-grow flex-1">
-                <h3 class="font-semibold text-base text-blueGray-700">Ma salle d'exposition</h3>
+                <h3 class="font-semibold text-base text-blueGray-700">Réservations de ma salle</h3>
               </div>
             </div>
           </div>
           <div class="block w-full overflow-x-auto">
-            <!-- Salle expo table -->
+             <!--Salle expo table -->
             <table class="items-center w-full bg-transparent border-collapse">
               <thead>
                 <tr>
                   <th
                   class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  Salle
-                  </th>
-                  <th
+                  Dates
+                </th>
+             
+                <th
                 class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                Dimension
-                  </th>
-                  <th
-                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                Adresse
-                  </th>
-                  <th
-                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                <!--Adresse-->
-                  </th>
+                Evenements
+              </th>
                 </tr>
-            </thead>
-              <tbody>
-                <tr>
-                  <td
+              </thead>
+              <tbody *ngFor="let r of reservations">
+                <tr *ngIf="proprietaire.salleExposition">
+                  <td *ngIf="r.salleExposition.id === proprietaire.salleExposition.id"
                     class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <img src="data:image/jpeg;base64,{{proprietaire.salleExposition.logo}}" alt="*" height="120" width="120"/>
-                    {{proprietaire.salleExposition.libelle}}
+                    Du {{r.dateDebut}} au {{r.dateFin}}
                   </td>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                    {{proprietaire.salleExposition.dimensionSalle}}
-                  </td>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {{proprietaire.salleExposition.adresse.numeroRue}} {{proprietaire.salleExposition.adresse.nomRue}}<br>
-                    {{proprietaire.salleExposition.adresse.codePostal}} {{proprietaire.salleExposition.adresse.ville}} {{proprietaire.salleExposition.adresse.pays}}
-                  </td>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    <button
-                        class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                        type="button"
-                        (click)="openPopup(salleExposition.id)"> <!-- TODO -->
-                        Modifier
-                      </button>
-                  </td>
+                  
+                  <td *ngIf="r.salleExposition.id === proprietaire.salleExposition.id"
+                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                  <!--Table evenements d'une reservation -->
+                  <table  class="items-center w-full bg-transparent border-collapse">
+                    <tr *ngFor="let e of r.evenement"></tr>
+                      <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                          <b>{{e.titre}}</b><br>
+                          {{e.description}}<br>
+                          Du {{e.dateDebut}} au {{e.dateFin}}
+                      </td>
+                    </tr>
+                  </table>
+                  
+                </td>
+                   <!--TODO Afficher artiste -->
                 </tr>
               </tbody>
             </table>
           </div>
-      </div>
-
-      <!--Second table-->
-      <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
-        <div class="rounded-t mb-0 px-4 py-3 border-0">
-          <div class="flex flex-wrap items-center">
-            <div class="relative w-full px-4 max-w-full flex-grow flex-1">
-              <h3 class="font-semibold text-base text-blueGray-700">Réservations de ma salle</h3>
-            </div>
-          </div>
         </div>
-        <div class="block w-full overflow-x-auto">
-           <!--Salle expo table -->
-          <table class="items-center w-full bg-transparent border-collapse">
-            <thead>
-              <tr>
+  
+        <!--Third table-->
+        <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+          <table>
+            <tr>
+              <td>
+                  <div class="rounded-t mb-0 px-4 py-3 border-0">
+                  <div class="flex flex-wrap items-center">
+                  <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+                
+                      <h3 class="font-semibold text-base text-blueGray-700"
+                          [ngClass]="color === 'light' ? 'text-blueGray-700' : 'text-blueGray-700'">
+                           Mes salles virtuelles
+                      </h3>
+                  </div>
+                  </div>
+                  </div>
+              </td>
+              <td class="p-5 text-right">
+                      <button
+                      class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                      (click)="openPopupSalleVirtuelle()"
+                      type="button">
+                      <i class="fas fa-plus"></i>
+                    </button>
+              </td>
+            </tr>
+          </table>
+          <div class="block w-full overflow-x-auto">
+             <!--Salle virtuelle table -->
+            <table class="items-center w-full bg-transparent border-collapse">
+              <thead>
+                <tr>
+                  <th
+                  class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                  Nom
+                </th>
                 <th
-                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                Dates
-              </th>
-              <th
-                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                Artiste responsable
-              </th>
-              <th
-              class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-              Evenements
-            </th>
-              </tr>
-            </thead>
-            <tbody *ngFor="let r of reservations">
-              <tr *ngIf="r.salleExposition.id === proprietaire.salleExposition.id">
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  Du {{r.dateDebut}} au {{r.dateFin}}
-                </td>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  {{r.artiste.prenom}} {{r.artiste.nom}}
-                </td>
-                <td
-                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                <!--Table evenements d'une reservation -->
-                <table  class="items-center w-full bg-transparent border-collapse">
-                  <tr *ngFor="let e of r.evenement">
-                    <td
+                  class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                  Information
+                </th>
+                </tr>
+              </thead>
+              <tbody *ngIf="proprietaire.salleVirtuelles">
+                <tr *ngFor="let sv of proprietaire.salleVirtuelles">
+                  <td
                     class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    <b>{{e.titre}}</b><br>
-                    {{e.description}}<br>
-                    Du {{e.dateDebut}} au {{e.dateFin}}
+                    {{sv.libelle}}
+                  </td>
+                  <td
+                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    {{sv.description}}
                   </td>
                   </tr>
-                </table>
-                
-              </td>
-                 <!--TODO Afficher artiste -->
-              </tr>
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-
-      <!--Third table-->
-      <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
-        <table>
-          <tr>
-            <td>
-                <div class="rounded-t mb-0 px-4 py-3 border-0">
-                <div class="flex flex-wrap items-center">
-                <div class="relative w-full px-4 max-w-full flex-grow flex-1">
-              
-                    <h3 class="font-semibold text-base text-blueGray-700"
-                        [ngClass]="color === 'light' ? 'text-blueGray-700' : 'text-blueGray-700'">
-                         Mes salles virtuelles
-                    </h3>
+  
+  
+      <!--Profil Propretaire-->
+      <div class="w-full lg:w-3/12 px-4">
+        <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-16">
+          <div class="px-6">
+            <div class="flex flex-wrap justify-center">
+              <div class="w-full px-4 flex justify-center">
+                <div class="relative">
+                  <img alt="..." src="data:image/jpeg;base64,{{proprietaire.image}}"
+                    class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-120-px"/>
                 </div>
-                </div>
-                </div>
-            </td>
-            <td class="p-5 text-right">
+              </div>
+              <br><br>
+            </div>
+            <div class="text-center mt-12">
+              <h3
+                class="text-xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+                {{proprietaire.prenom}} {{proprietaire.nom}}
+              </h3>
+              <div class="mb-2 text-blueGray-600 mt-10">
+                <i class="fas fa-envelope mr-2 text-lg text-blueGray-400"></i>
+                {{proprietaire.email}}
+              </div>
+              <div class="mb-2 text-blueGray-600">
+                <i class="fas fa-phone mr-2 text-lg text-blueGray-400"></i>
+                {{proprietaire.numeroTel}}
+              </div>
+            </div>
+            <br><br><br>
+          </div>
+        </div>
+      </div>
+      <!-------------------->
+      </div>
+  
+      <!--Modal pour créer une salle d'exposition-->
+      <div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{'display':displayStyle2}">
+  <div class="modal-dialog" role="document">
+        <!--Formulaire Salle Exposition-->
+        <div class="container mx-auto px-4 h-full">
+          <div class="flex content-center items-center justify-center h-full">
+            <div class="w-full lg:w-8/12 px-4">
+              <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-red-200 border-0">
+                <div class="rounded-t mb-0 px-10 py-0">
+  
+                  <div class="p-2 text-right">
                     <button
-                    class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                    (click)="openPopupSalle()"
+                    class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-s px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                    (click)="closePopupSalleExpo()"
                     type="button">
-                    <i class="fas fa-plus"></i>
-                  </button>
-            </td>
-          </tr>
-        </table>
-        <div class="block w-full overflow-x-auto">
-           <!--Salle virtuelle table -->
-          <table class="items-center w-full bg-transparent border-collapse">
-            <thead>
-              <tr>
-                <th
-                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                Nom
-              </th>
-              <th
-                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                Information
-              </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <!--{{proprietaire.salleVirtuelle.libelle}}-->
-                </td>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <!--{{proprietaire.salleVirtuelle.description}}-->
-                </td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-    </div>
-
-
-    <!--Profil Propretaire-->
-    <div class="w-full lg:w-3/12 px-4">
-      <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-16">
-        <div class="px-6">
-          <div class="flex flex-wrap justify-center">
-            <div class="w-full px-4 flex justify-center">
-              <div class="relative">
-                <img alt="..." src="data:image/jpeg;base64,{{proprietaire.image}}"
-                  class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-120-px"/>
-              </div>
-            </div>
-            <br><br>
-          </div>
-          <div class="text-center mt-12">
-            <h3
-              class="text-xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-              {{proprietaire.prenom}} {{proprietaire.nom}}
-            </h3>
-            <div class="mb-2 text-blueGray-600 mt-10">
-              <i class="fas fa-envelope mr-2 text-lg text-blueGray-400"></i>
-              {{proprietaire.email}}
-            </div>
-            <div class="mb-2 text-blueGray-600">
-              <i class="fas fa-phone mr-2 text-lg text-blueGray-400"></i>
-              {{proprietaire.numeroTel}}
-            </div>
-          </div>
-          <br><br><br>
-        </div>
-      </div>
-    </div>
-    <!-------------------->
-    </div>
-
-    <!--Modal pour créer une salle virtuelle-->
-    <div
-class="modal"
-tabindex="-1"
-role="dialog"
-[ngStyle]="{'display':displayStyle1}">
-<div class="modal-dialog" role="document">
-      <!--Formulaire Réservation-->
-      <div class="container mx-auto px-4 h-full">
-        <div class="flex content-center items-center justify-center h-full">
-          <div class="w-full lg:w-6/12 px-4">
-            <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-red-200 border-0">
-              <div class="rounded-t mb-0 px-10 py-0">
-
-                <div class="p-2 text-right">
-                  <button
-                  class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-s px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                  (click)="closePopupSalle()"
-                  type="button">
-                  X
-                  </button>
+                    X
+                    </button>
+                    </div>
+            
+                  <div class="text-center mb-3">
+                    <h6 class="text-light-900 text-sm font-bold">Veuillez remplir le formulaire pour ajouter votre salle d'exposition:</h6>
                   </div>
-          
-                <div class="text-center mb-3">
-                  <h6 class="text-light-900 text-sm font-bold">Vueillez vous remplir le formulaire pour créer une nouvelle salle virtuelle:</h6>
                 </div>
-              </div>
-              
-              <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                <form (ngSubmit)="saveSalle()">
-                  <table class="w-full">
-                    <tr>
-                      <td>
+                
+                <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+                  <form (ngSubmit)="saveSalleExpo(proprietaire.username)">
+                    <table class="w-full">
+                      <tr>
+                        <td>
+                          <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                            Nom 
+                          </label>
+                        <input
+                        type="text" [(ngModel)]="salleExposition.libelle" name="libelle"
+                        class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"/>
+                        <br> <br>
+                          <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                            Dimension 
+                          </label>
+                          <input
+                        type="text" [(ngModel)]="salleExposition.dimensionSalle" name="dimensionSalle"
+                        class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"/>
+                        <br> <br>
+                          <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                            Logo 
+                          </label>
+                          <input type="file" (change)="selectFile($event)" name="logo"
+                          class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150">
+                        </td>
+                        <td>
+                          <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                            N° Rue 
+                          </label>
+                        <input
+                        type="text" [(ngModel)]="salleExposition.adresse.numeroRue" name="numeroRue"
+                        class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"/>
+                        <br> <br>
+                          <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                            Rue 
+                          </label>
+                          <input
+                        type="text" [(ngModel)]="salleExposition.adresse.nomRue" name="nomRue"
+                        class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"/>
+                        <br> <br>
                         <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
-                          Nom 
-                        </label>
-                      <input
-                      type="text" [(ngModel)]="salleVirtuelle.libelle" name="libelle"
-                      class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"/>
-                      <br> <br>
+                            Code Postal 
+                          </label>
+                          <input
+                        type="text" [(ngModel)]="salleExposition.adresse.codePostal" name="codePostal"
+                        class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"/>
+                        <br> <br>
                         <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
-                          Description 
-                        </label>
-                        <textarea [(ngModel)]="salleVirtuelle.description" name="description"
-                        class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"></textarea>
-                      </td>
-                      <td>
+                            Ville 
+                          </label>
+                          <input
+                        type="text" [(ngModel)]="salleExposition.adresse.ville" name="ville"
+                        class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"/>
+                        <br> <br>
                         <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
-                          Attribuer cette salle à l'artiste: 
-                        </label>
-                        <!--<select multiple name="artistes" [(ngModel)]="salleVirtuelle.artiste.nom">
-                          <option *ngFor="let a of artistes" [ngValue]="a">
-                            {{a.nom}}
-                          </option>
-                        </select>-->
-                      </td>
-                    </tr>
-                    </table>
-                      <br>
-                        <button type="submit" class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
-                              Valider 
-                        </button>
-                </form>
-              </div>
-        
+                            Pays 
+                          </label>
+                          <input
+                        type="text" [(ngModel)]="salleExposition.adresse.pays" name="pays"
+                        class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"/>
+                        <br> <br>
+                        </td>
+                      
+                      </tr>
+                      </table>
+                        <br>
+                          <button type="submit" class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
+                                Valider 
+                          </button>
+                  </form>
+                </div>
+          
+        </div>
       </div>
     </div>
   </div>
-</div>
-</div>
-</div>
-<!------------------------------->
   </div>
-</div>
-  <div [hidden]="!isProprietaire()">
-    <br><br><br><br><br>
-    <div class="w-full xl:w-12/12 mb-12 xl:mb-0 px-4">
-      Vous devez être connecté en tant que proprietaire pour consulter cette page!
+  </div>
+  <!------------------------------->
+  
+  
+  <!--Modal pour créer une salle virtuelle-->
+  <div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{'display':displayStyle1}">
+  <div class="modal-dialog" role="document">
+        <!--Formulaire Salle Virtuelle-->
+        <div class="container mx-auto px-4 h-full">
+          <div class="flex content-center items-center justify-center h-full">
+            <div class="w-full lg:w-6/12 px-4">
+              <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-red-200 border-0">
+                <div class="rounded-t mb-0 px-10 py-0">
+  
+                  <div class="p-2 text-right">
+                    <button
+                    class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-s px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                    (click)="closePopupSalleVirtuelle()"
+                    type="button">
+                    X
+                    </button>
+                    </div>
+            
+                  <div class="text-center mb-3">
+                    <h6 class="text-light-900 text-sm font-bold">Vueillez vous remplir le formulaire pour créer une nouvelle salle virtuelle:</h6>
+                  </div>
+                </div>
+                
+                <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+                  <form (ngSubmit)="saveSalleVirtuelle()">
+                    <table class="w-full">
+                      <tr>
+                        <td>
+                          <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                            Nom 
+                          </label>
+                        <input
+                        type="text" [(ngModel)]="salleVirtuelle.libelle" name="libelle"
+                        class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"/>
+                        <br> <br>
+                          <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                            Description 
+                          </label>
+                          <textarea [(ngModel)]="salleVirtuelle.description" name="description"
+                          class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"></textarea>
+                        </td>
+                        <td>
+                          <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                            Attribuer cette salle à l'artiste: 
+                          </label>
+                            <select name="artistes" [(ngModel)]="salleVirtuelle.artiste">
+                            <option *ngFor="let a of artistes" [ngValue]="a">
+                              {{a.nom}} {{a.prenom}}
+                            </option>
+                          </select>
+                        </td>
+                      </tr>
+                      </table>
+                        <br>
+                          <button type="submit" class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
+                                Valider 
+                          </button>
+                  </form>
+                </div>
+          
+        </div>
+      </div>
     </div>
   </div>
-
-
+  </div>
+  </div>
+  <!------------------------------->
+  
+    </div>
+  </div>
+    <div [hidden]="!isProprietaire()">
+      <br><br><br><br><br>
+      <div class="w-full xl:w-12/12 mb-12 xl:mb-0 px-4">
+        Vous devez être connecté en tant que proprietaire pour consulter cette page!
+      </div>
+    </div>  

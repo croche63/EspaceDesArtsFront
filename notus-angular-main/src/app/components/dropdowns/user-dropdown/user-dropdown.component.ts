@@ -10,21 +10,23 @@ export class UserDropdownComponent implements AfterViewInit {
   @ViewChild("btnDropdownRef", { static: false }) btnDropdownRef: ElementRef;
   @ViewChild("popoverDropdownRef", { static: false })
   popoverDropdownRef: ElementRef;
+
+  
   ngAfterViewInit() {
-    createPopper(
+/*     createPopper(
       this.btnDropdownRef.nativeElement,
       this.popoverDropdownRef.nativeElement,
       {
         placement: "bottom-start",
       }
-    );
+    ); */
   }
-  toggleDropdown(event) {
+/*   toggleDropdown(event) {
     event.preventDefault();
     if (this.dropdownPopoverShow) {
       this.dropdownPopoverShow = false;
     } else {
       this.dropdownPopoverShow = true;
     }
-  }
+  } */
 }
