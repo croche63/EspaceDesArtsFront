@@ -19,9 +19,9 @@ export class MapsComponent implements OnInit {
   findAllCommentaireSalleExpo() {
     this.commentaireSalleExpositionService.findAll().subscribe(data => { this.commentaire = data; })
   }
-  save() {
-    this.commentaireSalleExpositionService.save(this.commentaireSalleExposition).subscribe(() => { this.findAllCommentaireSalleExpo(); this.commentaireSalleExposition = new CommentaireSalleExposition })
-  }
+  // save() {
+  //   this.commentaireSalleExpositionService.save(this.commentaireSalleExposition).subscribe(() => { this.findAllCommentaireSalleExpo(); this.commentaireSalleExposition = new CommentaireSalleExposition })
+  // }
   delete(id: number) {
     this.commentaireSalleExpositionService.delete(id).subscribe(() => { this.findAllCommentaireSalleExpo() });
   }

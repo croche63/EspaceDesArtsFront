@@ -7,20 +7,20 @@ import { SignalementSalleExposition } from "./signalement-salle-exposition"
 import { SignalementSalleVirtuelle } from "./signalement-salle-virtuelle"
 
 export class Utilisateur {
-    id!:number
-    nom!:string
-    prenom!:string
-    username!:string
-    password!:string
-    email!:string
-    numeroTel!:string
-    image!:File
-    commentaireSalleExpositions!:CommentaireSalleExposition
-    signalementSalleExpositions!:SignalementSalleExposition
-    commentaireOeuvres!:CommentaireOeuvre
-    signalementOeuvres!:SignalementOeuvre
-    commentaireSalleVirtuelles!:CommentaireSalleVirtuelle
-    signalementSalleVirtuelles!:SignalementSalleVirtuelle
-    roles!:Role[]
+    id!: number
+    nom!: string
+    prenom!: string
+    username!: string
+    password!: string
+    email!: string
+    numeroTel!: string
+    image!: File
+    commentaireSalleExpositions!: CommentaireSalleExposition
+    signalementSalleExpositions!: SignalementSalleExposition
+    commentaireOeuvres!: CommentaireOeuvre
+    signalementOeuvres!: SignalementOeuvre
+    commentaireSalleVirtuelles!: CommentaireSalleVirtuelle
+    signalementSalleVirtuelles!: SignalementSalleVirtuelle
+    roles!: Role[]
 
 }
