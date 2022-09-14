@@ -90,10 +90,7 @@
                   class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                   Dates
                 </th>
-  <!--               <th
-                  class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  Artiste responsable
-                </th> -->
+             
                 <th
                 class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                 Evenements
@@ -106,22 +103,17 @@
                     class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     Du {{r.dateDebut}} au {{r.dateFin}}
                   </td>
-                  <!-- Besoin d'acceder aux reservations de l'artiste depuis l'artiste, pas visible pour reservations -->
-  <!--                 <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {{r.artiste.prenom}} {{r.artiste.nom}}
-                  </td> -->
+                  
                   <td *ngIf="r.salleExposition.id === proprietaire.salleExposition.id"
                   class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   <!--Table evenements d'une reservation -->
                   <table  class="items-center w-full bg-transparent border-collapse">
-                    <tr *ngFor="let e of r.evenement">
-                      <td
-                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      <b>{{e.titre}}</b><br>
-                      {{e.description}}<br>
-                      Du {{e.dateDebut}} au {{e.dateFin}}
-                    </td>
+                    <tr *ngFor="let e of r.evenement"></tr>
+                      <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                          <b>{{e.titre}}</b><br>
+                          {{e.description}}<br>
+                          Du {{e.dateDebut}} au {{e.dateFin}}
+                      </td>
                     </tr>
                   </table>
                   
