@@ -105,7 +105,10 @@ export class RegisterComponent implements OnInit {
       currentUser.nom = this.artiste.nom
       currentUser.username = this.artiste.username
       currentUser.password = this.artiste.password
-      currentUser.roles = [this.roles[2]]
+      for(let i=0;i<this.roles.length;i++){ 
+        if(this.roles[i].libelle=="user" || this.roles[i].libelle=="utilisateur" || this.roles[i].libelle=="Utilisateur" || this.roles[i].libelle=="User" || this.roles[i].libelle=="Users" || this.roles[i].libelle=="users" || this.roles[i].libelle=="Utilisateurs" || this.roles[i].libelle=="utilisateurs")     {
+          currentUser.roles = [this.roles[i]]
+        }}
       currentUser.email = this.artiste.email;
       currentUser.numeroTel = this.artiste.numeroTel;
 
