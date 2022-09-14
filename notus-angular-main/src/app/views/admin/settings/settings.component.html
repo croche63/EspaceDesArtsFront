@@ -90,10 +90,10 @@
                 class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                 Dates
               </th>
-              <th
+<!--               <th
                 class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                 Artiste responsable
-              </th>
+              </th> -->
               <th
               class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
               Evenements
@@ -106,10 +106,11 @@
                   class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   Du {{r.dateDebut}} au {{r.dateFin}}
                 </td>
-                <td
+                <!-- Besoin d'acceder aux reservations de l'artiste depuis l'artiste, pas visible pour reservations -->
+<!--                 <td
                   class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   {{r.artiste.prenom}} {{r.artiste.nom}}
-                </td>
+                </td> -->
                 <td
                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                 <!--Table evenements d'une reservation -->
@@ -251,7 +252,7 @@ role="dialog"
                   </div>
           
                 <div class="text-center mb-3">
-                  <h6 class="text-light-900 text-sm font-bold">Vueillez vous remplir le formulaire pour ajouter votre salle d'exposition:</h6>
+                  <h6 class="text-light-900 text-sm font-bold">Veuillez remplir le formulaire pour ajouter votre salle d'exposition:</h6>
                 </div>
               </div>
               
