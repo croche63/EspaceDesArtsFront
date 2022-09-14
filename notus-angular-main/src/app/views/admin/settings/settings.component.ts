@@ -34,6 +34,7 @@ export class SettingsComponent implements OnInit {
 
   sallesExposition:any[];
   salleExposition:SalleExposition = new SalleExposition();
+  sallesVirtuelle:any[];
   salleVirtuelle:SalleVirtuelle = new SalleVirtuelle();
   selectedFiles:FileList;
   currentFileUpload:File;
@@ -60,6 +61,7 @@ export class SettingsComponent implements OnInit {
     this.proprietaireService.findByUsername(this.username).subscribe((data: Proprietaire) => {this.proprietaire = data;console.log(this.proprietaire)});
     this.artisteService.findAll().subscribe((data: any[]) => {this.artistes = data;});
     this.salleExpositionService.findAll().subscribe((data: any[]) => {this.sallesExposition = data;});
+    this.salleVirtuelleService.findAll().subscribe((data: any[]) => {this.sallesVirtuelle = data;});
   }
 
   isProprietaire(){
@@ -107,21 +109,17 @@ export class SettingsComponent implements OnInit {
     this.displayStyle1 = "none";
   }
 
-  saveSalleVirtuelle(){
-    // Pour eviter boucle infinie, proprietaire ignore dans salleVirtuelle. On passe pas le proprio pour enregistrer ses salles Virtuelles
-    this.proprietaire.salleVirtuelles = this.salleVirtuelle;
-
-    this.proprietaireService.save(this.proprietaire).subscribe(
+  saveSalleVirtuelle(username:string){
+    this.salleVirtuelleService.save(username, this.salleVirtuelle).subscribe(
       ()=>{
         this.findAllInfos(); 
         this.salleVirtuelle = new SalleVirtuelle(); 
-        this.selectedFiles = undefined;
-        this.displayStyle2 = "none";
+        this.displayStyle1 = "none";
       }
     )
-
-    console.log(this.proprietaire.salleVirtuelles)
+  }
+    
   }
 
 
-}
+

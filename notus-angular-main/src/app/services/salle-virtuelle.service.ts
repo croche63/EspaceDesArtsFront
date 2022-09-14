@@ -15,8 +15,8 @@ export class SalleVirtuelleService {
     return this.httpClient.get(this.baseUrl);
   }
 
-  public save(salleVirtuelle:SalleVirtuelle): Observable<any> {
-    return this.httpClient.post(this.baseUrl, salleVirtuelle);
+  public save(username:string, salleVirtuelle:SalleVirtuelle): Observable<any> {
+    return this.httpClient.post(this.baseUrl+"/"+username, salleVirtuelle);
   }
 
   public delete(id: number): Observable<any> {
