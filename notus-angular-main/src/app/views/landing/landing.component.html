@@ -103,23 +103,23 @@
           </tr>
         </thead> <!--fin de la 1er ligne-->
         <tbody> <!--Debut du body du tableau-->
-          <tr *ngFor="let sE of salleExpo">
+          <tr>
             <th
               class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
-              <img src="data:image/jpeg;base64,{{sE.logo}}" class="h-12 w-12 bg-white rounded-full border"
+              <img src="data:image/jpeg;base64,{{salleExpo.logo}}" class="h-12 w-12 bg-white rounded-full border"
                 alt="..." />
               <span class="ml-3 font-bold" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'">
-                {{sE.libelle}}
+                {{salleExpo.libelle}}
               </span>
             </th>
             <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
               <span class="ml-3 font-bold" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'">
-                {{sE.adresse.ville}}, {{sE.adresse.pays}}
+                {{salleExpo.ville}}, {{salleExpo.pays}}
               </span>
             </td>
             <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"> <!--Dimention de la salle-->
               <span class="ml-3 font-bold" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'">
-                {{sE.dimensionSalle}}
+                {{salleExpo.dimensionSalle}}
               </span>
             </td>
            <!-- <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"> --><!--Propriétaire-->
@@ -127,29 +127,31 @@
                 {{sE.proprietaire.nom}}
               </span>
             </td>-->
-            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"> <!--Signalement-->
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4" *ngFor="let sse of salleExpo.signalementSalleExposition"> <!--Signalement-->
               <span class="ml-3 font-bold" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'">
-                {{sE.signalementSalleExposition.titre}}
+                {{sse.titre}}<br>
               </span>
             </td>
-            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"> <!--Réservée-->
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4" *ngFor="let r of salleExpo.reservation"> <!--Réservée-->
               <span class="ml-3 font-bold" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'">
-                {{sE.reservation.dateDebut}}, {{sE.reservation.dateFin}}
+                {{r.dateDebut}}, {{r.dateFin}}<br>
               </span>
             </td>
-            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"> <!--Evaluation de l'artiste-->
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4" *ngFor="let ev of salleExpo.evaluationArtiste"> <!--Evaluation de l'artiste-->
               <span class="ml-3 font-bold" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'">
-                {{sE.evaluationArtiste.titre}}
+                <b>{{ev.titre}}</b> - {{ev.description}} - {{ev.note}}/5
               </span>
             </td>
-            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"> <!--Commantaires salle-->
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4" *ngFor="let cex of salleExpo.commentaireSalleExposition"> <!--Commantaires salle-->
               <span class="ml-3 font-bold" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'">
-                {{sE.commentaireSalleExposition.titre}}
+                <b>{{cex.titre}}</b><br>
+                {{cex.description}} - {{cex.note}}/5
               </span>
             </td>
-            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"> <!--Oeuvres présentes-->
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4" *ngFor="let o of salleExpo.oeuvres"> <!--Oeuvres présentes-->
               <span class="ml-3 font-bold" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'">
-                {{sE.oeuvres.nom}}, {{sE.oeuvres.image}}
+                {{o.nom}},
+                <img src="data:image/jpeg;base64,{{o.image}}" alt="Pas d'image" height="120" width="120"/>
               </span>
             </td>
             
@@ -242,12 +244,12 @@
 
 <section class="relative block h-500-px">
 <!--MODAL POUR LES COMMENTAIRES DE LA SALLE-->
-<div
-class="modal"
-tabindex="-1"
-role="dialog"
-[ngStyle]="{'display':displayStyle}">
-<div class="modal-dialog" role="document">
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" role="document">
       <!--Formulaire Commentaire-->
       <div class="container mx-auto px-4 h-full">
         <div class="flex content-center items-center justify-center h-full">
@@ -265,8 +267,9 @@ role="dialog"
                   </div>
 
                   <div class="text-center mb-3">
-                    <h6 class="text-light-900 text-sm font-bold">Veuillez vous laissez votre commentaire pour cette Salle d'exposition:</h6>
+                    <h6 class="text-light-900 text-sm font-bold">Veuillez nous laisser votre commentaire pour cette Salle d'exposition:</h6>
                   </div>
+                </div>
               
               <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
                 <form (ngSubmit)="saveCommentaire(salleExpo.id, username)">
@@ -308,26 +311,18 @@ role="dialog"
                     </tr>
                     </table>
                       <br>
-                        <button type="submit" class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
-                              Envoyer 
-                        </button>
+                      <button type="submit" class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
+                           Envoyer 
+                      </button>
                 </form>
               </div>
-        
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-</div>
-</div>
-</div>
-
-
-
-
-
-
- </section>
+</section>
 
 </main>
 
