@@ -29,7 +29,10 @@ export class SettingsComponent implements OnInit {
   proprietaire:Proprietaire = new Proprietaire();
   username:string = this.appService.username;
 
+  sallesExposition:any[];
   salleExposition:SalleExposition = new SalleExposition();
+  selectedFiles:FileList;
+  currentFileUpload:File;
 
   constructor(
     private appService:AppService,
@@ -62,18 +65,50 @@ export class SettingsComponent implements OnInit {
     }
   }
 
+
+  //Ajout d'une salle d'exposition
+  findAllSalleExpo(){
+    this.salleExpositionService.findAll().subscribe((data: any[]) => {this.sallesExposition = data;});
+  } 
+
+  displayStyle2 = "none";
+
+  openPopupSalleExpo(){
+    this.displayStyle2 = "block";
+  }
+
+  closePopupSalleExpo() {
+    this.displayStyle2 = "none";
+  }
+
+  selectFile(event:any){
+    this.selectedFiles = event.target.files;
+  }
+  
+  saveSalleExpo(username:string){
+    this.currentFileUpload = this.selectedFiles.item(0);
+    this.salleExpositionService.saveSalle(username, this.currentFileUpload, this.salleExposition).subscribe(
+      ()=>{
+        this.findAllSalleExpo(); 
+        this.salleExposition = new SalleExposition(); 
+        this.selectedFiles = undefined;
+        this.displayStyle2 = "none";
+      }
+    )
+  }
+
   //Ajout d'une salle virtuelle
   displayStyle1 = "none";
-  
-  openPopupSalle(){
+
+  openPopupSalleVirtuelle(){
     this.displayStyle1 = "block";
   }
 
-  closePopupSalle() {
+  closePopupSalleVirtuelle() {
     this.displayStyle1 = "none";
   }
 
-  saveSalle(){
+  saveSalleVirtuelle(){
 
   }
 

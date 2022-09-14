@@ -10,7 +10,7 @@ import { SignalementSalleExposition } from "./signalement-salle-exposition";
 export class SalleExposition {
     id!:number
     libelle!:string
-    logo!:Byte
+    logo!:File
     dimensionSalle!:string
     adresse!:Adresse
     proprietaire!:Proprietaire

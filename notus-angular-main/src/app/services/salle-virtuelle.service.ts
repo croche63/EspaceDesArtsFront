@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { SalleVirtuelle } from '../models/salle-virtuelle';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class SalleVirtuelleService {
     return this.httpClient.get(this.baseUrl);
   }
 
-  public save(evaluationArtiste: any): Observable<any> {
-    return this.httpClient.post(this.baseUrl, evaluationArtiste);
+  public save(salleVirtuelle:SalleVirtuelle): Observable<any> {
+    return this.httpClient.post(this.baseUrl, salleVirtuelle);
   }
 
   public delete(id: number): Observable<any> {
