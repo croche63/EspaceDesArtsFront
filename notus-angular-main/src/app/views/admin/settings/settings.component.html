@@ -175,8 +175,8 @@
                 </th>
                 </tr>
               </thead>
-              <tbody *ngIf="proprietaire.salleVirtuelle">
-                <tr *ngFor="let sv of proprietaire.salleVirtuelle">
+              <tbody *ngIf="proprietaire.salleVirtuelles">
+                <tr *ngFor="let sv of proprietaire.salleVirtuelles">
                   <td
                     class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     {{sv.libelle}}
@@ -386,11 +386,11 @@
                           <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
                             Attribuer cette salle à l'artiste: 
                           </label>
-                          <!--<select multiple name="artistes" [(ngModel)]="salleVirtuelle.artiste.nom">
+                            <select name="artistes" [(ngModel)]="salleVirtuelle.artiste">
                             <option *ngFor="let a of artistes" [ngValue]="a">
-                              {{a.nom}}
+                              {{a.nom}} {{a.prenom}}
                             </option>
-                          </select>-->
+                          </select>
                         </td>
                       </tr>
                       </table>

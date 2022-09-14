@@ -10,6 +10,7 @@ import { ArtisteService } from "src/app/services/artiste.service";
 import { ProprietaireService } from "src/app/services/proprietaire.service";
 import { ReservationService } from "src/app/services/reservation.service";
 import { SalleExpositionService } from "src/app/services/salle-exposition.service";
+import { SalleVirtuelleService } from "src/app/services/salle-virtuelle.service";
 
 @Component({
   selector: "app-settings",
@@ -43,6 +44,7 @@ export class SettingsComponent implements OnInit {
     private reservationService:ReservationService,
     private salleExpositionService:SalleExpositionService,
     private artisteService:ArtisteService,
+    private salleVirtuelleService:SalleVirtuelleService,
   ) {}
 
   ngOnInit(): void {
@@ -51,16 +53,13 @@ export class SettingsComponent implements OnInit {
 
     this.findAllInfos();
     console.log(this.proprietaire.prenom);
-    this.findAllArtistes();
   }
 
   findAllInfos() {
     this.reservationService.findAll().subscribe((data: any[]) => {this.reservations = data;});
     this.proprietaireService.findByUsername(this.username).subscribe((data: Proprietaire) => {this.proprietaire = data;console.log(this.proprietaire)});
-  }
-
-  findAllArtistes(){
     this.artisteService.findAll().subscribe((data: any[]) => {this.artistes = data;});
+    this.salleExpositionService.findAll().subscribe((data: any[]) => {this.sallesExposition = data;});
   }
 
   isProprietaire(){
@@ -70,12 +69,6 @@ export class SettingsComponent implements OnInit {
       return true;
     }
   }
-
-
-  //Ajout d'une salle d'exposition
-  findAllSalleExpo(){
-    this.salleExpositionService.findAll().subscribe((data: any[]) => {this.sallesExposition = data;});
-  } 
 
   displayStyle2 = "none";
 
@@ -95,7 +88,7 @@ export class SettingsComponent implements OnInit {
     this.currentFileUpload = this.selectedFiles.item(0);
     this.salleExpositionService.saveSalle(username, this.currentFileUpload, this.salleExposition).subscribe(
       ()=>{
-        this.findAllSalleExpo(); 
+        this.findAllInfos(); 
         this.salleExposition = new SalleExposition(); 
         this.selectedFiles = undefined;
         this.displayStyle2 = "none";
@@ -115,7 +108,20 @@ export class SettingsComponent implements OnInit {
   }
 
   saveSalleVirtuelle(){
+    // Pour eviter boucle infinie, proprietaire ignore dans salleVirtuelle. On passe pas le proprio pour enregistrer ses salles Virtuelles
+    this.proprietaire.salleVirtuelles = this.salleVirtuelle;
 
+    this.proprietaireService.save(this.proprietaire).subscribe(
+      ()=>{
+        this.findAllInfos(); 
+        this.salleVirtuelle = new SalleVirtuelle(); 
+        this.selectedFiles = undefined;
+        this.displayStyle2 = "none";
+      }
+    )
+
+    console.log(this.proprietaire.salleVirtuelles)
   }
+
 
 }
