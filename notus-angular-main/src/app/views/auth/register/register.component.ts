@@ -105,7 +105,7 @@ export class RegisterComponent implements OnInit {
       currentUser.nom = this.artiste.nom
       currentUser.username = this.artiste.username
       currentUser.password = this.artiste.password
-      currentUser.roles = this.roles[2]
+      currentUser.roles = [this.roles[2]]
       currentUser.email = this.artiste.email;
       currentUser.numeroTel = this.artiste.numeroTel;
 

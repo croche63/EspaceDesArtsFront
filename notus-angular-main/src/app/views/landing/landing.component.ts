@@ -17,47 +17,46 @@ import { SignalementSalleExpositionService } from "src/app/services/signalement-
   templateUrl: "./landing.component.html",
 })
 export class LandingComponent implements OnInit {
-  commentaire!:any[];
 
-  username:string = this.appService.username;
+  username: string = this.appService.username;
 
-  salleExpo:SalleExposition= new SalleExposition;
+  salleExpo: SalleExposition = new SalleExposition();
 
-  commentairesSalleExposition!:any[];
-  commentaireSalleExposition:CommentaireSalleExposition=new CommentaireSalleExposition();
+  commentairesSalleExposition!: any[];
+  commentaireSalleExposition: CommentaireSalleExposition = new CommentaireSalleExposition();
   average!: number;
+
+  signalementsSalleExposition!: any[];
+  signalementSalleExposition: SignalementSalleExposition = new SignalementSalleExposition();
 
   commentairesOeuvre!: any[];
   commentaireOeuvre: CommentaireOeuvre = new CommentaireOeuvre();
 
-  signalementsSalleExpo!: any[];
-  signalementSalleExpo: SignalementSalleExposition = new SignalementSalleExposition();
-
   signalementsOeuvre!: any[];
-  signalementOeuvre:SignalementOeuvre = new SignalementOeuvre();
- 
+  signalementOeuvre: SignalementOeuvre = new SignalementOeuvre();
 
-  constructor(private commentaireSalleExpositionService:CommentaireSalleExpositionService,
+  constructor(private SalleExpositionService: SalleExpositionService, private router: Router,
+    private commentaireSalleExpositionService: CommentaireSalleExpositionService,
+    private signalementSalleExpositionService: SignalementSalleExpositionService,
     private commentaireOeuvreService: CommentaireOeuvreService,
-    private salleExpoService:SalleExpositionService, 
-    private signalementSalleExpoService:SignalementSalleExpositionService,
-    private signalementOeuvreService:SignalementOeuvreService,
-    private appService:AppService, private router:Router) { }
+    private signalementOeuvreService: SignalementOeuvreService,
+    private appService: AppService) { }
 
   ngOnInit(): void {
-    this.findAllCommentaireSalleExpo();
-    this.findAllSalleExpo();
+    this.findSalleExposition();
+    // this.noteSalleVirtu();
   }
-  //Touver une salle d'exposition
-  findSalleExpo() {
-    let idSalleExpo = localStorage.getItem("afficheSalleV");
-    this.salleExpoService.findById(idSalleExpo).subscribe((data) => {
+
+  findSalleExposition() {
+    let idSalleExpo = localStorage.getItem("idSalleExpo");
+    this.SalleExpositionService.findById(idSalleExpo).subscribe((data) => {
       this.salleExpo = data;
-      // console.log("SalleVirtuelle:",this.salleVirtuelle);
+      // console.log("SalleExposition:",this.SalleExposition);
 
       let commentaires = this.salleExpo.commentaireSalleExposition;
       this.commentairesSalleExposition = this.salleExpo.commentaireSalleExposition;
       // console.log('Commentaires:',commentaires);
+
 
       let note = 0;
       for (let i = 0; i < commentaires.length; i++) {
@@ -67,66 +66,43 @@ export class LandingComponent implements OnInit {
       this.average = (note / commentaires.length)
       // console.log('Moyenne:',this.average);
       return this.average;
+
     });
-  }
-  // Partie Salle Expo
-  findAllSalleExpo() {
-    let idSalleExpo= localStorage.getItem("idSalleExpo");
-    this.salleExpoService.findById(idSalleExpo).subscribe(data => {this.salleExpo=data;})
-  }
-  saveSalle(){
-    this.salleExpoService.save(this.salleExpo).subscribe(()=>{
-      this.findAllSalleExpo(); 
-      this.salleExpo=new SalleExposition
-    })
-  }
-  delecteSalle(id:number){
-    this.salleExpoService.delete(id).subscribe(()=>{
-      this.findAllSalleExpo()
-    });
-  }
-  recupereSalleExpo(){
-    let idSalleExpo= localStorage.getItem("idSalleExpo");
-    this.salleExpoService.findById(idSalleExpo).subscribe((data)=>{this.salleExpo=data});
-  }
-  selectSalleExpo(salleE:SalleExposition){
-   //step 2 
-    localStorage.removeItem("afficheSalleE")
-    // step 1
-    localStorage.setItem("afficheSalleE",salleE.id.toString())
-    // step 3
-    this.router.navigate(["/profile",salleE.id])
   }
 
-  // Partie Commetaire
+  //COMMENTAIRE SALLE VIRTUELLE
   displayStyle = "none";
-  openPopupCommetaire() {
+
+  openPopup() {
     this.displayStyle = "block";
   }
+
   closePopupCommentaire() {
     this.displayStyle = "none";
   }
-  findAllCommentaireSalleExpo() {
-    this.commentaireSalleExpositionService.findAll().subscribe(data => {this.commentaire=data;})
+
+  findAllCommentaires() {
+    this.commentaireSalleExpositionService.findAll().subscribe((data: any[]) => { this.commentairesSalleExposition = data; });
+    console.log(this.commentairesSalleExposition);
   }
-  savecommentaire(idSalleExpo: number, username: string){
-    this.commentaireSalleExpositionService.save(this.commentaireSalleExposition).subscribe(()=>{
-      this.findAllCommentaireSalleExpo();
-      this.commentaireSalleExposition=new CommentaireSalleExposition
-      this.displayStyle = "none";
-        console.log(idSalleExpo);
-        console.log(username);
-    })
-  }
-  deletecommentaire(id:number){
-    this.commentaireSalleExpositionService.delete(id).subscribe(()=>{
-      this.findAllCommentaireSalleExpo()
-    });
-  }
-  // Partie Signalement
+
+  // saveCommentaire(idSalleVirt: number, username: string) {
+  //   this.commentaireSalleExpositionService.save(idSalleVirt, username, this.commentaireSalleExposition).subscribe(
+  //     () => {
+  //       this.findAllCommentaires();
+  //       this.commentaireSalleExposition = new CommentaireSalleExposition();
+  //       this.displayStyle = "none";
+  //       console.log(idSalleVirt);
+  //       console.log(username);
+  //     }
+  //   )
+  // }
+
+
+  //SIGNALEMENT SALLE VIRTUELLE
   displayStyle1 = "none";
 
-  openPopupSignalement() {
+  openPopup1() {
     this.displayStyle1 = "block";
   }
 
@@ -135,80 +111,83 @@ export class LandingComponent implements OnInit {
   }
 
   findAllSignalements() {
-    this.signalementSalleExpoService.findAll().subscribe((data: any[]) => { this.signalementsSalleExpo = data; });
-    console.log(this.signalementSalleExpoService);
+    this.signalementSalleExpositionService.findAll().subscribe((data: any[]) => { this.signalementsSalleExposition = data; });
+    console.log(this.signalementsSalleExposition);
   }
 
-  saveSignalement(idSalleExpo: number, username: string) {
-    this.signalementSalleExpoService.save(idSalleExpo, username, this.signalementSalleExpo).subscribe(
+  saveSignalement(idSalleVirt: number, username: string) {
+    this.signalementSalleExpositionService.save(idSalleVirt, username, this.signalementSalleExposition).subscribe(
       () => {
         this.findAllSignalements();
-        this.signalementSalleExpo = new SignalementSalleExposition();
+        this.signalementSalleExposition = new SignalementSalleExposition();
         this.displayStyle1 = "none";
-        console.log(idSalleExpo);
+        console.log(idSalleVirt);
         console.log(username);
       }
     )
   }
-    //COMMENTAIRE OEUVRE
-    displayStyle2 = "none";
 
-    openPopupComOeuvre(idOeuvre: number) {
-      this.displayStyle2 = "block";
-      console.log(idOeuvre);
-      localStorage.setItem("idOeuvre", idOeuvre.toString());
-    }
-  
-    closePopupCommentaireOeuvre() {
-      this.displayStyle2 = "none";
-    }
-  
-    findAllCommentairesOeuvre() {
-      this.commentaireOeuvreService.findAll().subscribe((data: any[]) => { this.commentairesOeuvre = data; });
-    }
-  
-    saveCommentaireOeuvre(username: string) {
-      let idOeuvre = localStorage.getItem("idOeuvre");
-      this.commentaireOeuvreService.save(idOeuvre, username, this.commentaireOeuvre).subscribe(
-        () => {
-          this.findAllCommentairesOeuvre();
-          this.commentaireOeuvre = new CommentaireOeuvre();
-          this.displayStyle2 = "none";
-          localStorage.removeItem("idOeuvre");
-        }
-      )
-    }
-  
-  
-    //SIGNALEMENT OEUVRE
-    displayStyle3 = "none";
-  
-    openPopupSignOeuvre(idOeuvre: number) {
-      this.displayStyle3 = "block";
-      localStorage.setItem("idOeuvre", idOeuvre.toString());
-    }
-  
-    closePopupSignOeuvre() {
-      this.displayStyle3 = "none";
-    }
-  
-    findAllSignOeuvre() {
-      this.signalementOeuvreService.findAll().subscribe((data: any[]) => { this.signalementsOeuvre = data; });
-      console.log(this.signalementsOeuvre);
-    }
-  
-    saveSignalement3(username: string) {
-      let idOeuvre = localStorage.getItem("idOeuvre");
-      this.signalementOeuvreService.save(idOeuvre, username, this.signalementOeuvre).subscribe(
-        () => {
-          this.findAllSignOeuvre();
-          this.signalementOeuvre = new SignalementOeuvre();
-          this.displayStyle3 = "none";
-          localStorage.removeItem("idOeuvre");
-        }
-      )
-    }
-  
+
+  //COMMENTAIRE OEUVRE
+  displayStyle2 = "none";
+
+  openPopup2(idOeuvre: number) {
+    this.displayStyle2 = "block";
+    console.log(idOeuvre);
+    localStorage.setItem("idOeuvre", idOeuvre.toString());
+  }
+
+  closePopupCommentaire2() {
+    this.displayStyle2 = "none";
+  }
+
+  findAllCommentaires2() {
+    this.commentaireOeuvreService.findAll().subscribe((data: any[]) => { this.commentairesOeuvre = data; });
+  }
+
+  saveCommentaire2(username: string) {
+    let idOeuvre = localStorage.getItem("idOeuvre");
+    this.commentaireOeuvreService.save(idOeuvre, username, this.commentaireOeuvre).subscribe(
+      () => {
+        this.findAllCommentaires2();
+        this.commentaireOeuvre = new CommentaireOeuvre();
+        this.displayStyle2 = "none";
+        localStorage.removeItem("idOeuvre");
+      }
+    )
+  }
+
+
+  //SIGNALEMENT OEUVRE
+  displayStyle3 = "none";
+
+  openPopup3(idOeuvre: number) {
+    this.displayStyle3 = "block";
+    localStorage.setItem("idOeuvre", idOeuvre.toString());
+  }
+
+  closePopupSignalement3() {
+    this.displayStyle3 = "none";
+  }
+
+  findAllSignalements3() {
+    this.signalementOeuvreService.findAll().subscribe((data: any[]) => { this.signalementsOeuvre = data; });
+    console.log(this.signalementsOeuvre);
+  }
+
+  saveSignalement3(username: string) {
+    let idOeuvre = localStorage.getItem("idOeuvre");
+    this.signalementOeuvreService.save(idOeuvre, username, this.signalementOeuvre).subscribe(
+      () => {
+        this.findAllSignalements3();
+        this.signalementOeuvre = new SignalementOeuvre();
+        this.displayStyle3 = "none";
+        localStorage.removeItem("idOeuvre");
+      }
+    )
+  }
+
+
 
 
   authorities(){

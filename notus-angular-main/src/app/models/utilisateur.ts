@@ -21,6 +21,6 @@ export class Utilisateur {
     signalementOeuvres!:SignalementOeuvre
     commentaireSalleVirtuelles!:CommentaireSalleVirtuelle
     signalementSalleVirtuelles!:SignalementSalleVirtuelle
-    roles!:Role
+    roles!:Role[]
 
 }
