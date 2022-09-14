@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AppService } from "src/app/app.service";
+import { Adresse } from "src/app/models/adresse";
 import { Proprietaire } from "src/app/models/proprietaire";
 import { Reservation } from "src/app/models/reservation";
 import { SalleExposition } from "src/app/models/salle-exposition";
@@ -43,6 +44,9 @@ export class SettingsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Créer une adresse vide pour la salle d'exposition afin d'être capable de la renseigner avec le ngModel
+    this.salleExposition.adresse = new Adresse();
+    
     this.findAllInfos();
     console.log(this.proprietaire.prenom);
     this.findAllArtistes();
