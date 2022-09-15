@@ -41,11 +41,19 @@ export class TablesComponent implements OnInit {
     private evaluationArtisteService:EvaluationArtisteService, private appService:AppService) {}
 
   ngOnInit(): void {
-    this.findAllSallesExposition();
-    this.findArtiste(this.username);
+    this.findAll()
   }
 
     
+  findAll() {
+    this.salleExpositionService.findAll().subscribe((data: any[]) => {this.salleExpositions = data;});
+    this.findAllSallesExposition();
+    this.findAllReservations();
+    this.findAllOeuvres();
+    this.findArtiste(this.username);
+    this.findAllEvaluations();
+  }
+
   //ARTISTE
    findArtiste(username:string){
     this.artisteService.findByUsername(this.username).subscribe((data: Artiste) => {this.artiste = data;console.log(this.artiste)});
@@ -53,7 +61,7 @@ export class TablesComponent implements OnInit {
 
   //SALLES D'EXPOSITION
    findAllSallesExposition(){
-    this.salleExpositionService.findAll().subscribe((data: any[]) => {this.salleExpositions = data;});
+    
     console.log(this.salleExpositions);
   }
 
@@ -66,7 +74,7 @@ export class TablesComponent implements OnInit {
     let salleid = localStorage.getItem("idSalle");
     this.reservationService.save(salleid, username, this.reservation).subscribe(
       ()=>{
-        this.findAllReservations(); 
+        this.findAll(); 
         this.reservation = new Reservation(); 
         this.displayStyle2 = "none";
         localStorage.removeItem("idSalle");
@@ -107,7 +115,7 @@ export class TablesComponent implements OnInit {
     this.currentFileUpload = this.selectedFiles.item(0);
     this.oeuvreService.save(username, this.currentFileUpload, this.oeuvre).subscribe(
       ()=>{
-        this.findAllOeuvres(); 
+        this.findAll(); 
         this.oeuvre = new Oeuvre(); 
         this.selectedFiles = undefined;
         this.displayStyle = "none";
@@ -150,7 +158,7 @@ export class TablesComponent implements OnInit {
     let evaluationid = localStorage.getItem("idSalle");
     this.evaluationArtisteService.save(evaluationid, username, this.evaluationArtiste).subscribe(
       ()=>{
-        this.findAllEvaluations(); 
+        this.findAll(); 
         this.evaluationArtiste = new EvaluationArtiste(); 
         this.displayStyle3 = "none";
         localStorage.removeItem("idSalle");
