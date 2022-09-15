@@ -18,5 +18,5 @@ export class SalleExposition {
     reservation!: Reservation[]
     evaluationArtiste!: EvaluationArtiste
     commentaireSalleExposition!: CommentaireSalleExposition[]
-    oeuvres!: Oeuvre[]
+    oeuvre!: Oeuvre[]
 }
