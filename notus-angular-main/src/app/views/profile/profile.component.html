@@ -1,11 +1,11 @@
 <app-index-navbar></app-index-navbar>
 <main class="profile-page">
   <section class="relative block h-500-px">
-     <div class="absolute top-0 w-full h-full bg-center bg-cover" style="
+    <div class="absolute top-0 w-full h-full bg-center bg-cover" style="
         background-image: url('https://img.freepik.com/photos-gratuite/peinture-acrylique-bruch_53876-139908.jpg?w=1380&t=st=1662561566~exp=1662562166~hmac=eede56f2f76adadd0324c9f6968f7a4a7fcc768a1fa2dffa7262332f9101a6e3');
       ">
       <span id="blackOverlay" class="w-full h-full absolute opacity-50 bg-black"></span>
-    </div> 
+    </div>
     <div class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px"
       style="transform: translateZ(0)">
       <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
@@ -28,21 +28,21 @@
 
             <!--Buttons pour commenter et signaller-->
             <div class="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
-               <div class="py-6 px-3 mt-32 sm:mt-0">      
-                  <button type="button" class="text-4xl" (click)="openPopup()">
-                    <i class="fas fa-comment"></i>
-                  </button>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <button type="button" class="text-4xl" (click)="openPopup1()">
-                    <i class="fas fa-thumbtack"></i>
-                  </button>
-              </div> 
+              <div class="py-6 px-3 mt-32 sm:mt-0">
+                <button type="button" class="text-4xl" (click)="openPopup()">
+                  <i class="fas fa-comment"></i>
+                </button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class="text-4xl" (click)="openPopup1()">
+                  <i class="fas fa-thumbtack"></i>
+                </button>
+              </div>
             </div>
             <div class="w-full lg:w-4/12 px-4 lg:order-1">
               <div class="flex justify-center py-4 lg:pt-4 pt-8">
                 <div class="mr-3 p-3 text-center">
                   <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                    {{salleVirtuelle.artiste.oeuvres.length}} 
+                    {{salleVirtuelle.artiste.oeuvres.length}}
                   </span>
                   <span class="text-sm text-blueGray-400"> Oeuvres </span>
                 </div>
@@ -59,7 +59,7 @@
                   <span class="text-sm text-blueGray-400">Note</span>
                 </div>
               </div>
-            </div>      
+            </div>
 
           </div>
           <div class="text-center mt-12">
@@ -75,7 +75,7 @@
             <div class="flex flex-wrap justify-center">
               <div class="w-full lg:w-9/12 px-4">
                 <p class="mb-4 text-lg leading-relaxed text-blueGray-700">
-                  {{salleVirtuelle.description}} 
+                  {{salleVirtuelle.description}}
                 </p>
               </div>
             </div>
@@ -87,31 +87,33 @@
               Oeuvres de l'artiste en exposition
             </h3>
           </div>
-          <div class="mt-10 py-5 border-t border-blueGray-200 text-center" *ngFor="let sao of salleVirtuelle.artiste.oeuvres">
+          <div class="mt-10 py-5 border-t border-blueGray-200 text-center"
+            *ngFor="let sao of salleVirtuelle.artiste.oeuvres">
             <!--Buttons pour commenter et signaller-->
             <div class="w-full lg:w-12/12 px-4 lg:order-3 lg:text-right lg:self-center">
-              <div class="py-3 px-1 mt-32 sm:mt-0">      
-                 <button type="button" class="text-2xl" (click)="openPopup2(sao.idOeuvre)">
+              <div class="py-3 px-1 mt-32 sm:mt-0">
+                <button type="button" class="text-2xl" (click)="openPopup2(sao.idOeuvre)">
                   <i class="fas fa-comments"></i>
-                 </button>
-                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 <button type="button" class="text-2xl" (click)="openPopup3(sao.idOeuvre)">
-                   <i class="fas fa-thumbtack"></i>
-                 </button>
-             </div> 
-           </div>
-           <!--Affichage-->
+                </button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class="text-2xl" (click)="openPopup3(sao.idOeuvre)">
+                  <i class="fas fa-thumbtack"></i>
+                </button>
+              </div>
+            </div>
+            <!--Affichage-->
             <table>
               <tr>
                 <td>
-                  <img src="data:image/jpeg;base64,{{sao.image}}" class="bg-white border" height="300" width="300"/>
+                  <img src="data:image/jpeg;base64,{{sao.image}}" class="bg-white border" height="300" width="300" />
                 </td>
                 <br>
                 <td>
                   <table>
                     <tr>
                       <td>
-                        <p class="ml-12 font-bold text-left" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-blueGray-600'">Nom:</p>
+                        <p class="ml-12 font-bold text-left"
+                          [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-blueGray-600'">Nom:</p>
                       </td>
                       <td>
                         <p class="text-left">{{sao.nom}}</p>
@@ -119,7 +121,8 @@
                     </tr>
                     <tr>
                       <td>
-                        <p class="ml-12 font-bold text-left" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-blueGray-600'">Type d'oeuvre:</p>
+                        <p class="ml-12 font-bold text-left"
+                          [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-blueGray-600'">Type d'oeuvre:</p>
                       </td>
                       <td>
                         <p class="text-left">{{sao.type}}</p>
@@ -127,7 +130,8 @@
                     </tr>
                     <tr>
                       <td>
-                        <p class="ml-12 font-bold text-left" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-blueGray-600'">Information:</p>
+                        <p class="ml-12 font-bold text-left"
+                          [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-blueGray-600'">Information:</p>
                       </td>
                       <td>
                         <p class="text-left">{{sao.information}}</p>
@@ -135,7 +139,8 @@
                     </tr>
                     <tr>
                       <td>
-                        <p class="ml-12 font-bold text-left" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-blueGray-600'">Prix:</p>
+                        <p class="ml-12 font-bold text-left"
+                          [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-blueGray-600'">Prix:</p>
                       </td>
                       <td>
                         <p class="text-left">{{sao.prix}}€</p>
@@ -146,20 +151,25 @@
               </tr>
             </table>
             <div class="mt-10 py-5 border-t border-blueGray-200 text-center">
-            <table>
-              <tr>
-                <p class="ml-12 font-bold text-left" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-blueGray-600'">Commentaires de "{{sao.nom}}":</p>
-              </tr>
-              <br>
-              <tr *ngFor="let saoC of sao.commentaireOeuvre">
-                <p class="ml-12 font-bold text-left" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-blueGray-600'">
-                  <i class="fas fa-star" style="color:rgb(246, 233, 53); text-shadow: 2px 2px 5px gray;"></i> {{saoC.note}}/5 &nbsp;&nbsp; {{saoC.titre}}</p>
-                <p class="text-left">{{saoC.description}}</p> <br> 
-              </tr>
-            </table>
+              <table>
+                <tr>
+                  <p class="ml-12 font-bold text-left"
+                    [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-blueGray-600'">Commentaires de
+                    "{{sao.nom}}":</p>
+                </tr>
+                <br>
+                <tr *ngFor="let saoC of sao.commentaireOeuvre">
+                  <p class="ml-12 font-bold text-left"
+                    [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-blueGray-600'">
+                    <i class="fas fa-star" style="color:rgb(246, 233, 53); text-shadow: 2px 2px 5px gray;"></i>
+                    {{saoC.note}}/5 &nbsp;&nbsp; {{saoC.titre}}
+                  </p>
+                  <p class="text-left">{{saoC.description}}</p> <br>
+                </tr>
+              </table>
             </div>
           </div>
-          
+
 
 
         </div>
@@ -167,326 +177,322 @@
     </div>
 
     <!--Commentaires de la salle-->
-<div class="w-full lg:w-10/12 px-4">
-    
-  <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded" [ngClass]="color === 'light' ? 'bg-white' : 'bg-white text-black'">
-            <div class="rounded-t mb-0 px-4 py-3 border-0">
-            <div class="flex flex-wrap items-center">
+    <div class="w-full lg:w-10/12 px-4">
+
+      <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded"
+        [ngClass]="color === 'light' ? 'bg-white' : 'bg-white text-black'">
+        <div class="rounded-t mb-0 px-4 py-3 border-0">
+          <div class="flex flex-wrap items-center">
             <div class="relative w-full px-4 max-w-full flex-grow flex-1">
-          
-                <h3 class="font-semibold text-lg"
-                    [ngClass]="color === 'light' ? 'text-blueGray-700' : 'text-blueGray-700'">
-                     Commentaires de cette Salle:
-                </h3>
+
+              <h3 class="font-semibold text-lg"
+                [ngClass]="color === 'light' ? 'text-blueGray-700' : 'text-blueGray-700'">
+                Commentaires de cette Salle:
+              </h3>
             </div>
+          </div>
+        </div>
+        <div class="block w-full overflow-x-auto">
+          <table class="items-center w-full bg-transparent border-collapse">
+            <tr *ngFor="let sC of salleVirtuelle.commentaireSalleVirtuelle">
+              <td>&nbsp;&nbsp;&nbsp;</td>
+              <td>
+                <p class="ml-12 font-bold text-left"
+                  [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-blueGray-600'">
+                  <i class="fas fa-star" style="color:rgb(246, 233, 53); text-shadow: 2px 2px 5px gray;"></i>
+                  {{sC.note}}/5 &nbsp;&nbsp; {{sC.titre}}
+                </p>
+                <p class="text-left">{{sC.description}}</p> <br>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <!--MODAL POUR LES COMMENTAIRES DE LA SALLE-->
+    <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+      <div class="modal-dialog" role="document">
+        <!--Formulaire Commentaire-->
+        <div class="container mx-auto px-4 h-full">
+          <div class="flex content-center items-center justify-center h-full">
+            <div class="w-full lg:w-6/12 px-4">
+              <div
+                class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-red-200 border-0">
+                <div class="rounded-t mb-0 px-10 py-0">
+
+                  <div class="p-2 text-right">
+                    <button
+                      class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-s px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                      (click)="closePopupCommentaire()" type="button">
+                      X
+                    </button>
+                  </div>
+
+                  <div class="text-center mb-3">
+                    <h6 class="text-light-900 text-sm font-bold">Veuillez laisser votre commentaire pour cette Salle
+                      Virtuelle:</h6>
+                  </div>
+
+                  <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+                    <form (ngSubmit)="saveCommentaire(salleVirtuelle.id, username)">
+                      <table class="w-full">
+                        <tr>
+                          <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                            Titre
+                          </label>
+                          <input type="text" [(ngModel)]="commentaireSalleVirtuelle.titre" name="titre"
+                            class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow" />
+                        </tr>
+                        <br>
+                        <tr>
+                          <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                            Note
+                          </label>
+                          <div class="starRating">
+                            <input id="r5" type="radio" [(ngModel)]="commentaireSalleVirtuelle.note" name="note"
+                              value="5">
+                            <label for="r5">5</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <!--four spaces-->
+                            <input id="r4" type="radio" [(ngModel)]="commentaireSalleVirtuelle.note" name="note"
+                              value="4">
+                            <label for="r4">4</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input id="r3" type="radio" [(ngModel)]="commentaireSalleVirtuelle.note" name="note"
+                              value="3">
+                            <label for="r3">3</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input id="r2" type="radio" [(ngModel)]="commentaireSalleVirtuelle.note" name="note"
+                              value="2">
+                            <label for="r2">2</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input id="r1" type="radio" [(ngModel)]="commentaireSalleVirtuelle.note" name="note"
+                              value="1">
+                            <label for="r1">1</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                          </div>
+                        </tr>
+                        <br>
+                        <tr>
+                          <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                            Commentaire
+                          </label>
+                          <textarea [(ngModel)]="commentaireSalleVirtuelle.description" name="description"
+                            class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"></textarea>
+                        </tr>
+                      </table>
+                      <br>
+                      <button type="submit"
+                        class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
+                        Envoyer
+                      </button>
+                    </form>
+                  </div>
+
+                </div>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--MODAL POUR LES SIGNALEMENTS DE LA SALLE-->
+    <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle1}">
+      <div class="modal-dialog" role="document">
+        <!--Formulaire Signalement-->
+        <div class="container mx-auto px-4 h-full">
+          <div class="flex content-center items-center justify-center h-full">
+            <div class="w-full lg:w-6/12 px-4">
+              <div
+                class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-red-200 border-0">
+                <div class="rounded-t mb-0 px-10 py-0">
+
+                  <div class="p-2 text-right">
+                    <button
+                      class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-s px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                      (click)="closePopupSignalement()" type="button">
+                      X
+                    </button>
+                  </div>
+
+                  <div class="text-center mb-3">
+                    <h6 class="text-light-900 text-sm font-bold">Veuillez remplir le formulaire ci-dessous pour signaler
+                      cette Salle Virtuelle:</h6>
+                  </div>
+
+                  <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+                    <form (ngSubmit)="saveSignalement(salleVirtuelle.id, username)">
+                      <table class="w-full">
+                        <tr>
+                          <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                            Titre
+                          </label>
+                          <input type="text" [(ngModel)]="signalementSalleVirtuelle.titre" name="titre"
+                            class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow" />
+                        </tr>
+                        <br>
+                        <tr>
+                          <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                            Commentaire
+                          </label>
+                          <textarea [(ngModel)]="signalementSalleVirtuelle.description" name="description"
+                            class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"></textarea>
+                        </tr>
+                      </table>
+                      <br>
+                      <button type="submit"
+                        class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
+                        Envoyer
+                      </button>
+                    </form>
+                  </div>
+
+                </div>
+              </div>
             </div>
-    <div class="block w-full overflow-x-auto">
-    <table class="items-center w-full bg-transparent border-collapse"> 
-      <tr *ngFor="let sC of salleVirtuelle.commentaireSalleVirtuelle">
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <td><p class="ml-12 font-bold text-left" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-blueGray-600'">
-          <i class="fas fa-star" style="color:rgb(246, 233, 53); text-shadow: 2px 2px 5px gray;"></i> {{sC.note}}/5 &nbsp;&nbsp; {{sC.titre}}</p>
-        <p class="text-left">{{sC.description}}</p> <br> 
-        </td>
-      </tr>
-    </table>
+          </div>
+        </div>
+      </div>
     </div>
-    
-  </div>
-  </div>
 
 
+    <!--MODAL POUR LES COMMENTAIRES D'UNE OEUVRE-->
+    <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle2}">
+      <div class="modal-dialog" role="document">
+        <!--Formulaire Commentaire-->
+        <div class="container mx-auto px-4 h-full">
+          <div class="flex content-center items-center justify-center h-full">
+            <div class="w-full lg:w-6/12 px-4">
+              <div
+                class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-red-200 border-0">
+                <div class="rounded-t mb-0 px-10 py-0">
 
-<!--MODAL POUR LES COMMENTAIRES DE LA SALLE-->
-<div
-class="modal"
-tabindex="-1"
-role="dialog"
-[ngStyle]="{'display':displayStyle}">
-<div class="modal-dialog" role="document">
-      <!--Formulaire Commentaire-->
-      <div class="container mx-auto px-4 h-full">
-        <div class="flex content-center items-center justify-center h-full">
-          <div class="w-full lg:w-6/12 px-4">
-            <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-red-200 border-0">
-              <div class="rounded-t mb-0 px-10 py-0">
-
-                <div class="p-2 text-right">
-                  <button
-                  class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-s px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                  (click)="closePopupCommentaire()"
-                  type="button">
-                  X
-                  </button>
+                  <div class="p-2 text-right">
+                    <button
+                      class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-s px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                      (click)="closePopupCommentaire2()" type="button">
+                      X
+                    </button>
                   </div>
 
                   <div class="text-center mb-3">
-                    <h6 class="text-light-900 text-sm font-bold">Veuillez laisser votre commentaire pour cette Salle Virtuelle:</h6>
+                    <h6 class="text-light-900 text-sm font-bold">Veuillez laisser votre commentaire pour cette oeuvre:
+                    </h6>
                   </div>
-              
-              <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                <form (ngSubmit)="saveCommentaire(salleVirtuelle.id, username)">
-                  <table class="w-full">
-                    <tr>
-                        <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
-                          Titre 
-                        </label>
-                      <input
-                      type="text" [(ngModel)]="commentaireSalleVirtuelle.titre" name="titre"
-                      class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"/>
-                    </tr>
-                    <br>
-                    <tr>
-                      <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
-                        Note 
-                      </label>
-                      <div class="starRating">
-                        <input id="r5" type="radio" [(ngModel)]="commentaireSalleVirtuelle.note" name="note" value="5">
-                        <label for="r5">5</label>&nbsp;&nbsp;&nbsp;&nbsp; <!--four spaces-->
-                        <input id="r4" type="radio" [(ngModel)]="commentaireSalleVirtuelle.note" name="note" value="4">
-                        <label for="r4">4</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input id="r3" type="radio" [(ngModel)]="commentaireSalleVirtuelle.note" name="note" value="3">
-                        <label for="r3">3</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input id="r2" type="radio" [(ngModel)]="commentaireSalleVirtuelle.note" name="note" value="2">
-                        <label for="r2">2</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input id="r1" type="radio" [(ngModel)]="commentaireSalleVirtuelle.note" name="note" value="1">
-                        <label for="r1">1</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                      </div>
-                    </tr>
-                    <br>
-                    <tr>
-                        <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
-                          Commentaire 
-                        </label>
-                      <textarea
-                      [(ngModel)]="commentaireSalleVirtuelle.description" name="description"
-                      class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"></textarea>
-                    </tr>
-                    </table>
+
+                  <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+                    <form (ngSubmit)="saveCommentaire2(username)">
+                      <table class="w-full">
+                        <tr>
+                          <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                            Titre
+                          </label>
+                          <input type="text" [(ngModel)]="commentaireOeuvre.titre" name="titre"
+                            class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow" />
+                        </tr>
+                        <br>
+                        <tr>
+                          <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                            Note
+                          </label>
+                          <div class="starRating">
+                            <input id="r5" type="radio" [(ngModel)]="commentaireOeuvre.note" name="note" value="5">
+                            <label for="r5">5</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <!--four spaces-->
+                            <input id="r4" type="radio" [(ngModel)]="commentaireOeuvre.note" name="note" value="4">
+                            <label for="r4">4</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input id="r3" type="radio" [(ngModel)]="commentaireOeuvre.note" name="note" value="3">
+                            <label for="r3">3</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input id="r2" type="radio" [(ngModel)]="commentaireOeuvre.note" name="note" value="2">
+                            <label for="r2">2</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input id="r1" type="radio" [(ngModel)]="commentaireOeuvre.note" name="note" value="1">
+                            <label for="r1">1</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                          </div>
+                        </tr>
+                        <br>
+                        <tr>
+                          <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                            Commentaire
+                          </label>
+                          <textarea [(ngModel)]="commentaireOeuvre.description" name="description"
+                            class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"></textarea>
+                        </tr>
+                      </table>
                       <br>
-                        <button type="submit" class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
-                              Envoyer 
-                        </button>
-                </form>
+                      <button type="submit"
+                        class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
+                        Envoyer
+                      </button>
+                    </form>
+                  </div>
+
+                </div>
               </div>
-        
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-</div>
-</div>
-</div>
 
-<!--MODAL POUR LES SIGNALEMENTS DE LA SALLE-->
-<div
-class="modal"
-tabindex="-1"
-role="dialog"
-[ngStyle]="{'display':displayStyle1}">
-<div class="modal-dialog" role="document">
-      <!--Formulaire Signalement-->
-      <div class="container mx-auto px-4 h-full">
-        <div class="flex content-center items-center justify-center h-full">
-          <div class="w-full lg:w-6/12 px-4">
-            <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-red-200 border-0">
-              <div class="rounded-t mb-0 px-10 py-0">
 
-                <div class="p-2 text-right">
-                  <button
-                  class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-s px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                  (click)="closePopupSignalement()"
-                  type="button">
-                  X
-                  </button>
+    <!--MODAL POUR LES SIGNALEMENTS D'UNE OEUVRE-->
+    <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle3}">
+      <div class="modal-dialog" role="document">
+        <!--Formulaire Signalement-->
+        <div class="container mx-auto px-4 h-full">
+          <div class="flex content-center items-center justify-center h-full">
+            <div class="w-full lg:w-6/12 px-4">
+              <div
+                class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-red-200 border-0">
+                <div class="rounded-t mb-0 px-10 py-0">
+
+                  <div class="p-2 text-right">
+                    <button
+                      class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-s px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                      (click)="closePopupSignalement3()" type="button">
+                      X
+                    </button>
                   </div>
 
                   <div class="text-center mb-3">
-                    <h6 class="text-light-900 text-sm font-bold">Veuillez remplir le formulaire ci-dessous pour signaler cette Salle Virtuelle:</h6>
+                    <h6 class="text-light-900 text-sm font-bold">Veuillez remplir le formulaire ci-dessous pour signaler
+                      l'oeuvre choisie:</h6>
                   </div>
-              
-              <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                <form (ngSubmit)="saveSignalement(salleVirtuelle.id, username)">
-                  <table class="w-full">
-                    <tr>
-                        <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
-                          Titre 
-                        </label>
-                      <input
-                      type="text" [(ngModel)]="signalementSalleVirtuelle.titre" name="titre"
-                      class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"/>
-                    </tr>
-                    <br>
-                    <tr>
-                        <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
-                          Commentaire 
-                        </label>
-                      <textarea
-                      [(ngModel)]="signalementSalleVirtuelle.description" name="description"
-                      class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"></textarea>
-                    </tr>
-                    </table>
+
+                  <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+                    <form (ngSubmit)="saveSignalement3(username)">
+                      <table class="w-full">
+                        <tr>
+                          <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                            Titre
+                          </label>
+                          <input type="text" [(ngModel)]="signalementOeuvre.titre" name="titre"
+                            class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow" />
+                        </tr>
+                        <br>
+                        <tr>
+                          <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
+                            Commentaire
+                          </label>
+                          <textarea [(ngModel)]="signalementOeuvre.description" name="description"
+                            class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"></textarea>
+                        </tr>
+                      </table>
                       <br>
-                        <button type="submit" class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
-                              Envoyer 
-                        </button>
-                </form>
+                      <button type="submit"
+                        class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
+                        Envoyer
+                      </button>
+                    </form>
+                  </div>
+
+                </div>
               </div>
-        
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-</div>
-</div>
-</div>
-
-
-<!--MODAL POUR LES COMMENTAIRES D'UNE OEUVRE-->
-<div
-class="modal"
-tabindex="-1"
-role="dialog"
-[ngStyle]="{'display':displayStyle2}">
-<div class="modal-dialog" role="document">
-      <!--Formulaire Commentaire-->
-      <div class="container mx-auto px-4 h-full">
-        <div class="flex content-center items-center justify-center h-full">
-          <div class="w-full lg:w-6/12 px-4">
-            <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-red-200 border-0">
-              <div class="rounded-t mb-0 px-10 py-0">
-
-                <div class="p-2 text-right">
-                  <button
-                  class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-s px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                  (click)="closePopupCommentaire2()"
-                  type="button">
-                  X
-                  </button>
-                  </div>
-
-                  <div class="text-center mb-3">
-                    <h6 class="text-light-900 text-sm font-bold">Veuillez laisser votre commentaire pour cette oeuvre:</h6>
-                  </div>
-              
-              <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                <form (ngSubmit)="saveCommentaire2(username)">
-                  <table class="w-full">
-                    <tr>
-                        <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
-                          Titre 
-                        </label>
-                      <input
-                      type="text" [(ngModel)]="commentaireOeuvre.titre" name="titre"
-                      class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"/>
-                    </tr>
-                    <br>
-                    <tr>
-                      <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
-                        Note 
-                      </label>
-                      <div class="starRating">
-                        <input id="r5" type="radio" [(ngModel)]="commentaireOeuvre.note" name="note" value="5">
-                        <label for="r5">5</label>&nbsp;&nbsp;&nbsp;&nbsp; <!--four spaces-->
-                        <input id="r4" type="radio" [(ngModel)]="commentaireOeuvre.note" name="note" value="4">
-                        <label for="r4">4</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input id="r3" type="radio" [(ngModel)]="commentaireOeuvre.note" name="note" value="3">
-                        <label for="r3">3</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input id="r2" type="radio" [(ngModel)]="commentaireOeuvre.note" name="note" value="2">
-                        <label for="r2">2</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input id="r1" type="radio" [(ngModel)]="commentaireOeuvre.note" name="note" value="1">
-                        <label for="r1">1</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                      </div>
-                    </tr>
-                    <br>
-                    <tr>
-                        <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
-                          Commentaire 
-                        </label>
-                      <textarea
-                      [(ngModel)]="commentaireOeuvre.description" name="description"
-                      class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"></textarea>
-                    </tr>
-                    </table>
-                      <br>
-                        <button type="submit" class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
-                              Envoyer 
-                        </button>
-                </form>
-              </div>
-        
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-</div>
-
-
-<!--MODAL POUR LES SIGNALEMENTS D'UNE OEUVRE-->
-<div
-class="modal"
-tabindex="-1"
-role="dialog"
-[ngStyle]="{'display':displayStyle3}">
-<div class="modal-dialog" role="document">
-      <!--Formulaire Signalement-->
-      <div class="container mx-auto px-4 h-full">
-        <div class="flex content-center items-center justify-center h-full">
-          <div class="w-full lg:w-6/12 px-4">
-            <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-red-200 border-0">
-              <div class="rounded-t mb-0 px-10 py-0">
-
-                <div class="p-2 text-right">
-                  <button
-                  class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-s px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                  (click)="closePopupSignalement3()"
-                  type="button">
-                  X
-                  </button>
-                  </div>
-
-                  <div class="text-center mb-3">
-                    <h6 class="text-light-900 text-sm font-bold">Veuillez remplir le formulaire ci-dessous pour signaler l'oeuvre choisie:</h6>
-                  </div>
-                
-              <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                <form (ngSubmit)="saveSignalement3(username)">
-                  <table class="w-full">
-                    <tr>
-                        <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
-                          Titre 
-                        </label>
-                      <input
-                      type="text" [(ngModel)]="signalementOeuvre.titre" name="titre"
-                      class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"/>
-                    </tr>
-                    <br>
-                    <tr>
-                        <label class="block uppercase text-blueGray-600 text-xs mb-2" htmlFor="grid-password">
-                          Commentaire 
-                        </label>
-                      <textarea
-                      [(ngModel)]="signalementOeuvre.description" name="description"
-                      class="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow"></textarea>
-                    </tr>
-                    </table>
-                      <br>
-                        <button type="submit" class="bg-red-500 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
-                              Envoyer 
-                        </button>
-                </form>
-              </div>
-        
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-</div>
 
   </section>
 </main>
