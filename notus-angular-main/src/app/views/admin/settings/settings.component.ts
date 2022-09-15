@@ -91,7 +91,8 @@ export class SettingsComponent implements OnInit {
     this.salleExpositionService.saveSalle(username, this.currentFileUpload, this.salleExposition).subscribe(
       ()=>{
         this.findAllInfos(); 
-        this.salleExposition = new SalleExposition(); 
+        this.salleExposition = new SalleExposition();
+        this.salleExposition.adresse = new Adresse();
         this.selectedFiles = undefined;
         this.displayStyle2 = "none";
       }
