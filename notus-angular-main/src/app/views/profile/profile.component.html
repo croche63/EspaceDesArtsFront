@@ -153,7 +153,7 @@
               <br>
               <tr *ngFor="let saoC of sao.commentaireOeuvre">
                 <p class="ml-12 font-bold text-left" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-blueGray-600'">
-                  <i class="fas fa-star" style="color:rgb(246, 233, 53); text-shadow: 2px 2px 5px gray;"></i> {{saoC.note}} &nbsp;&nbsp; {{saoC.titre}}</p>
+                  <i class="fas fa-star" style="color:rgb(246, 233, 53); text-shadow: 2px 2px 5px gray;"></i> {{saoC.note}}/5 &nbsp;&nbsp; {{saoC.titre}}</p>
                 <p class="text-left">{{saoC.description}}</p> <br> 
               </tr>
             </table>
@@ -186,7 +186,7 @@
       <tr *ngFor="let sC of salleVirtuelle.commentaireSalleVirtuelle">
         <td>&nbsp;&nbsp;&nbsp;</td>
         <td><p class="ml-12 font-bold text-left" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-blueGray-600'">
-          <i class="fas fa-star" style="color:rgb(246, 233, 53); text-shadow: 2px 2px 5px gray;"></i> {{sC.note}} &nbsp;&nbsp; {{sC.titre}}</p>
+          <i class="fas fa-star" style="color:rgb(246, 233, 53); text-shadow: 2px 2px 5px gray;"></i> {{sC.note}}/5 &nbsp;&nbsp; {{sC.titre}}</p>
         <p class="text-left">{{sC.description}}</p> <br> 
         </td>
       </tr>
