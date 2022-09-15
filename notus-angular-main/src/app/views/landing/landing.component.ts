@@ -22,17 +22,17 @@ export class LandingComponent implements OnInit {
 
   salleExpo: SalleExposition = new SalleExposition();
 
-  commentairesSalleExposition!: any[];
+  commentairesSalleExposition!: CommentaireSalleExposition[];
   commentaireSalleExposition: CommentaireSalleExposition = new CommentaireSalleExposition();
   average!: number;
 
-  signalementsSalleExposition!: any[];
+  signalementsSalleExposition!: SignalementSalleExposition[];
   signalementSalleExposition: SignalementSalleExposition = new SignalementSalleExposition();
 
-  commentairesOeuvre!: any[];
+  commentairesOeuvre!: CommentaireOeuvre[];
   commentaireOeuvre: CommentaireOeuvre = new CommentaireOeuvre();
 
-  signalementsOeuvre!: any[];
+  signalementsOeuvre!: SignalementOeuvre[];
   signalementOeuvre: SignalementOeuvre = new SignalementOeuvre();
 
 
@@ -50,17 +50,22 @@ export class LandingComponent implements OnInit {
 
   findSalleExposition() {
     let idSalleExpo = localStorage.getItem("idSalleExpo");
-    this.SalleExpositionService.findById(idSalleExpo).subscribe((data) => {
+    this.SalleExpositionService.findById(idSalleExpo).subscribe((data:SalleExposition) => {
       this.salleExpo = data;
       // console.log("SalleExposition:",this.SalleExposition);
+      console.log(this.salleExpo);
 
       let commentaires = this.salleExpo.commentaireSalleExposition;
       this.commentairesSalleExposition = this.salleExpo.commentaireSalleExposition;
       // console.log('Commentaires:',commentaires);
 
+      // console.log("com", commentaires);
+      // console.log("commentairesSalleExposition", this.commentairesSalleExposition);
+
 
       let note = 0;
       for (let i = 0; i < commentaires.length; i++) {
+        // console.log(commentaires[i].note);        
         note += commentaires[i].note;
         // console.log('Note',commentaires[i].note);
       }
@@ -84,20 +89,20 @@ export class LandingComponent implements OnInit {
 
   findAllCommentaires() {
     this.commentaireSalleExpositionService.findAll().subscribe((data: any[]) => { this.commentairesSalleExposition = data; });
-    console.log(this.commentairesSalleExposition);
+    console.log("commentairesSalleExposition91", this.commentairesSalleExposition);
   }
 
-  // saveCommentaire(idSalleVirt: number, username: string) {
-  //   this.commentaireSalleExpositionService.save(idSalleVirt, username, this.commentaireSalleExposition).subscribe(
-  //     () => {
-  //       this.findAllCommentaires();
-  //       this.commentaireSalleExposition = new CommentaireSalleExposition();
-  //       this.displayStyle = "none";
-  //       console.log(idSalleVirt);
-  //       console.log(username);
-  //     }
-  //   )
-  // }
+  saveCommentaire(idSalleExpo: number, username: any) {
+    this.commentaireSalleExpositionService.save(idSalleExpo, username, this.commentaireSalleExposition).subscribe(
+      () => {
+        this.findAllCommentaires();
+        this.commentaireSalleExposition = new CommentaireSalleExposition();
+        this.displayStyle = "none";
+        console.log(idSalleExpo);
+        console.log(username);
+      }
+    )
+  }
 
 
   //SIGNALEMENT SALLE VIRTUELLE
