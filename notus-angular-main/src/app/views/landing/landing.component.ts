@@ -44,8 +44,17 @@ export class LandingComponent implements OnInit {
     private appService: AppService) { }
 
   ngOnInit(): void {
-    this.findSalleExposition();
+    this.findAll();
     // this.noteSalleVirtu();
+  }
+
+  findAll(){
+    this.SalleExpositionService.findAll()
+    this.findSalleExposition()
+    this.findAllCommentaires()
+    this.findAllCommentaires()
+    this.findAllSignalements()
+    this.findAllSignalements3()
   }
 
   findSalleExposition() {
@@ -89,17 +98,17 @@ export class LandingComponent implements OnInit {
 
   findAllCommentaires() {
     this.commentaireSalleExpositionService.findAll().subscribe((data: any[]) => { this.commentairesSalleExposition = data; });
-    console.log("commentairesSalleExposition91", this.commentairesSalleExposition);
+    // console.log("commentairesSalleExposition91", this.commentairesSalleExposition);
   }
 
   saveCommentaire(idSalleExpo: number, username: any) {
     this.commentaireSalleExpositionService.save(idSalleExpo, username, this.commentaireSalleExposition).subscribe(
       () => {
-        this.findAllCommentaires();
+        this.findAll(); 
         this.commentaireSalleExposition = new CommentaireSalleExposition();
         this.displayStyle = "none";
-        console.log(idSalleExpo);
-        console.log(username);
+        // console.log(idSalleExpo);
+        // console.log(username);
       }
     )
   }
@@ -118,17 +127,17 @@ export class LandingComponent implements OnInit {
 
   findAllSignalements() {
     this.signalementSalleExpositionService.findAll().subscribe((data: any[]) => { this.signalementsSalleExposition = data; });
-    console.log(this.signalementsSalleExposition);
+    // console.log(this.signalementsSalleExposition);
   }
 
   saveSignalement(idSalleExpo: number, username: string) {
     this.signalementSalleExpositionService.save(idSalleExpo, username, this.signalementSalleExposition).subscribe(
       () => {
-        this.findAllSignalements();
+        this.findAll(); 
         this.signalementSalleExposition = new SignalementSalleExposition();
         this.displayStyle1 = "none";
-        console.log(idSalleExpo);
-        console.log(username);
+        // console.log(idSalleExpo);
+        // console.log(username);
       }
     )
   }
@@ -155,7 +164,7 @@ export class LandingComponent implements OnInit {
     let idOeuvre = localStorage.getItem("idOeuvre");
     this.commentaireOeuvreService.save(idOeuvre, username, this.commentaireOeuvre).subscribe(
       () => {
-        this.findAllCommentaires2();
+        this.findAll(); 
         this.commentaireOeuvre = new CommentaireOeuvre();
         this.displayStyle2 = "none";
         localStorage.removeItem("idOeuvre");
@@ -178,14 +187,14 @@ export class LandingComponent implements OnInit {
 
   findAllSignalements3() {
     this.signalementOeuvreService.findAll().subscribe((data: any[]) => { this.signalementsOeuvre = data; });
-    console.log(this.signalementsOeuvre);
+    // console.log(this.signalementsOeuvre);
   }
 
   saveSignalement3(username: string) {
     let idOeuvre = localStorage.getItem("idOeuvre");
     this.signalementOeuvreService.save(idOeuvre, username, this.signalementOeuvre).subscribe(
       () => {
-        this.findAllSignalements3();
+        this.findAll(); 
         this.signalementOeuvre = new SignalementOeuvre();
         this.displayStyle3 = "none";
         localStorage.removeItem("idOeuvre");
