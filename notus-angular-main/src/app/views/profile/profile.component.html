@@ -55,7 +55,6 @@
                 <div class="lg:mr-3 p-3 text-center">
                   <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
                     {{average}}
-                    <!-- {{salleVirtuelle.commentaireSalleVirtuelle.note.moyenne}}  -->
                   </span>
                   <span class="text-sm text-blueGray-400">Note</span>
                 </div>
@@ -146,6 +145,20 @@
                 </td>
               </tr>
             </table>
+            <div class="mt-10 py-5 border-t border-blueGray-200 text-center">
+            <table>
+              <tr>
+                <p class="ml-12 font-bold text-left" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-blueGray-600'">Commentaires de "{{sao.nom}}":</p>
+              </tr>
+              <br>
+              <tr *ngFor="let saoC of salleVirtuelle.artiste.oeuvres.commentaireOeuvre">
+                <p class="ml-12 font-bold text-left" [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-blueGray-600'">
+                  <i class="fas fa-star" style="color:yellow"></i> {{saoC.note}} &nbsp;&nbsp; {{saoC.titre}}</p> <br>
+                <p class="text-left">{{saoC.description}}</p>
+                
+              </tr>
+            </table>
+            </div>
           </div>
           
 
